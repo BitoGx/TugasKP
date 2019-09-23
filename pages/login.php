@@ -1,12 +1,15 @@
 <?php
 session_start();
-
-if($_SESSION['Status'] != 0)
+if(isset($_SESSION['Control']) != false)
 {
-  if($_SESSION['Status'] != 0)
+  if($_SESSION['Control'] == true)
   {
-    session_destroy();
+    header("location: index.php");
   }
+}
+else
+{
+  session_destroy();
 }
 ?>
 <html lang="en">
@@ -56,10 +59,10 @@ if($_SESSION['Status'] != 0)
                             <form role="form" action="../php/session_login.php" method="POST" name="login">
                                 <fieldset>
                                     <div class="form-group">
-                                        <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
+                                        <input class="form-control" placeholder="E-mail" name="email" type="email"  autofocus required>
                                     </div>
                                     <div class="form-group">
-                                        <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                        <input class="form-control" placeholder="Password" name="password" type="password"  value="" required>
                                     </div>
                                     <div class="checkbox">
                                         <label>
@@ -67,7 +70,7 @@ if($_SESSION['Status'] != 0)
                                         </label>
                                     </div>
                                     <!-- Change this to a button or input when using this as a form -->
-                                    <a href="index.php" class="btn btn-lg btn-success btn-block">Login</a>
+                                    <input type="submit" name="submit" value="Login" class="btn btn-lg btn-success btn-block">
                                 </fieldset>
                             </form>
                         </div>
