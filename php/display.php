@@ -1,7 +1,7 @@
 <?php
 
 //Get a list of file paths using the glob function.
-$fileList = glob('uploads/*');
+$fileList = glob('../uploads/*');
 
 //Loop through the array that glob returned.
 foreach($fileList as $filename){
