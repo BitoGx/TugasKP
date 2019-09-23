@@ -68,12 +68,11 @@
       
       if($hasil)
       {
-        header("location: ../test.php");
+        header("location: ../pages/forms.php");
       }
       else
       {
-        echo "Oof.. <br>";
-        echo "$sql<br>";
+        echo "Database gagal di update";
       }
     }
     else
