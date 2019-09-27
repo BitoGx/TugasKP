@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <?php
+  session_start();
   include "../php/connection.php";
+  if(isset($_SESSION['Control']) != true)
+  {
+    header("location: forms.php");
+    session_destroy();
+  }
 ?>
 <html lang="en">
     <head>

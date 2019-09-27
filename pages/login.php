@@ -1,16 +1,16 @@
 <?php
-session_start();
-if(isset($_SESSION['Control']) != false)
-{
-  if($_SESSION['Control'] == true)
+  session_start();
+  if(isset($_SESSION['Control']) != false)
   {
-    header("location: index.php");
+    if($_SESSION['Control'] == true)
+    {
+      header("location: index.php");
+    }
   }
-}
-else
-{
-  session_destroy();
-}
+  else
+  {
+    session_destroy();
+  }
 ?>
 <html lang="en">
     <head>

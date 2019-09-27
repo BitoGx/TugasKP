@@ -198,12 +198,7 @@
                                 <!-- /.panel-body -->
                             </div>
                             <!-- /.panel -->
-                            
-                    
-                    
                     <!-- /.row -->
-                    
-
                                         <!--halaman pojok kanan-->
                                         <!-- /.col-lg-6 (nested) -->
                                         <!--<div class="col-lg-6">
