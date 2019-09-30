@@ -2,7 +2,7 @@
 <?php
   session_start();
   include "../php/connection.php";
-  if(isset($_SESSION['Control']) != true)
+  if(isset($_SESSION['Loggedin']) != true)
   {
     header("location: forms.php");
     session_destroy();
