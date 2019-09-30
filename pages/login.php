@@ -1,15 +1,8 @@
 <?php
   session_start();
-  if(isset($_SESSION['Control']) != false)
+  if(isset($_SESSION['Loggedin']))
   {
-    if($_SESSION['Control'] == true)
-    {
-      header("location: index.php");
-    }
-  }
-  else
-  {
-    session_destroy();
+    header("location: ../pages/index.php");
   }
 ?>
 <html lang="en">

@@ -1,17 +1,14 @@
 <?php
   session_start();
   //Memanggil fungsi untuk mengecek apakah user sudah login atau belum
-  if($_SESSION['Control'] == false)
+  if(isset($_SESSION['Loggedin']))
   {
-    if($_SESSION['Control'] == true)
-    {
-      header("location: ../pages/index.php");
-    }
+    unset($_SESSION['Loggedin']);
+    session_destroy();
+    header("location: ../pages/index.php");
   }
   else
   {
-    unset($_SESSION['Control']);
-    session_destroy();
-    header("location: ../pages/login.php");
+    header("location: ../pages/index.php");
   }
 ?>
