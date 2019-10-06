@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <?php
+  session_start();
   include "../php/connection.php";
+  if(isset($_SESSION['Loggedin']) != true)
+  {
+    header("location: forms.php");
+    session_destroy();
+  }
 ?>
 <html lang="en">
     <head>
@@ -116,7 +122,7 @@
                             <!--<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                             </li>-->
                             <li class="divider"></li>
-                            <li><a href="login.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            <li><a href="../php/session_logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                             </li>
                         </ul>
                     </li>

@@ -68,7 +68,7 @@
       
       if($hasil)
       {
-        header("location: ../pages/forms.php");
+        header("location: ../pages/secondpage.php");
       }
       else
       {

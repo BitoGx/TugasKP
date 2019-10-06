@@ -2,7 +2,7 @@
   //Session Start
   session_start();
   
-  ob_start();
+  //ob_start();
   
   if(isset($_POST['email']))
   {
@@ -14,7 +14,7 @@
     $email = strtolower($email);
     $password=$_POST['password'];
     $password = $password;
-    $_SESSION['Control'] = "true";
+    $_SESSION['Loggedin'] = "true";
     
     //Memanggil fungsi untuk mengecek apakah user sudah login atau belum
     require_once "connection.php";
@@ -35,14 +35,14 @@
     //Menjalankan perintah perulangan sebanyak yang dibutuhkan
     if($row)
     {
-      header("location: ../pages/index.php");
+      header("location: ../index.php");
     }
     //Jika Username atau Password salah maka menampilkan pesan salah
     else
     {
       echo "<center><h1>USERNAME DAN PASSWORD SALAH</h1></center>";
       $_SESSION['Loggedin']="false";
-      header("Refresh: 5; location: ../pages/login.php");
+      header("Refresh: 5; http://localhost/Evie/pages/login.php");
     }
   }
   else
@@ -50,6 +50,4 @@
     //Memanggil fungsi untuk mengecek apakah user sudah login atau belum
     require_once "session_check_dalam.php";
   }
-  
-  
 ?>
