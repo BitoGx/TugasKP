@@ -1,4 +1,4 @@
-const url = '../../uploads/[06] SOP Kerja Praktek.pdf';
+const url = '../../uploads/[Real Money Trading in MMORPG Items From a Legal and Policy Perspective.pdf';
 
 let pdfDoc = null,
   pageNum = 1,

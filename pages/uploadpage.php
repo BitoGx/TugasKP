@@ -2,12 +2,18 @@
 <html lang='en'>
 <head>
   <?php
-    session_start();
-  ?>
+  session_start();
+  include "../php/connection.php";
+  if(isset($_SESSION['Loggedin']) != true)
+  {
+    header("location: secondpage.php");
+    session_destroy();
+  }
+?>
 	<meta class="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<title>Dashboard | Evie by unDraw</title>
-	<link rel='stylesheet' href='css/style.min.css' />
+	<title>Upload PDF</title>
+	<link rel='stylesheet' href='../css/style.min.css' />
 </head>
 <body>
 	<!-- navbar -->
@@ -15,11 +21,11 @@
 		<nav class="nav__mobile"></nav>
 		<div class="container">
 			<div class="navbar__inner">
-				<a href="#" class="navbar__logo">Logo</a>
+				<a href="../index.php" class="navbar__logo">Logo</a>
 				<nav class="navbar__menu">
 					<ul>
-						<li><a href="php/session_logout.php">Logout</a></li>
-						<li><a href="pages/login.php">Login</a></li>
+						<li><a href="../php/session_logout.php">Logout</a></li>
+						<li><a href="../pages/login.php">Login</a></li>
 					</ul>
 				</nav>
 				<div class="navbar__menu-mob"><a href="" id='toggle'><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z" class=""></path></svg></a></div>
@@ -32,8 +38,8 @@
 			<div class="app__inner">
 				<div class="app__menu">
 					<ul class="vMenu">
-						<li><a href="#" class="vMenu--active">Active page</a></li>
-						<li><a href="pages/secondpage.php">Second page</a></li>
+						<li><a href="#">Active page</a></li>
+						<li><a href="secondpage.php" class="vMenu--active">Second page</a></li>
 						<li><a href="#">Third page</a></li>
 						<li><a href="#">Fourth page</a></li>
 						<li><a href="#">Fifth page</a></li>
@@ -43,12 +49,28 @@
 					<div class="text-container">
 						<h3 class="app__main__title">This is the main area</h3>
 						<p>Write or do whatever you want here!</p>
+            <form role="form"  action="../php/upload.php" method="post" enctype="multipart/form-data">
+              <label>Title</label>
+              <input placeholder="Enter Title">
+              <p>Masukan Judul PDF</p>
+              <label>Nama Penulis</label>
+              <input placeholder="Enter Name">
+              <p>Masukan Nama Penulis </p>
+              <label>Year</label>
+              <input placeholder="Enter Year">
+              <p>Masukan Tahun </p>
+              <label>File input</label>
+              <input type="file" name="fileToUpload" id="fileToUpload">
+              <p>
+                <input type="submit" value="Submit" name="submit">
+              </p>
+            </form>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-<script src='js/app.min.js'></script>
+<script src='../js/app.min.js'></script>
 </body>
 </html>

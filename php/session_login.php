@@ -35,14 +35,14 @@
     //Menjalankan perintah perulangan sebanyak yang dibutuhkan
     if($row)
     {
-      header("location: ../pages/index.php");
+      header("location: ../index.php");
     }
     //Jika Username atau Password salah maka menampilkan pesan salah
     else
     {
       echo "<center><h1>USERNAME DAN PASSWORD SALAH</h1></center>";
       $_SESSION['Loggedin']="false";
-      header("Refresh: 5; http://localhost/tugasKP/pages/login.php");
+      header("Refresh: 5; http://localhost/Evie/pages/login.php");
     }
   }
   else

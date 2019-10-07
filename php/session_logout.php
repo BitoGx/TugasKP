@@ -5,10 +5,10 @@
   {
     unset($_SESSION['Loggedin']);
     session_destroy();
-    header("location: ../pages/index.php");
+    header("location: ../index.php");
   }
   else
   {
-    header("location: ../pages/index.php");
+    header("location: ../index.php");
   }
 ?>
