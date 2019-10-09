@@ -28,6 +28,19 @@
       return true;
     }
   }
+  function UploadCheck()
+  {
+    var file = document.forms["formupload"]["file"].value;
+    if(file == "" || file == null)
+    {
+      return false;
+    }
+    else
+    {
+      document.getElementById('check').src='../images/success.png';
+      return true;
+    }
+  }
   </script>
 </head>
 <body>
@@ -79,8 +92,9 @@
               <input placeholder="Enter Year" type="text">
               <label>File Dokumen</label>
               <label class="custom-file-upload">
-                <input  id="file" type="file" id="file" name="fileToUpload"/>
+                <input id="file" type="file" id="file" name="fileToUpload" onchange="return UploadCheck()"/>
                 <i class="fa fa-cloud-upload"></i> Upload File
+                <img id="check" src="../images/error.png" style="width:16px">
               </label>
               <p>
                 <input type="submit" value="Submit" name="submit" class="button button__accent">
