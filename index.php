@@ -41,7 +41,7 @@
 				<div class="app__menu">
 					<ul class="vMenu">
 						<li><a href="#" class="vMenu--active">Main Menu</a></li>
-						<li><a href="pages/secondpage.php">Upload PDF</a></li>
+						<li><a href="pages/uploadverification.php">Upload PDF</a></li>
 					</ul>
 				</div>
 				<div class="app__main">

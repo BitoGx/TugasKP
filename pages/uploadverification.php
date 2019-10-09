@@ -1,9 +1,10 @@
+  <?php
+    session_start();
+    include "../php/connection.php";
+  ?>
 <!DOCTYPE html>
 <html lang='en'>
 <head>
-  <?php
-    include "../php/connection.php";
-  ?>
 	<meta class="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<title>Second Page</title>

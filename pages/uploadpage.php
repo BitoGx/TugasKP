@@ -6,7 +6,7 @@
   include "../php/connection.php";
   if(isset($_SESSION['Loggedin']) != true)
   {
-    header("location: secondpage.php");
+    header("location: uploadverification.php");
     session_destroy();
   }
 ?>
@@ -27,7 +27,7 @@
 						<?php
               if(isset($_SESSION['Loggedin']))
               {
-                echo "<li><a href='php/session_logout.php'>Logout</a></li>";
+                echo "<li><a href='../php/session_logout.php'>Logout</a></li>";
               }
               else
               {
@@ -47,7 +47,7 @@
 				<div class="app__menu">
 					<ul class="vMenu">
 						<li><a href="../index.php">Main Menu</a></li>
-						<li><a href="secondpage.php">Upload PDF</a></li>
+						<li><a href="uploadverification.php">Upload PDF</a></li>
 						<li><a href="#" class="vMenu--active">Upload Form</a></li>
 					</ul>
 				</div>
