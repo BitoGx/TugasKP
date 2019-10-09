@@ -4,16 +4,16 @@
   
   //ob_start();
   
-  if(isset($_POST['email']))
+  if(isset($_POST['username']))
   {
     /*
     *Menyimpan Variabel yang di kirim menggunakan method POST
     *Mengubah isi variabel ke lowercase
     */
-    $email=$_POST['email'];
-    $email = strtolower($email);
+    $username=$_POST['username'];
+    $username = strtolower($username);
     $password=$_POST['password'];
-    $password = $password;
+    $password = sha1($password);
     
     //Memanggil fungsi untuk mengecek apakah user sudah login atau belum
     require_once "connection.php";
@@ -22,7 +22,7 @@
     mysqli_select_db($conn,"tubesKP");
   
     //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
-    $sql="select * from admin where username='$email' and password=sha1('$password')";
+    $sql="select Nama,Bagian from admin where Username='$username' and Password='$password'";
   
     //Menjalankan perintah query dan menyimpannya dalam variabel hasil
     $hasil=mysqli_query ($conn,$sql);
@@ -34,6 +34,9 @@
     //Menjalankan perintah perulangan sebanyak yang dibutuhkan
     if($row)
     {
+      list($Nama,$Bagian)=$row;
+      $_SESSION['Nama']=$Nama;
+      $_SESSION['Bagian']=$Bagian;
       $_SESSION['Loggedin'] = "true";
       header("location: ../index.php");
     }

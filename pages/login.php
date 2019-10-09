@@ -35,15 +35,13 @@
 				</div>
 				<div class="auth__auth">
 					<h1 class="auth__title">Access your account</h1>
-					<p>Fill in your email and password to proceed</p>
+					<p>Fill in your username and password to proceed</p>
 					<form method='post' action="../php/session_login.php" autocompelete="new-password" role="form" class="form" name="login">
-						<input name="email" class="fakefield">
-						<label>Email</label>
-						<input type="email" name="email" id='email' placeholder="you@example.com" autofocus required>
+						<label>Username</label>
+						<input type="text" name="username" id='username' placeholder="username" autofocus required>
 						<label>Password</label>
 						<input type="password" name="password" id='password' placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" autocomplete="off" required>
 						<button type="submit" name="submit" class="button button__accent">Log in</button>
-						<!-- <a href=""><h6 class="left-align" >Forgot your password?</h6></a> -->
 					</form>
 				</div>
 			</div>

@@ -1,6 +1,11 @@
   <?php
     session_start();
     include "../php/connection.php";
+    if(isset($_SESSION['Loggedin']))
+    {
+      $Nama = $_SESSION['Nama'];
+      $Bagian = $_SESSION['Bagian'];
+    }
   ?>
 <!DOCTYPE html>
 <html lang='en'>
@@ -49,7 +54,17 @@
 					<div class="text-container">
 						<h3 class="app__main__title">This is the main area</h3>
 						<p>Write or do whatever you want here!</p>
-            <a href="uploadpage.php"><button type="button" name="uploadpdf" class="button button__accent">Upload PDF</button></a> <b>*Login user only</b>
+            <a href="uploadpage.php"><button type="button" name="uploadpdf" class="button button__accent">Upload PDF</button></a>
+            <?php
+              if(isset($_SESSION['Loggedin']))
+              {
+                echo "<b>&nbsp;&nbsp;&nbsp;Hallo $Nama, dari bagian $Bagian</b>";
+              }
+              else
+              {
+                echo "<b>*Login user only</b>";
+              }
+            ?>
             <br>
             <?php
               include "../php/display.php";
