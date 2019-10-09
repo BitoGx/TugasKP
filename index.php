@@ -1,9 +1,9 @@
+<?php
+  session_start();
+?>
 <!DOCTYPE html>
 <html lang='en'>
 <head>
-  <?php
-    session_start();
-  ?>
 	<meta class="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<title>Dashboard | Evie by unDraw</title>
@@ -18,8 +18,16 @@
 				<a href="#" class="navbar__logo">Logo</a>
 				<nav class="navbar__menu">
 					<ul>
-						<li><a href="php/session_logout.php">Logout</a></li>
-						<li><a href="pages/login.php">Login</a></li>
+            <?php
+              if(isset($_SESSION['Loggedin']))
+              {
+                echo "<li><a href='php/session_logout.php'>Logout</a></li>";
+              }
+              else
+              {
+                echo "<li><a href='pages/login.php'>Login</a></li>";
+              }
+            ?>
 					</ul>
 				</nav>
 				<div class="navbar__menu-mob"><a href="" id='toggle'><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z" class=""></path></svg></a></div>
@@ -32,11 +40,8 @@
 			<div class="app__inner">
 				<div class="app__menu">
 					<ul class="vMenu">
-						<li><a href="#" class="vMenu--active">Active page</a></li>
-						<li><a href="pages/secondpage.php">Second page</a></li>
-						<li><a href="#">Third page</a></li>
-						<li><a href="#">Fourth page</a></li>
-						<li><a href="#">Fifth page</a></li>
+						<li><a href="#" class="vMenu--active">Main Menu</a></li>
+						<li><a href="pages/secondpage.php">Upload PDF</a></li>
 					</ul>
 				</div>
 				<div class="app__main">
