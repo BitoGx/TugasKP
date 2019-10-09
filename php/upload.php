@@ -5,7 +5,7 @@
   $target_dir = "../uploads/";
   $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
   $uploadOk = 1;
-  $allowedMB = 5000000;
+  $allowedMB = 100000000;
   $FileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
   
   // Check if image file is a actual image or fake image
@@ -34,7 +34,7 @@
   // Check file size 5MB
   if ($_FILES["fileToUpload"]["size"] > $allowedMB) 
   {
-    echo "Sorry, your file is too large. Max 5Mb.";
+    echo "Sorry, your file is too large. Max 100Mb.";
     $uploadOk = 0;
   }
   

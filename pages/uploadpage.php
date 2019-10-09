@@ -14,6 +14,21 @@
 	<title>Upload PDF</title>
 	<link rel='stylesheet' href='../css/style.min.css' />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script language="javascript">
+  function FileCheck()
+  {
+    var file = document.forms["formupload"]["file"].value;
+    if(file == "" || file == null)
+    {
+      alert("Tolong pilih dokumen yang ingin di upload");
+      return false;
+    }
+    else
+    {
+      return true;
+    }
+  }
+  </script>
 </head>
 <body>
 	<!-- navbar -->
@@ -55,7 +70,7 @@
 					<div class="text-container">
 						<h3 class="app__main__title">Form Unggah Dokumen</h3>
 						<p>Silahkan isi informasi dokumen yang akan di unggah</p>
-            <form role="form"  action="../php/upload.php" method="post" enctype="multipart/form-data">
+            <form role="form" name="formupload" action="../php/upload.php" method="post" enctype="multipart/form-data" onsubmit="return FileCheck()">
               <label>Judul</label>
               <input placeholder="Enter Title" type="text">
               <label>Nama Penulis</label>
@@ -64,7 +79,7 @@
               <input placeholder="Enter Year" type="text">
               <label>File Dokumen</label>
               <label class="custom-file-upload">
-                <input  id="file" type="file" name="fileToUpload"/>
+                <input  id="file" type="file" id="file" name="fileToUpload"/>
                 <i class="fa fa-cloud-upload"></i> Upload File
               </label>
               <p>
