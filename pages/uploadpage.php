@@ -1,7 +1,4 @@
-<!DOCTYPE html>
-<html lang='en'>
-<head>
-  <?php
+<?php
   session_start();
   include "../php/connection.php";
   if(isset($_SESSION['Loggedin']) != true)
@@ -10,10 +7,13 @@
     session_destroy();
   }
 ?>
+<html lang='en'>
+<head>
 	<meta class="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<title>Upload PDF</title>
 	<link rel='stylesheet' href='../css/style.min.css' />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
 <body>
 	<!-- navbar -->
@@ -46,29 +46,29 @@
 			<div class="app__inner">
 				<div class="app__menu">
 					<ul class="vMenu">
-						<li><a href="../index.php">Main Menu</a></li>
+						<li><a href="../index.php">Dashboard</a></li>
 						<li><a href="uploadverification.php">Upload PDF</a></li>
 						<li><a href="#" class="vMenu--active">Upload Form</a></li>
 					</ul>
 				</div>
 				<div class="app__main">
 					<div class="text-container">
-						<h3 class="app__main__title">This is the main area</h3>
-						<p>Write or do whatever you want here!</p>
+						<h3 class="app__main__title">Form Unggah Dokumen</h3>
+						<p>Silahkan isi informasi dokumen yang akan di unggah</p>
             <form role="form"  action="../php/upload.php" method="post" enctype="multipart/form-data">
-              <label>Title</label>
-              <input placeholder="Enter Title">
-              <p>Masukan Judul PDF</p>
+              <label>Judul</label>
+              <input placeholder="Enter Title" type="text">
               <label>Nama Penulis</label>
-              <input placeholder="Enter Name">
-              <p>Masukan Nama Penulis </p>
-              <label>Year</label>
-              <input placeholder="Enter Year">
-              <p>Masukan Tahun </p>
-              <label>File input</label>
-              <input type="file" name="fileToUpload" id="fileToUpload">
+              <input placeholder="Enter Name" type="text">
+              <label>Tahun</label>
+              <input placeholder="Enter Year" type="text">
+              <label>File Dokumen</label>
+              <label class="custom-file-upload">
+                <input  id="file" type="file" name="fileToUpload"/>
+                <i class="fa fa-cloud-upload"></i> Upload File
+              </label>
               <p>
-                <input type="submit" value="Submit" name="submit">
+                <input type="submit" value="Submit" name="submit" class="button button__accent">
               </p>
             </form>
 					</div>

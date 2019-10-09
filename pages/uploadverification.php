@@ -1,13 +1,12 @@
-  <?php
-    session_start();
-    include "../php/connection.php";
-    if(isset($_SESSION['Loggedin']))
-    {
-      $Nama = $_SESSION['Nama'];
-      $Bagian = $_SESSION['Bagian'];
-    }
-  ?>
-<!DOCTYPE html>
+<?php
+  session_start();
+  include "../php/connection.php";
+  if(isset($_SESSION['Loggedin']))
+  {
+    $Nama = $_SESSION['Nama'];
+    $Bagian = $_SESSION['Bagian'];
+  }
+?>
 <html lang='en'>
 <head>
 	<meta class="utf-8">
@@ -46,7 +45,7 @@
 			<div class="app__inner">
 				<div class="app__menu">
 					<ul class="vMenu">
-						<li><a href="../index.php">Main Menu</a></li>
+						<li><a href="../index.php">Dashboard</a></li>
 						<li><a href="#" class="vMenu--active">Upload PDF</a></li>
 					</ul>
 				</div>

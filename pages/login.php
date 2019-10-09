@@ -41,6 +41,7 @@
 						<input type="text" name="username" id='username' placeholder="username" autofocus required>
 						<label>Password</label>
 						<input type="password" name="password" id='password' placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" autocomplete="off" required>
+            <a href="../index.php"><button type="button" name="back" class="button button__accent">Back</button></a>
 						<button type="submit" name="submit" class="button button__accent">Log in</button>
 					</form>
 				</div>

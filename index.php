@@ -1,7 +1,7 @@
 <?php
   session_start();
+  include "php/connection.php";
 ?>
-<!DOCTYPE html>
 <html lang='en'>
 <head>
 	<meta class="utf-8">
@@ -40,14 +40,17 @@
 			<div class="app__inner">
 				<div class="app__menu">
 					<ul class="vMenu">
-						<li><a href="#" class="vMenu--active">Main Menu</a></li>
+						<li><a href="#" class="vMenu--active">Dashboard</a></li>
 						<li><a href="pages/uploadverification.php">Upload PDF</a></li>
 					</ul>
 				</div>
 				<div class="app__main">
 					<div class="text-container">
-						<h3 class="app__main__title">This is the main area</h3>
+						<h3 class="app__main__title">Dashboard</h3>
 						<p>Write or do whatever you want here!</p>
+            <?php
+              include "php/display.php";
+            ?>
 					</div>
 				</div>
 			</div>
