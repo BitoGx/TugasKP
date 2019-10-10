@@ -38,7 +38,7 @@
 					<p>Fill in your username and password to proceed</p>
 					<form method='post' action="../php/session_login.php" autocompelete="new-password" role="form" class="form" name="login">
 						<label>Username</label>
-						<input type="text" name="username" id='username' placeholder="username" autofocus required>
+						<input type="text" name="username" id='username' placeholder="Masukkan Username" autofocus required>
 						<label>Password</label>
 						<input type="password" name="password" id='password' placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" autocomplete="off" required>
             <a href="../index.php"><button type="button" name="back" class="button button__accent">Back</button></a>

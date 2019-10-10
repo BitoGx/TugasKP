@@ -57,11 +57,11 @@
 						<p>Silahkan isi informasi dokumen yang akan di unggah</p>
             <form role="form" name="formupload" action="../php/upload.php" method="post" enctype="multipart/form-data" onsubmit="return FileCheck()">
               <label>Nama Dokumen</label>
-              <input placeholder="Masukkan Nama Dokumen" type="text" name="docname">
+              <input placeholder="Masukkan Nama Dokumen" type="text" id="docname" name="docname">
               <label>Nama Penulis</label>
               <input placeholder="Masukkan Nama" type="text" name="authorname">
               <label>Tahun Dibuat</label>
-              <input placeholder="Masukkan Tahun" type="text" name="year">
+              <input placeholder="Masukkan Tahun" type="text" id="year" name="year">
               <label>File Dokumen</label>
               <label class="custom-file-upload">
                 <input id="file" type="file" id="file" name="fileToUpload" onchange="return UploadCheck()"/>
@@ -78,6 +78,6 @@
 		</div>
 	</div>
 
-<script src='../js/app.min.js'></script>
+<script src='../js/app.js'></script>
 </body>
 </html>

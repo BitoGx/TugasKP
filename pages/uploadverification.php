@@ -11,7 +11,7 @@
 <head>
 	<meta class="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<title>Second Page</title>
+	<title>Verification Page</title>
 	<link rel='stylesheet' href='../css/style.min.css' />
 </head>
 <body>

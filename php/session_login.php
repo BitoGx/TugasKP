@@ -2,9 +2,7 @@
   //Session Start
   session_start();
   
-  //ob_start();
-  
-  if(isset($_POST['username']))
+  if(isset($_POST['username']) || isset($_POST['password']))
   {
     /*
     *Menyimpan Variabel yang di kirim menggunakan method POST
@@ -22,7 +20,7 @@
     mysqli_select_db($conn,"tubesKP");
   
     //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
-    $sql="select Nama,Bagian from admin where Username='$username' and Password='$password'";
+    $sql="select Nama,Bagian,Id_Admin from admin where Username='$username' and Password='$password' and Status=1";
   
     //Menjalankan perintah query dan menyimpannya dalam variabel hasil
     $hasil=mysqli_query ($conn,$sql);
@@ -34,9 +32,10 @@
     //Menjalankan perintah perulangan sebanyak yang dibutuhkan
     if($row)
     {
-      list($Nama,$Bagian)=$row;
+      list($Nama,$Bagian,$Id_Admin)=$row;
       $_SESSION['Nama']=$Nama;
       $_SESSION['Bagian']=$Bagian;
+      $_SESSION['Id_Admin']=$Id_Admin;
       $_SESSION['Loggedin'] = "true";
       header("location: ../index.php");
     }

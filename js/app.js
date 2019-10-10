@@ -1464,6 +1464,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 function FileCheck()
   {
     var file = document.forms["formupload"]["file"].value;
+    var inputyear = document.forms["formupload"]["year"].value;
+    var currentyear = new Date().getFullYear();
     if(file == "" || file == null)
     {
       alert("Tolong pilih dokumen yang ingin di upload");
@@ -1471,7 +1473,15 @@ function FileCheck()
     }
     else
     {
-      return true;
+      if(inputyear > currentyear || inputyear < 1900)
+      {
+        alert("Maaf tahun yang dimasukan hanya dari 1900 sampai "+currentyear);
+        return false;
+      }
+      else
+      {
+        return true;
+      }
     }
   }
   function UploadCheck()
