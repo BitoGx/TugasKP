@@ -1461,3 +1461,29 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   }
 
 }(document, window, 0));
+function FileCheck()
+  {
+    var file = document.forms["formupload"]["file"].value;
+    if(file == "" || file == null)
+    {
+      alert("Tolong pilih dokumen yang ingin di upload");
+      return false;
+    }
+    else
+    {
+      return true;
+    }
+  }
+  function UploadCheck()
+  {
+    var file = document.forms["formupload"]["file"].value;
+    if(file == "" || file == null)
+    {
+      return false;
+    }
+    else
+    {
+      document.getElementById('check').src='../images/success.png';
+      return true;
+    }
+  }

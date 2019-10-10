@@ -14,34 +14,6 @@
 	<title>Upload PDF</title>
 	<link rel='stylesheet' href='../css/style.min.css' />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-  <script language="javascript">
-  function FileCheck()
-  {
-    var file = document.forms["formupload"]["file"].value;
-    if(file == "" || file == null)
-    {
-      alert("Tolong pilih dokumen yang ingin di upload");
-      return false;
-    }
-    else
-    {
-      return true;
-    }
-  }
-  function UploadCheck()
-  {
-    var file = document.forms["formupload"]["file"].value;
-    if(file == "" || file == null)
-    {
-      return false;
-    }
-    else
-    {
-      document.getElementById('check').src='../images/success.png';
-      return true;
-    }
-  }
-  </script>
 </head>
 <body>
 	<!-- navbar -->
@@ -84,12 +56,12 @@
 						<h3 class="app__main__title">Form Unggah Dokumen</h3>
 						<p>Silahkan isi informasi dokumen yang akan di unggah</p>
             <form role="form" name="formupload" action="../php/upload.php" method="post" enctype="multipart/form-data" onsubmit="return FileCheck()">
-              <label>Judul</label>
-              <input placeholder="Enter Title" type="text">
+              <label>Nama Dokumen</label>
+              <input placeholder="Masukkan Nama Dokumen" type="text" name="docname">
               <label>Nama Penulis</label>
-              <input placeholder="Enter Name" type="text">
-              <label>Tahun</label>
-              <input placeholder="Enter Year" type="text">
+              <input placeholder="Masukkan Nama" type="text" name="authorname">
+              <label>Tahun Dibuat</label>
+              <input placeholder="Masukkan Tahun" type="text" name="year">
               <label>File Dokumen</label>
               <label class="custom-file-upload">
                 <input id="file" type="file" id="file" name="fileToUpload" onchange="return UploadCheck()"/>
