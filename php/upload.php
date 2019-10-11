@@ -27,6 +27,7 @@
       {
         echo "File type is not supported.";
         $uploadOk = 0;
+        header("Refresh: 5; http://localhost/tugasKP/pages/uploadpage.php");
       }
     }
   
@@ -92,11 +93,13 @@
         {
           echo "Database gagal di update";
           unlink($target_file);
+          header("Refresh: 5; http://localhost/tugasKP/pages/uploadpage.php");
         }
       }
       else
       {
         echo "Sorry, there was an error uploading your file.";
+        header("Refresh: 5; http://localhost/tugasKP/pages/uploadpage.php");
       }
     }   
   }

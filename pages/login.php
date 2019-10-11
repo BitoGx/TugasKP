@@ -18,7 +18,7 @@
 		<nav class="nav__mobile"></nav>
 		<div class="container">
 			<div class="navbar__inner">
-				<a href="../index.php" class="navbar__logo">Logo</a>
+				<a href="../index.php" class="navbar__logo"><img src="../images/Telkom_hi_res_02.png" style="width:94px"></a>
 				<nav class="navbar__menu">
 					<!-- navbar menu-->
 				</nav>
@@ -34,8 +34,8 @@
 					<img src="../images/undraw_selfie.svg">
 				</div>
 				<div class="auth__auth">
-					<h1 class="auth__title">Access your account</h1>
-					<p>Fill in your username and password to proceed</p>
+					<h1 class="auth__title">Masuk ke akun anda</h1>
+					<p>Silahkan masukan username dan password untuk login.</p>
 					<form method='post' action="../php/session_login.php" autocompelete="new-password" role="form" class="form" name="login">
 						<label>Username</label>
 						<input type="text" name="username" id='username' placeholder="Masukkan Username" autofocus required>

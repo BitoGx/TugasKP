@@ -20,7 +20,7 @@
 		<nav class="nav__mobile"></nav>
 		<div class="container">
 			<div class="navbar__inner">
-				<a href="../index.php" class="navbar__logo">Logo</a>
+				<a href="../index.php" class="navbar__logo"><img src="../images/Telkom_hi_res_02.png" style="width:94px"></a>
 				<nav class="navbar__menu">
 					<ul>
 						<?php
@@ -51,8 +51,8 @@
 				</div>
 				<div class="app__main">
 					<div class="text-container">
-						<h3 class="app__main__title">This is the main area</h3>
-						<p>Write or do whatever you want here!</p>
+						<h3 class="app__main__title">Halaman Verfikasi Upload.</h3>
+						<p>Disini anda bisa melakukan Upload Dokumen dan melihat List Dokumen yang sudah di upload!</p>
             <a href="uploadpage.php"><button type="button" name="uploadpdf" class="button button__accent">Upload PDF</button></a>
             <?php
               if(isset($_SESSION['Loggedin']))

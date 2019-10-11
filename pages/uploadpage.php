@@ -21,7 +21,7 @@
 		<nav class="nav__mobile"></nav>
 		<div class="container">
 			<div class="navbar__inner">
-				<a href="../index.php" class="navbar__logo">Logo</a>
+				<a href="../index.php" class="navbar__logo"><img src="../images/Telkom_hi_res_02.png" style="width:94px"></a>
 				<nav class="navbar__menu">
 					<ul>
 						<?php
