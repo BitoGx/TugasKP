@@ -21,7 +21,6 @@
       $check = filesize($_FILES["fileToUpload"]["tmp_name"]);
       if($check !== false)
       {
-        echo "Nice - " . $check["mime"] . ".";
         $uploadOk = 1;
       }
       else
@@ -82,6 +81,7 @@
         $sql="insert into repo(Id_Admin,Judul,Author,Tanggal_Unggah,Tahun_Dibuat,File_Path) values ($idadmin,'$docname','$authorname','$date',$year,'$target_file')";
 
         //Menjalankan perintah query dan menyimpannya dalam variabel hasil
+        //$hasil = false;
         $hasil=mysqli_query ($conn,$sql);
       
         if($hasil)
@@ -91,6 +91,7 @@
         else
         {
           echo "Database gagal di update";
+          unlink($target_file);
         }
       }
       else
