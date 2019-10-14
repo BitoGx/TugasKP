@@ -19,14 +19,14 @@
   {
     echo "<table border='1'>
             <tr>
-              <td> Judul </td>
-              <td> Author </td>
-              <td> Tahun Dibuat </td>
-              <td> Tanggal Unggah </td>
-              <td> Bagian </td>
-              <td> Penanggung Jawab </td>
-              <td> Baca Online </td>
-              <td> Download </td>
+              <th> Judul </td>
+              <th> Author </td>
+              <th> Tahun Dibuat </td>
+              <th> Tanggal Unggah </td>
+              <th> Bagian </td>
+              <th> Penanggung Jawab </td>
+              <th> Baca Online </td>
+              <th> Download </td>
             </tr>";
     do
     {
