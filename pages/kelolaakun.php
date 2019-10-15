@@ -1,17 +1,17 @@
 <?php
   session_start();
   include "../php/connection.php";
-  if(isset($_SESSION['Loggedin']))
+  if(isset($_SESSION['Loggedin']) != true)
   {
-    $Nama = $_SESSION['Nama'];
-    $Bagian = $_SESSION['Bagian'];
+    header("location: ../index.php");
+    session_destroy();
   }
 ?>
 <html lang='en'>
 <head>
 	<meta class="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<title>Verification Page</title>
+	<title>Kelola Akun</title>
 	<link rel='stylesheet' href='../css/style.min.css' />
 </head>
 <body>
@@ -46,27 +46,19 @@
 				<div class="app__menu">
 					<ul class="vMenu">
 						<li><a href="../index.php">Dashboard</a></li>
-						<li><a href="#" class="vMenu--active">Upload PDF</a></li>
+						<li><a href="keloladokumen.php">Kelola Dokumen</a></li>
+            <!-- menu ini hanya bisa terlihat dan di akses oleh akun admin -->
+						<li><a href="#" class="vMenu--active">Kelola Akun</a></li>
 					</ul>
 				</div>
 				<div class="app__main">
 					<div class="text-container">
-						<h3 class="app__main__title">Halaman Verfikasi Upload.</h3>
-						<p>Disini anda bisa melakukan Upload Dokumen dan melihat List Dokumen yang sudah di upload!</p>
-            <a href="uploadpage.php"><button type="button" name="uploadpdf" class="button button__accent">Upload PDF</button></a>
-            <?php
-              if(isset($_SESSION['Loggedin']))
-              {
-                echo "<b>&nbsp;&nbsp;&nbsp;Hallo $Nama, dari bagian $Bagian</b>";
-              }
-              else
-              {
-                echo "<b>*Login user only</b>";
-              }
-            ?>
+						<h3 class="app__main__title">Halaman Kelola Akun</h3>
+						<p>Disini anda bisa melakukan Tambah Akun, Melihat List Akun yang ada, dan juga bisa Mengedit Akun yang sudah ada!</p>
+            <a href="formtambahakun.php"><button type="button" name="tambahakun" class="button button__accent">Tambah Akun</button></a>
             <br>
             <?php
-              include "../php/display.php";
+              include "../php/displayakun.php";
             ?>
 					</div>
 				</div>

@@ -7,7 +7,7 @@
   mysqli_select_db($conn,"tubesKP");
   
   //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
-  $sql="select R.Judul,R.Author,R.Tahun_Dibuat,R.Tanggal_Unggah,A.Bagian,A.Nama,R.Id_Buku from repo as R, admin as A where R.Id_Admin = A.Id_Admin";
+  $sql="select Judul,Author,Tahun_Dibuat,Tanggal_Unggah,File_Path,Status,Id_Buku from repo";
   
   //Menjalankan perintah query dan menyimpannya dalam variabel hasil
   $hasil=mysqli_query ($conn,$sql);
@@ -23,25 +23,24 @@
               <th> Author </td>
               <th> Tahun Dibuat </td>
               <th> Tanggal Unggah </td>
-              <th> Bagian </td>
-              <th> Penanggung Jawab </td>
-              <th> Baca Online </td>
-              <th> Download </td>
+              <th> File_Path </td>
+              <th> Status </td>
+              <th> Action </td>
             </tr>";
     do
     {
-      list($Judul,$Author,$Tahun,$Tanggal,$Bagian,$Nama,$IdBuku)=$row;
+      list($Judul,$Author,$Tahun,$Tanggal,$Path,$Status)=$row;
       $Judul = ucwords($Judul);
-      echo "<form action='php/hapus_barang.php' method='post' onsubmit='return FormValidation()'>";
+      echo "<form action='php/editdokumen.php' method='post' onsubmit='return FormValidation()'>";
+      //status (0 = tidak tersedia, 1 = tersedia)
       echo "<tr>
               <td> $Judul </td>
               <td> $Author </td>
               <td> $Tahun </td>
               <td> $Tanggal </td>
-              <td> $Bagian </td>
-              <td> $Nama </td>
-              <td>  </td>
-              <td></td>
+              <td> $Path </td>
+              <td> $Status </td>
+              <td> <a href=../pages/formeditdokumen.php>Edit</a> </td>
             </tr>";
       echo "</form>";
     }

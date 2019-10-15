@@ -3,7 +3,7 @@
   include "../php/connection.php";
   if(isset($_SESSION['Loggedin']) != true)
   {
-    header("location: keloladokumen.php");
+    header("location: uploadverification.php");
     session_destroy();
   }
 ?>
@@ -11,7 +11,7 @@
 <head>
 	<meta class="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<title>Upload Dokumen</title>
+	<title>Edit Akun</title>
 	<link rel='stylesheet' href='../css/style.min.css' />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
@@ -48,30 +48,39 @@
 					<ul class="vMenu">
 						<li><a href="../index.php">Dashboard</a></li>
 						<li><a href="keloladokumen.php">Kelola Dokumen</a></li>
-						<li><a href="#" class="vMenu--active">Upload Dokumen</a></li>
             <!-- menu ini hanya bisa terlihat dan di akses oleh akun admin -->
 						<li><a href="kelolaakun.php">Kelola Akun</a></li>
+						<li><a href="#" class="vMenu--active">Edit Akun</a></li>
 					</ul>
 				</div>
 				<div class="app__main">
 					<div class="text-container">
-						<h3 class="app__main__title">Form Upload Dokumen</h3>
-						<p>Silahkan isi informasi dokumen yang akan di upload</p>
-            <form role="form" name="formupload" action="../php/upload.php" method="post" enctype="multipart/form-data" onsubmit="return FileCheck()">
-              <label>Nama Dokumen</label>
-              <input placeholder="Masukkan Nama Dokumen" type="text" id="docname" name="docname" required>
-              <label>Nama Penulis</label>
-              <input placeholder="Masukkan Nama" type="text" name="authorname" pattern='[A-Za-z ]+' required>
-              <label>Tahun Dibuat</label>
-              <input placeholder="Masukkan Tahun" type="text" id="year" name="year" pattern='[0-9]{4}' required>
-              <label>File Dokumen</label>
-              <label class="custom-file-upload">
-                <input id="file" type="file" id="file" name="fileToUpload" onchange="return UploadCheck()"/>
-                <i class="fa fa-cloud-upload"></i> Upload File
-                <img id="check" src="../images/error.png" style="width:16px">
-              </label>
+						<h3 class="app__main__title">Form Edit Akun</h3>
+						<p>Silahkan ubah informasi Akun yang akan diubah</p>
+            <form role="form" name="formtambah" action="../php/editakun.php" method="post" enctype="multipart/form-data" onsubmit="">
+              <label>Nama</label>
+              <input placeholder="Masukkan Nama" type="text" id="acntname" name="acntname" required>
+              <label>Bagian</label>
+              <input placeholder="Masukkan Bagian" type="text" id="bagian" name="bagian" pattern='[A-Za-z ]+' required>
+              <label>Username</label>
+              <input placeholder="Masukkan Username" type="text" id="username" name="username" pattern='[0-9]{4}' required>
+              <label>Password Baru</label>
+              <input placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" type="password" id="password" name="password" required>
+              <label>Konfirmasi Password Baru</label>
+              <input placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" type="password" id="konpassword" name="konpassword" required>
+              <label>Status</label>
+              <div class="double">
+                <p class="half">
+                  <input name="radiovalue" type="radio" id="radio1" />
+                  <label for="radio1">Aktif</label>
+                </p>
+                <p class="half">
+                  <input name="radiovalue" type="radio" id="radio2" />
+                  <label for="radio2">Tidak Aktif</label>
+                </p>
+              </div>
               <p>
-                <input type="submit" value="Submit" name="submit" class="button button__accent">
+                <input type="submit" value="Edit" name="submit" class="button button__accent">
               </p>
             </form>
 					</div>
