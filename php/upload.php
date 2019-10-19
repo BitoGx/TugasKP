@@ -25,6 +25,8 @@
       }
       else
       {
+        echo $check;
+        echo "<br> AAAAA <be>";
         echo "File type is not supported.";
         $uploadOk = 0;
         header("Refresh: 5; http://localhost/tugasKP/pages/uploadpage.php");
@@ -38,7 +40,7 @@
       $uploadOk = 0;
     }
   
-    // Check file size 5MB
+    // Check file size 100Mb
     if ($_FILES["fileToUpload"]["size"] > $allowedMB) 
     {
       echo "Sorry, your file is too large. Max 100Mb.";
@@ -74,6 +76,7 @@
         $idadmin=$_SESSION['Id_Admin'];
         $year=$_POST['year'];
         $date=date("Y-m-d");
+        $target_file = "../".$target_file;
   
         //Memilih database
         mysqli_select_db($conn,"tubesKP");

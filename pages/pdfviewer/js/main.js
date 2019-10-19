@@ -1,6 +1,9 @@
-const url = '../../uploads/[Real Money Trading in MMORPG Items From a Legal and Policy Perspective.pdf';
+const  url = '../../uploads/Panduan-Penulisan-SKPL.pdf';
 
-let pdfDoc = null,
+pdfreader(url);
+function pdfreader(url)
+{
+  let pdfDoc = null,
   pageNum = 1,
   pageIsRendering = false,
   pageNumIsPending = null;
@@ -89,3 +92,6 @@ pdfjsLib
 // Button Events
 document.querySelector('#prev-page').addEventListener('click', showPrevPage);
 document.querySelector('#next-page').addEventListener('click', showNextPage);
+
+}
+

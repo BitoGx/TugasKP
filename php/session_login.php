@@ -43,7 +43,7 @@
     else
     {
       echo "<center><h1>USERNAME DAN PASSWORD SALAH</h1></center>";
-      header("Refresh: 5; http://localhost/tugasKP/pages/login.php");
+      header("Refresh: 3; http://localhost/tugasKP/pages/login.php");
     }
   }
   else

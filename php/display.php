@@ -17,7 +17,8 @@
   
   if($row)
   {
-    echo "<table border='1'>
+    echo "<div style='overflow-x:auto;'>
+          <table border='1'>
             <tr>
               <th> Judul </td>
               <th> Author </td>
@@ -46,7 +47,8 @@
       echo "</form>";
     }
     while($row=mysqli_fetch_row($hasil));
-    echo "</table>";
+    echo "</table>
+          </div>";
   }
   else
   {
