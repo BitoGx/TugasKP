@@ -7,7 +7,7 @@
   mysqli_select_db($conn,"tubesKP");
   
   //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
-  $sql="select R.Judul,R.Author,R.Tahun_Dibuat,R.Tanggal_Unggah,A.Bagian,A.Nama,R.Id_Buku from repo as R, admin as A where R.Id_Admin = A.Id_Admin";
+  $sql="select R.Judul,R.Author,R.Tahun_Dibuat,R.Tanggal_Unggah,A.Bagian,A.Nama,R.Id_Buku,R.File_path from repo as R, admin as A where R.Id_Admin = A.Id_Admin";
   
   //Menjalankan perintah query dan menyimpannya dalam variabel hasil
   $hasil=mysqli_query ($conn,$sql);
@@ -31,7 +31,7 @@
             </tr>";
     do
     {
-      list($Judul,$Author,$Tahun,$Tanggal,$Bagian,$Nama,$IdBuku)=$row;
+      list($Judul,$Author,$Tahun,$Tanggal,$Bagian,$Nama,$IdBuku,$Path)=$row;
       $Judul = ucwords($Judul);
       echo "<form action='php/hapus_barang.php' method='post' onsubmit='return FormValidation()'>";
       echo "<tr>
@@ -41,7 +41,7 @@
               <td> $Tanggal </td>
               <td> $Bagian </td>
               <td> $Nama </td>
-              <td>  </td>
+              <td> <a href='pages/pdfviewer/web/viewer.html?file=../../$Path'>Baca Online...</a> </td>
               <td></td>
             </tr>";
       echo "</form>";
