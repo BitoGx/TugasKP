@@ -76,7 +76,6 @@
         $idadmin=$_SESSION['Id_Admin'];
         $year=$_POST['year'];
         $date=date("Y-m-d");
-        $target_file = "../".$target_file;
   
         //Memilih database
         mysqli_select_db($conn,"tubesKP");
