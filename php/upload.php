@@ -89,7 +89,7 @@
       
         if($hasil)
         {
-          header("location: ../pages/uploadverification.php");
+          header("location: ../pages/keloladokumen.php");
         }
         else
         {

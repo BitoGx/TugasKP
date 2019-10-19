@@ -26,6 +26,7 @@
 						<?php
               if(isset($_SESSION['Loggedin']))
               {
+                echo "<li><a href='kelolaakun.php'>Kelola Akun</a></li>";
                 echo "<li><a href='../php/session_logout.php'>Logout</a></li>";
               }
               else
@@ -47,8 +48,6 @@
 					<ul class="vMenu">
 						<li><a href="../index.php">Dashboard</a></li>
 						<li><a href="#" class="vMenu--active">Kelola Dokumen</a></li>
-            <!-- menu ini hanya bisa terlihat dan di akses oleh akun admin -->
-						<li><a href="kelolaakun.php">Kelola Akun</a></li>
 					</ul>
 				</div>
 				<div class="app__main">
@@ -60,15 +59,15 @@
               if(isset($_SESSION['Loggedin']))
               {
                 echo "<b>&nbsp;&nbsp;&nbsp;Hallo $Nama, dari bagian $Bagian</b>";
+                echo "<br>";
+                include "../php/displaydokumen.php";
               }
               else
               {
-                echo "<b>*Login user only</b>";
+                echo "<b>&nbsp;&nbsp;&nbsp;*Login user only</b>";
+                echo "<br>";
+                include "../php/displaydokumen_noedit.php";
               }
-            ?>
-            <br>
-            <?php
-              include "../php/displaydokumen.php";
             ?>
 					</div>
 				</div>

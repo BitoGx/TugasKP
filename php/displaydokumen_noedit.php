@@ -26,7 +26,6 @@
               <th> Tanggal Unggah </td>
               <th> File_Path </td>
               <th> Status </td>
-              <th> Action </td>
             </tr>";
     do
     {
@@ -41,7 +40,6 @@
               <td> $Tanggal </td>
               <td> $Path </td>
               <td> $Status </td>
-              <td> <a href=../pages/formeditdokumen.php>Edit</a> </td>
             </tr>";
       echo "</form>";
     }
