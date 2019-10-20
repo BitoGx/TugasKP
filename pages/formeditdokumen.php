@@ -58,13 +58,15 @@
 						<p>Silahkan ubah informasi Dokumen yang akan diubah</p>
             <form role="form" name="formedit" action="../php/editdokumen.php" method="post" enctype="multipart/form-data" onsubmit="return SubmitCheck()">
             <?php
-              $Judul = $_POST['docname'];
+              $Judul  = $_POST['docname'];
               $Author = $_POST['authorname'];
-              $Tahun = $_POST['year'];
-              $Path = $_POST['filename'];
+              $Tahun  = $_POST['year'];
+              $Path   = $_POST['filename'];
               $Status = $_POST['status'];
+              $Id     = $_POST['id'];
               
-              echo "<label>Nama Dokumen</label>
+              echo "<input type='hidden' id='id' name='id' value='$Id'>
+                    <label>Nama Dokumen</label>
                     <input placeholder='Masukkan Nama Dokumen' type='text' id='docname' name='docname' value='$Judul' required>
                     <label>Nama Penulis</label>
                     <input placeholder='Masukkan Nama' type='text' name='authorname' pattern='[A-Za-z ]+' value='$Author' required>
@@ -76,11 +78,11 @@
               {
                 echo "<div class='double'>
                       <p class='half'>
-                        <input name='radiovalue' type='radio' id='radio1' checked/>
+                        <input name='status' type='radio' id='radio1' value=1 checked/>
                         <label for='radio1'>Tersedia</label>
                       </p>
                       <p class='half'>
-                        <input name='radiovalue' type='radio' id='radio2' />
+                        <input name='status' type='radio' id='radio2' value=0 />
                         <label for='radio2'>Tidak Tersedia</label>
                       </p>
                     </div>";
@@ -89,11 +91,11 @@
               {
                 echo "<div class='double'>
                       <p class='half'>
-                        <input name='radiovalue' type='radio' id='radio1' />
+                        <input name='status' type='radio' id='radio1' value=1 />
                         <label for='radio1'>Tersedia</label>
                       </p>
                       <p class='half'>
-                        <input name='radiovalue' type='radio' id='radio2' checked/>
+                        <input name='status' type='radio' id='radio2' value=0 checked/>
                         <label for='radio2'>Tidak Tersedia</label>
                       </p>
                     </div>";

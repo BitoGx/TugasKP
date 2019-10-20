@@ -9,7 +9,7 @@
     mysqli_select_db($conn,"tubesKP");
   
     //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
-    $sql="select R.Judul,R.Author,R.Tahun_Dibuat,R.Tanggal_Unggah,A.Bagian,A.Nama,R.Id_Buku,R.File_path from repo as R, admin as A where R.Id_Admin = A.Id_Admin";
+    $sql="select R.Judul,R.Author,R.Tahun_Dibuat,R.Tanggal_Unggah,A.Bagian,A.Nama,R.File_path from repo as R, admin as A where R.Id_Admin = A.Id_Admin";
   
     //Menjalankan perintah query dan menyimpannya dalam variabel hasil
     $hasil=mysqli_query ($conn,$sql);
@@ -33,7 +33,7 @@
               </tr>";
       do
       {
-        list($Judul,$Author,$Tahun,$Tanggal,$Bagian,$Nama,$IdBuku,$Path)=$row;
+        list($Judul,$Author,$Tahun,$Tanggal,$Bagian,$Nama,$Path)=$row;
         $Judul = ucwords($Judul);
         echo "<form action='php/hapus_barang.php' method='post' onsubmit='return FormValidation()'>";
         echo "<tr>
@@ -64,7 +64,7 @@
     mysqli_select_db($conn,"tubesKP");
   
     //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
-    $sql="select Judul,Author,Tahun_Dibuat,Tanggal_Unggah,File_Path,Status,Id_Buku from repo";
+    $sql="select Judul,Author,Tahun_Dibuat,Tanggal_Unggah,File_Path,Status,Id_Dokumen from repo";
   
     //Menjalankan perintah query dan menyimpannya dalam variabel hasil
     $hasil=mysqli_query ($conn,$sql);
@@ -94,7 +94,7 @@
       }
       do
       {
-        list($Judul,$Author,$Tahun,$Tanggal,$Path,$Status,$IdBuku)=$row;
+        list($Judul,$Author,$Tahun,$Tanggal,$Path,$Status,$Id_Dokumen)=$row;
         $Judul = ucwords($Judul);
         if($Status == 1 )
         {
@@ -108,6 +108,7 @@
         echo "<form action='../pages/formeditdokumen.php' method='post'>";
         //status (0 = tidak tersedia, 1 = tersedia)
         echo "<tr>
+                <input type='hidden' id='id' name='id' value='$Id_Dokumen'>
                 <td> $Judul </td>
                 <input type='hidden' id='docname' name='docname' value='$Judul'>
                 <td> $Author </td>
