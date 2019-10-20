@@ -28,8 +28,7 @@
                 <th> Tanggal Unggah </td>
                 <th> Bagian </td>
                 <th> Penanggung Jawab </td>
-                <th> Baca Online </td>
-                <th> Download </td>
+                <th colspan='2'> Action </td>
               </tr>";
       do
       {
@@ -43,8 +42,10 @@
                 <td> $Tanggal </td>
                 <td> $Bagian </td>
                 <td> $Nama </td>
-                <td> <a target='_blank' rel='noopener noreferrer' href='pages/pdfviewer/web/viewer.html?file=../../$Path'>Baca Online</a> </td>
-                <td> <a href='pages/$Path' download>Download</a> </td>
+                <td> <a target='_blank' rel='noopener noreferrer' href='pages/pdfviewer/web/viewer.html?file=../../$Path'>
+                      <button class='button button__primary'>Baca Online</button></a> </td>
+                <td> <a href='pages/$Path' download>
+                      <button class='button button__primary'>Download</button></a> </td>
               </tr>";
         echo "</form>";
       }
@@ -183,7 +184,7 @@
                 <td> $Bagian </td>
                 <td> $Username </td>
                 <td> $Status </td>
-                <td> <a href=../pages/formeditakun.php>Edit</a> </td>
+                <td>  <input type='submit' value='Edit' name='submit' class='button button__primary'> </td>
               </tr>";
         echo "</form>";
       }
