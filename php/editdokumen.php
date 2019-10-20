@@ -14,7 +14,7 @@
       $delete_file = $_POST['path']; 
       $date        = date("YMdhis");
       $target_dir  = "../uploads/";
-      $target_file = $target_dir . $date . basename($_FILES["fileToUpload"]["name"]);
+      $target_file = $target_dir . $date . "_" . basename($_FILES["fileToUpload"]["name"]);
       $delete_file = $target_dir . $delete_file;
       $uploadOk    = 1;
       $allowedMB   = 100000000;

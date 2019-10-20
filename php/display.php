@@ -9,7 +9,7 @@
     mysqli_select_db($conn,"tubesKP");
   
     //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
-    $sql="select R.Judul,R.Author,R.Tahun_Dibuat,R.Tanggal_Unggah,A.Bagian,A.Nama,R.File_path from repo as R, admin as A where R.Id_Admin = A.Id_Admin and R.Status = 1";
+    $sql="select R.Judul,R.Author,R.Tahun_Dibuat,R.Tanggal_Terakhir_Diubah,A.Bagian,A.Nama,R.File_path from repo as R, admin as A where R.Id_Admin = A.Id_Admin and R.Status = 1";
   
     //Menjalankan perintah query dan menyimpannya dalam variabel hasil
     $hasil=mysqli_query ($conn,$sql);
@@ -25,20 +25,20 @@
                 <th> Judul </td>
                 <th> Author </td>
                 <th> Tahun Dibuat </td>
-                <th> Tanggal Unggah </td>
+                <th> Tanggal Terakhir Diubah </td>
                 <th> Bagian </td>
                 <th> Penanggung Jawab </td>
                 <th colspan='2'> Action </td>
               </tr>";
       do
       {
-        list($Judul,$Author,$Tahun,$Tanggal,$Bagian,$Nama,$Path)=$row;
+        list($Judul,$Author,$Tahun,$TanggalUbah,$Bagian,$Nama,$Path)=$row;
         $Judul = ucwords($Judul);
         echo "<tr>
                 <td> $Judul </td>
                 <td> $Author </td>
                 <td> $Tahun </td>
-                <td> $Tanggal </td>
+                <td> $TanggalUbah </td>
                 <td> $Bagian </td>
                 <td> $Nama </td>
                 <td> <a target='_blank' rel='noopener noreferrer' href='pages/pdfviewer/web/viewer.html?file=../../$Path'>
@@ -63,7 +63,7 @@
     mysqli_select_db($conn,"tubesKP");
   
     //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
-    $sql="select Judul,Author,Tahun_Dibuat,Tanggal_Unggah,File_Path,Status,Id_Dokumen from repo";
+    $sql="select Judul,Author,Tahun_Dibuat,Tanggal_Unggah,Tanggal_Terakhir_Diubah,File_Path,Status,Id_Dokumen from repo";
   
     //Menjalankan perintah query dan menyimpannya dalam variabel hasil
     $hasil=mysqli_query ($conn,$sql);
@@ -80,6 +80,7 @@
                 <th> Author </td>
                 <th> Tahun Dibuat </td>
                 <th> Tanggal Unggah </td>
+                <th> Tanggal Terakhir Diubah </td>
                 <th> File Name </td>
                 <th> Status </td>";
       if(isset($_SESSION['Loggedin']))
@@ -93,7 +94,7 @@
       }
       do
       {
-        list($Judul,$Author,$Tahun,$Tanggal,$Path,$Status,$Id_Dokumen)=$row;
+        list($Judul,$Author,$Tahun,$Tanggal,$TanggalUbah,$Path,$Status,$Id_Dokumen)=$row;
         $Judul = ucwords($Judul);
         if($Status == 1 )
         {
@@ -115,6 +116,7 @@
                 <td> $Tahun </td>
                 <input type='hidden' id='year' name='year' value='$Tahun'>
                 <td> $Tanggal </td>
+                <td> $TanggalUbah </td>
                 <td> $Path </td>
                 <input type='hidden' id='filename' name='filename' value='$Path'>
                 <td> $Status </td>
