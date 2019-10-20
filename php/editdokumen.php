@@ -29,7 +29,7 @@
         echo "<br> AAAAA <be>";
         echo "File type is not supported.";
         $uploadOk = 0;
-        header("Refresh: 5; http://localhost/tugasKP/pages/uploadpage.php");
+        header("Refresh: 5; http://localhost/tugasKP/pages/keloladokumen.php");
       }
     }
   
@@ -58,6 +58,7 @@
     if ($uploadOk == 0)
     {
       echo "Sorry, your file was not uploaded."; 
+      header("Refresh: 5; http://localhost/tugasKP/pages/keloladokumen.php");
     }
     // if everything is ok, try to upload file
     else 
@@ -95,13 +96,13 @@
         {
           echo "Database gagal di update";
           unlink($target_file);
-          header("Refresh: 5; http://localhost/tugasKP/pages/uploadpage.php");
+        header("Refresh: 5; http://localhost/tugasKP/pages/keloladokumen.php");
         }
       }
       else
       {
         echo "Sorry, there was an error uploading your file.";
-        header("Refresh: 5; http://localhost/tugasKP/pages/uploadpage.php");
+        header("Refresh: 5; http://localhost/tugasKP/pages/keloladokumen.php");
       }
     }   
   }
