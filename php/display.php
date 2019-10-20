@@ -34,7 +34,6 @@
       {
         list($Judul,$Author,$Tahun,$Tanggal,$Bagian,$Nama,$Path)=$row;
         $Judul = ucwords($Judul);
-        echo "<form action='php/hapus_barang.php' method='post' onsubmit='return FormValidation()'>";
         echo "<tr>
                 <td> $Judul </td>
                 <td> $Author </td>
@@ -47,7 +46,6 @@
                 <td> <a href='pages/$Path' download>
                       <button type='button' class='button button__primary'>Download</button></a> </td>
               </tr>";
-        echo "</form>";
       }
       while($row=mysqli_fetch_row($hasil));
       echo "</table>
