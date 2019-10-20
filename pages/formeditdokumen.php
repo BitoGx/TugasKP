@@ -70,7 +70,13 @@
                     <input placeholder='Masukkan Nama' type='text' name='authorname' pattern='[A-Za-z ]+' value='$Author' required>
                     <label>Tahun Dibuat</label>
                     <input placeholder='Masukkan Tahun' type='text' id='year' name='year' pattern='[0-9]{4}' value='$Tahun' required>
-                    <label>File Dokumen = $Path</label>
+                    <label>File Dokumen Lama = $Path</label>
+                    <label>File Dokumen Baru</label>
+                    <label class='custom-file-upload'>
+                      <input id='file' type='file' id='file' name='fileToUpload' onchange='return UploadCheck()'/>
+                      <i class='fa fa-cloud-upload'></i> Upload File
+                      <img id='check' src='../images/error.png' style='width:16px'>
+                    </label>
                     <label>Status</label>";
               if($Status == "Tersedia")
               {

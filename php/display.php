@@ -121,7 +121,7 @@
                 <input type='hidden' id='status' name='status' value='$Status'>";
         if(isset($_SESSION['Loggedin']))
         {
-          echo "<th> <input type='submit' value='Edit' name='submit'> </td>
+          echo "<th> <input type='submit' value='Edit' name='submit' class='button button__primary'> </td>
               </tr>";
         }
         else

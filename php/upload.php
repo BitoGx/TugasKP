@@ -38,6 +38,7 @@
     {
       echo "Sorry, file already exists.";
       $uploadOk = 0;
+      header("Refresh: 5; http://localhost/tugasKP/pages/uploadpage.php");
     }
   
     // Check file size 100Mb

@@ -61,8 +61,8 @@
               <input placeholder="Masukkan Nama" type="text" id="acntname" name="acntname" required>
               <label>Bagian</label>
               <input placeholder="Masukkan Bagian" type="text" id="bagian" name="bagian" pattern='[A-Za-z ]+' required>
-              <label>Username</label>
-              <input placeholder="Masukkan Username" type="text" id="username" name="username" pattern='[0-9]{4}' required>
+              <label>Password Lama</label>
+              <input placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" type="password" id="passwordlama" name="passwordlama" required>
               <label>Password Baru</label>
               <input placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" type="password" id="password" name="password" required>
               <label>Konfirmasi Password Baru</label>
