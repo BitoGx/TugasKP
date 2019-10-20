@@ -3,7 +3,7 @@
   include "../php/connection.php";
   if(isset($_SESSION['Loggedin']) != true)
   {
-    header("location: uploadverification.php");
+    header("location: kelolaakun.php");
     session_destroy();
   }
 ?>
