@@ -1497,3 +1497,17 @@ function FileCheck()
       return true;
     }
   }
+  function SubmitCheck()
+  {
+    var inputyear = document.getElementById("year").value;
+    var currentyear = new Date().getFullYear();
+    if(inputyear > currentyear || inputyear < 1900)
+    {
+      alert("Maaf tahun yang dimasukan hanya dari 1900 sampai "+currentyear);
+      return false;
+    }
+    else
+    {
+      return true;
+    }
+  }

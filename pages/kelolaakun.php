@@ -57,7 +57,8 @@
             <a href="formtambahakun.php"><button type="button" name="tambahakun" class="button button__accent">Tambah Akun</button></a>
             <br>
             <?php
-              include "../php/displayakun.php";
+              include_once "../php/display.php";
+              DisplayAkun($conn)
             ?>
 					</div>
 				</div>

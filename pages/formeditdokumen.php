@@ -56,28 +56,52 @@
 					<div class="text-container">
 						<h3 class="app__main__title">Form Edit Dokumen</h3>
 						<p>Silahkan ubah informasi Dokumen yang akan diubah</p>
-            <form role="form" name="formtambah" action="../php/editdokumen.php" method="post" enctype="multipart/form-data" onsubmit="return FileCheck()">
-              <label>Nama Dokumen</label>
-              <input placeholder="Masukkan Nama Dokumen" type="text" id="docname" name="docname" required>
-              <label>Nama Penulis</label>
-              <input placeholder="Masukkan Nama" type="text" name="authorname" pattern='[A-Za-z ]+' required>
-              <label>Tahun Dibuat</label>
-              <input placeholder="Masukkan Tahun" type="text" id="year" name="year" pattern='[0-9]{4}' required>
-              <label>File Dokumen (?????)</label>
-              <label>Status</label>
-              <div class="double">
-                <p class="half">
-                  <input name="radiovalue" type="radio" id="radio1" />
-                  <label for="radio1">Tersedia</label>
-                </p>
-                <p class="half">
-                  <input name="radiovalue" type="radio" id="radio2" />
-                  <label for="radio2">Tidak Tersedia</label>
-                </p>
-              </div>
-              <p>
-                <input type="submit" value="Edit" name="submit" class="button button__accent">
-              </p>
+            <form role="form" name="formedit" action="../php/editdokumen.php" method="post" enctype="multipart/form-data" onsubmit="return SubmitCheck()">
+            <?php
+              $Judul = $_POST['docname'];
+              $Author = $_POST['authorname'];
+              $Tahun = $_POST['year'];
+              $Path = $_POST['filename'];
+              $Status = $_POST['status'];
+              
+              echo "<label>Nama Dokumen</label>
+                    <input placeholder='Masukkan Nama Dokumen' type='text' id='docname' name='docname' value='$Judul' required>
+                    <label>Nama Penulis</label>
+                    <input placeholder='Masukkan Nama' type='text' name='authorname' pattern='[A-Za-z ]+' value='$Author' required>
+                    <label>Tahun Dibuat</label>
+                    <input placeholder='Masukkan Tahun' type='text' id='year' name='year' pattern='[0-9]{4}' value='$Tahun' required>
+                    <label>File Dokumen = $Path</label>
+                    <label>Status</label>";
+              if($Status == "Tersedia")
+              {
+                echo "<div class='double'>
+                      <p class='half'>
+                        <input name='radiovalue' type='radio' id='radio1' checked/>
+                        <label for='radio1'>Tersedia</label>
+                      </p>
+                      <p class='half'>
+                        <input name='radiovalue' type='radio' id='radio2' />
+                        <label for='radio2'>Tidak Tersedia</label>
+                      </p>
+                    </div>";
+              }
+              else
+              {
+                echo "<div class='double'>
+                      <p class='half'>
+                        <input name='radiovalue' type='radio' id='radio1' />
+                        <label for='radio1'>Tersedia</label>
+                      </p>
+                      <p class='half'>
+                        <input name='radiovalue' type='radio' id='radio2' checked/>
+                        <label for='radio2'>Tidak Tersedia</label>
+                      </p>
+                    </div>";
+              }
+              echo "<p>
+                      <input type='submit' value='Edit' name='submit' class='button button__accent'>
+                    </p>";      
+            ?>
             </form>
 					</div>
 				</div>

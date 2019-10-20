@@ -50,7 +50,8 @@
 						<h3 class="app__main__title">Dashboard</h3>
 						<p>Daftar Dokumen</p>
             <?php
-              include "php/display.php";
+              include_once "php/display.php";
+              DisplayIndex($conn)
             ?>
 					</div>
 				</div>

@@ -56,18 +56,8 @@
 						<p>Disini anda bisa melakukan Upload Dokumen, Melihat List Dokumen yang sudah di upload, dan juga bisa Mengedit Dokumen yang sudah diupload!</p>
             <a href="uploadpage.php"><button type="button" name="uploadpdf" class="button button__accent">Upload Dokumen</button></a>
             <?php
-              if(isset($_SESSION['Loggedin']))
-              {
-                echo "<b>&nbsp;&nbsp;&nbsp;Hallo $Nama, dari bagian $Bagian</b>";
-                echo "<br>";
-                include "../php/displaydokumen.php";
-              }
-              else
-              {
-                echo "<b>&nbsp;&nbsp;&nbsp;*Login user only</b>";
-                echo "<br>";
-                include "../php/displaydokumen_noedit.php";
-              }
+              include_once "../php/display.php";
+              DisplayDokumen($conn)
             ?>
 					</div>
 				</div>
