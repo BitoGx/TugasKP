@@ -1463,8 +1463,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }(document, window, 0));
 function FileCheck()
   {
-    var file = document.forms["formupload"]["file"].value;
-    var inputyear = document.forms["formupload"]["year"].value;
+    var file = document.getElementById("file").value;
+    var inputyear = document.getElementById("year").value;
     var currentyear = new Date().getFullYear();
     if(file == "" || file == null)
     {
@@ -1486,7 +1486,7 @@ function FileCheck()
   }
   function UploadCheck()
   {
-    var file = document.forms["formupload"]["file"].value;
+    var file = document.getElementById("file").value;
     if(file == "" || file == null)
     {
       return false;

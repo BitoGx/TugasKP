@@ -9,7 +9,7 @@
     mysqli_select_db($conn,"tubesKP");
   
     //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
-    $sql="select R.Judul,R.Author,R.Tahun_Dibuat,R.Tanggal_Unggah,A.Bagian,A.Nama,R.File_path from repo as R, admin as A where R.Id_Admin = A.Id_Admin";
+    $sql="select R.Judul,R.Author,R.Tahun_Dibuat,R.Tanggal_Unggah,A.Bagian,A.Nama,R.File_path from repo as R, admin as A where R.Id_Admin = A.Id_Admin and R.Status = 1";
   
     //Menjalankan perintah query dan menyimpannya dalam variabel hasil
     $hasil=mysqli_query ($conn,$sql);

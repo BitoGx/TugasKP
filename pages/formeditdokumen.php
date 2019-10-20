@@ -65,11 +65,12 @@
               $Status = $_POST['status'];
               $Id     = $_POST['id'];
               
-              echo "<input type='hidden' id='id' name='id' value='$Id'>
+              echo "<input type='hidden' id='id_dokumen' name='id_dokumen' value='$Id'>
+                    <input type='hidden' id='path' name='path' value='$Path'>
                     <label>Nama Dokumen</label>
                     <input placeholder='Masukkan Nama Dokumen' type='text' id='docname' name='docname' value='$Judul' required>
                     <label>Nama Penulis</label>
-                    <input placeholder='Masukkan Nama' type='text' name='authorname' pattern='[A-Za-z ]+' value='$Author' required>
+                    <input placeholder='Masukkan Nama' type='text' id='authorname' name='authorname' pattern='[A-Za-z ]+' value='$Author' required>
                     <label>Tahun Dibuat</label>
                     <input placeholder='Masukkan Tahun' type='text' id='year' name='year' pattern='[0-9]{4}' value='$Tahun' required>
                     <label>File Dokumen Lama = $Path</label>

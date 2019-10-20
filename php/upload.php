@@ -25,8 +25,6 @@
       }
       else
       {
-        echo $check;
-        echo "<br> AAAAA <be>";
         echo "File type is not supported.";
         $uploadOk = 0;
         header("Refresh: 5; http://localhost/tugasKP/pages/uploadpage.php");
@@ -82,7 +80,7 @@
         mysqli_select_db($conn,"tubesKP");
 
         //Mempersiapkan Command Query  untuk mengecek apakah barang yang ditambahkan sudah ada atau belum
-        $sql="insert into repo(Id_Admin,Judul,Author,Tanggal_Unggah,Tahun_Dibuat,File_Path) values ($idadmin,'$docname','$authorname','$date',$year,'$target_file')";
+        $sql="insert into repo(Id_Admin,Judul,Author,Tanggal_Unggah,Tanggal_Terakhir_Diubah,Tahun_Dibuat,File_Path) values ($idadmin,'$docname','$authorname','$date','$date',$year,'$target_file')";
 
         //Menjalankan perintah query dan menyimpannya dalam variabel hasil
         //$hasil = false;
