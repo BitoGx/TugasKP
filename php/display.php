@@ -43,7 +43,7 @@
                 <td> $Tanggal </td>
                 <td> $Bagian </td>
                 <td> $Nama </td>
-                <td> <a target='_blank' rel='noopener noreferrer' href='pages/pdfviewer/web/viewer.html?file=../../$Path'>Baca Online...</a> </td>
+                <td> <a target='_blank' rel='noopener noreferrer' href='pages/pdfviewer/web/viewer.html?file=../../$Path'>Baca Online</a> </td>
                 <td> <a href='pages/$Path' download>Download</a> </td>
               </tr>";
         echo "</form>";
