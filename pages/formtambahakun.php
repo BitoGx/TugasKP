@@ -54,18 +54,18 @@
 					<div class="text-container">
 						<h3 class="app__main__title">Form Tambah Akun</h3>
 						<p>Silahkan isi informasi Akun yang akan ditambah</p>
-            <form role="form" name="formtambah" action="../php/tambahakun.php" method="post" enctype="multipart/form-data" onsubmit="">
+            <form role="form" name="formtambah" action="../php/tambahakun.php" method="post" onsubmit="">
               <label>Nama</label>
-              <input placeholder="Masukkan Nama" type="text" id="acntname" name="acntname" required>
+              <input placeholder="Masukkan Nama" type="text" id="nama" name="nama" pattern='[A-Za-z,. ]+' required>
               <label>Bagian</label>
-              <input placeholder="Masukkan Bagian" type="text" id="bagian" name="bagian" pattern='[A-Za-z ]+' required>
+              <input placeholder="Masukkan Bagian" type="text" id="bagian" name="bagian" pattern='[A-Za-z ]+'>
               <label>Username</label>
-              <input placeholder="Masukkan Username" type="text" id="username" name="username" pattern='[0-9]{4}' required>
+              <input placeholder="Masukkan Username" type="text" id="username" name="username" required>
               <label>Password</label>
-              <input placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" type="password" id="password" name="password" required>
+              <input placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" type="password" id="pass1" name="pass1" onkeyup='PassCheck()' required>
               <label>Konfirmasi Password</label>
-              <input placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" type="password" id="konpassword" name="konpassword" required>
-              <!-- status default = 0 -->
+              <input placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" type="password" id="pass2" name="pass2" onkeyup='PassCheck()' required>
+              <span id='message'></span>
               <p>
                 <input type="submit" value="Tambah" name="submit" class="button button__accent">
               </p>

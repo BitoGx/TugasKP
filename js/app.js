@@ -1511,3 +1511,20 @@ function FileCheck()
       return true;
     }
   }
+  function PassCheck()
+  {
+    var pass1 = document.getElementById("pass1").value;
+    var pass2 = document.getElementById("pass2").value;
+    if(pass1 != pass2)
+    {
+      document.getElementById('message').style.color = 'red';
+      document.getElementById('message').innerHTML = 'Password tidak sama';
+      return false;
+    }
+    else
+    {
+      document.getElementById('message').style.color = 'green';
+      document.getElementById('message').innerHTML = 'Password sama';     
+      return true;
+    }
+  }

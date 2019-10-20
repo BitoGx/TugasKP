@@ -10,7 +10,8 @@
   {
     
     $target_dir = "../uploads/";
-    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+    $date        = date("YMdhis");
+    $target_file = $target_dir . $date . "_" . basename($_FILES["fileToUpload"]["name"]);
     $uploadOk = 1;
     $allowedMB = 100000000;
     $FileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));

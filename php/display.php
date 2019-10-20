@@ -146,9 +146,18 @@
   {
     //Memilih database
     mysqli_select_db($conn,"tubesKP");
-  
+    $level   = $_SESSION['Level'];
+    $idadmin = $_SESSION['Id_Admin'];
+    
     //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
-    $sql="select Nama,Bagian,Username,Status,Id_Admin from admin";
+    if($level == 1)
+    {
+      $sql="select Nama,Bagian,Username,Status,Id_Admin from admin";
+    }
+    else
+    {
+      $sql="select Nama,Bagian,Username,Status,Id_Admin from admin where Id_Admin = $idadmin";
+    }
   
     //Menjalankan perintah query dan menyimpannya dalam variabel hasil
     $hasil=mysqli_query ($conn,$sql);

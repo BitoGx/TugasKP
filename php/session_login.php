@@ -20,7 +20,7 @@
     mysqli_select_db($conn,"tubesKP");
   
     //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
-    $sql="select Nama,Bagian,Id_Admin from admin where Username='$username' and Password='$password' and Status=1";
+    $sql="select Nama,Bagian,Id_Admin,Level from admin where Username='$username' and Password='$password' and Status=1";
   
     //Menjalankan perintah query dan menyimpannya dalam variabel hasil
     $hasil=mysqli_query ($conn,$sql);
@@ -32,10 +32,11 @@
     //Menjalankan perintah perulangan sebanyak yang dibutuhkan
     if($row)
     {
-      list($Nama,$Bagian,$Id_Admin)=$row;
+      list($Nama,$Bagian,$Id_Admin,$Level)=$row;
       $_SESSION['Nama']=$Nama;
       $_SESSION['Bagian']=$Bagian;
       $_SESSION['Id_Admin']=$Id_Admin;
+      $_SESSION['Level']=$Level;
       $_SESSION['Loggedin'] = "true";
       header("location: ../index.php");
     }

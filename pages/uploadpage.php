@@ -60,7 +60,7 @@
               <label>Nama Dokumen</label>
               <input placeholder="Masukkan Nama Dokumen" type="text" id="docname" name="docname" required>
               <label>Nama Penulis</label>
-              <input placeholder="Masukkan Nama" type="text" name="authorname" pattern='[A-Za-z ]+' required>
+              <input placeholder="Masukkan Nama" type="text" name="authorname" pattern='[A-Za-z,. ]+' required>
               <label>Tahun Dibuat</label>
               <input placeholder="Masukkan Tahun" type="text" id="year" name="year" pattern='[0-9]{4}' required>
               <label>File Dokumen</label>
