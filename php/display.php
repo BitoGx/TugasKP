@@ -176,7 +176,7 @@
         {
           $Status = "Tidak Aktif";
         }
-        echo "<form action='php/editakun.php' method='post' onsubmit='return FormValidation()'>";
+        echo "<form action='../pages/formeditakun.php' method='post' onsubmit='return FormValidation()'>";
         echo "<tr>
                 <td> $Nama </td>
                 <td> $Bagian </td>
