@@ -56,32 +56,61 @@
 					<div class="text-container">
 						<h3 class="app__main__title">Form Edit Akun</h3>
 						<p>Silahkan ubah informasi Akun yang akan diubah</p>
-            <form role="form" name="formtambah" action="../php/editakun.php" method="post" enctype="multipart/form-data" onsubmit="">
-              <label>Nama</label>
-              <input placeholder="Masukkan Nama" type="text" id="acntname" name="acntname" required>
-              <label>Bagian</label>
-              <input placeholder="Masukkan Bagian" type="text" id="bagian" name="bagian" pattern='[A-Za-z ]+' required>
-              <label>Password Lama</label>
-              <input placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" type="password" id="passwordlama" name="passwordlama" required>
-              <label>Password Baru</label>
-              <input placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" type="password" id="password" name="password" required>
-              <label>Konfirmasi Password Baru</label>
-              <input placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" type="password" id="konpassword" name="konpassword" required>
-              <label>Status</label>
-              <div class="double">
-                <p class="half">
-                  <input name="radiovalue" type="radio" id="radio1" />
-                  <label for="radio1">Aktif</label>
-                </p>
-                <p class="half">
-                  <input name="radiovalue" type="radio" id="radio2" />
-                  <label for="radio2">Tidak Aktif</label>
-                </p>
-              </div>
-              <p>
-                <input type="submit" value="Edit" name="submit" class="button button__accent">
-              </p>
-            </form>
+            <?php
+              echo "<form role='form' action='../php/editakun.php' method='post'>";
+              $Status = $_POST['status'];
+              $IdAdmin = $_POST['id'];
+              echo "<input type='hidden' id='id' name='id' value='$IdAdmin'>";
+              if(isset($_POST['editakun']))
+              {
+                $Nama = $_POST['nama'];
+                $Bagian = $_POST['bagian'];
+                echo "<label>Nama</label>
+                      <input placeholder='Masukkan Nama' type='text' id='nama' name='nama' value='$Nama' required>
+                      <label>Bagian</label>
+                      <input placeholder='Masukkan Bagian' type='text' id='bagian' name='bagian' pattern='[A-Za-z ]+' value='$Bagian' required>
+                      <label>Status</label>";
+              }
+              if(isset($_POST['editpassword']))
+              {
+                echo "<label>Password Lama</label>
+                      <input placeholder='&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;' type='password' id='password' name='password' required>
+                      <label>Password Baru</label>
+                      <input placeholder='&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;' type='password' id='pass1' name='newpassword' onkeyup='PassCheck()' required>
+                      <label>Konfirmasi Password Baru</label>
+                      <input placeholder='&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;' type='password' id='pass2' onkeyup='PassCheck()' required>
+                      <span id='message'></span>";
+              }
+              if($Status == "Aktif")
+              {
+                echo "<div class='double'>
+                      <p class='half'>
+                        <input name='status' type='radio' id='radio1' value=1 checked/>
+                        <label for='radio1'>Aktif</label>
+                      </p>
+                      <p class='half'>
+                        <input name='status' type='radio' id='radio2' value=0 />
+                        <label for='radio2'>Tidak Aktif</label>
+                      </p>
+                    </div>";
+              }
+              else
+              {
+                echo "<div class='double'>
+                      <p class='half'>
+                        <input name='status' type='radio' id='radio1' value=1 />
+                        <label for='radio1'>Aktif</label>
+                      </p>
+                      <p class='half'>
+                        <input name='status' type='radio' id='radio2' value=0 checked/>
+                        <label for='radio2'>Tidak Aktif</label>
+                      </p>
+                    </div>";
+              }
+              echo "<p>
+                      <input type='submit' value='Edit' name='submit' class='button button__accent'>
+                    </p>"; 
+            ?>
 					</div>
 				</div>
 			</div>

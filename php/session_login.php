@@ -20,7 +20,7 @@
     mysqli_select_db($conn,"tubesKP");
   
     //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
-    $sql="select Nama,Bagian,Id_Admin,Level from admin where Username='$username' and Password='$password' and Status=1";
+    $sql="select Nama,Bagian,Id_Admin,Level,Status from admin where Username='$username' and Password='$password'";
   
     //Menjalankan perintah query dan menyimpannya dalam variabel hasil
     $hasil=mysqli_query ($conn,$sql);
@@ -28,17 +28,26 @@
     //Mengambil 1 baris hasil dari perintah query
     $row=mysqli_fetch_row($hasil);
 
-    
     //Menjalankan perintah perulangan sebanyak yang dibutuhkan
     if($row)
     {
-      list($Nama,$Bagian,$Id_Admin,$Level)=$row;
+      list($Nama,$Bagian,$Id_Admin,$Level,$Status)=$row;
       $_SESSION['Nama']=$Nama;
       $_SESSION['Bagian']=$Bagian;
       $_SESSION['Id_Admin']=$Id_Admin;
       $_SESSION['Level']=$Level;
       $_SESSION['Loggedin'] = "true";
-      header("location: ../index.php");
+      if($Status == 0 )
+      {
+        session_unset();
+        session_destroy();
+        echo "<center><h1>Akun and belum di aktivasi silahkan hubungi administrator</h1></center>";
+        header("Refresh: 3; http://localhost/tugasKP/pages/login.php");
+      }
+      else
+      {
+        header("location: ../index.php");
+      }
     }
     //Jika Username atau Password salah maka menampilkan pesan salah
     else

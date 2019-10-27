@@ -6,7 +6,7 @@
   //Memanggil file connection php untuk menghubungkann ke Database
   require_once "connection.php";
   
-  if(isset($_POST['docname']) || isset($_POST['authorname']) || isset($_POST['year']))
+  if(isset($_POST['docname']) && isset($_POST['authorname']) && isset($_POST['year']))
   {
     
     if(!($_FILES["fileToUpload"]["error"] == 4))
@@ -85,7 +85,7 @@
           mysqli_select_db($conn,"tubesKP");
 
           //Mempersiapkan Command Query  untuk mengecek apakah barang yang ditambahkan sudah ada atau belum
-          $sql="update repo set Id_Admin = $idadmin, Judul = '$docname', Author = '$authorname', Tanggal_Terakhir_Diubah = '$date', Tahun_Dibuat = $year, Status = $status, File_Path = '$target_file' where Id_Dokumen = $iddokumen";
+          $sql="update repo set Id_Admin = $idadmin, Judul = '$docname', Author = '$authorname', Tanggal_Terakhir_Diubah = '$date', Tahun_Dibuat = $year, Status = '$status', File_Path = '$target_file' where Id_Dokumen = $iddokumen";
 
           //Menjalankan perintah query dan menyimpannya dalam variabel hasil
           //$hasil = false;
@@ -129,7 +129,7 @@
       mysqli_select_db($conn,"tubesKP");
 
       //Mempersiapkan Command Query  untuk mengecek apakah barang yang ditambahkan sudah ada atau belum
-      $sql="update repo set Id_Admin = $idadmin, Judul = '$docname', Author = '$authorname', Tanggal_Terakhir_Diubah = '$date', Tahun_Dibuat = $year, Status = $status where Id_Dokumen = $iddokumen";
+      $sql="update repo set Id_Admin = $idadmin, Judul = '$docname', Author = '$authorname', Tanggal_Terakhir_Diubah = '$date', Tahun_Dibuat = $year, Status = '$status' where Id_Dokumen = $iddokumen";
 
       //Menjalankan perintah query dan menyimpannya dalam variabel hasil
       //$hasil = false;

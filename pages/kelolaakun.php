@@ -54,7 +54,12 @@
 					<div class="text-container">
 						<h3 class="app__main__title">Halaman Kelola Akun</h3>
 						<p>Disini anda bisa melakukan Tambah Akun, Melihat List Akun yang ada, dan juga bisa Mengedit Akun yang sudah ada!</p>
-            <a href="formtambahakun.php"><button type="button" name="tambahakun" class="button button__accent">Tambah Akun</button></a>
+            <?php
+              if($_SESSION['Level'] == 1)
+              {
+                echo "<a href='formtambahakun.php'><button type='button' name='tambahakun' class='button button__accent'>Tambah Akun</button></a>";
+              }
+            ?>
             <br>
             <?php
               include_once "../php/display.php";
