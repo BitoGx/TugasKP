@@ -10,6 +10,7 @@
     */
     $username=$_POST['username'];
     $username = strtolower($username);
+    $username = str_replace(' ','', $username);
     $password=$_POST['password'];
     $password = sha1($password);
     

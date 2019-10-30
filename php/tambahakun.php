@@ -14,6 +14,7 @@
     */
     $username = $_POST['username'];
     $username = strtolower($username);
+    $username = str_replace(' ','', $username);
     $nama     = $_POST['nama'];
     $nama     = strtolower($nama);
     $nama     = ucwords($nama);
