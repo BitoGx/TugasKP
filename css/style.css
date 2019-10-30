@@ -183,8 +183,8 @@ svg {
 	max-width: 100%
 }
 .container {
-	width: 88%;
-	max-width: 1080px;
+	width: 100%;
+	max-width: 88%;
 	margin: 0 auto;
 	position: relative
 }
@@ -199,14 +199,14 @@ svg {
 	float: left
 }
 .text-container {
-	max-width: 840px
+	max-width: 100%
 }
 .text-container--center {
 	margin-left: auto;
 	margin-right: auto
 }
 .margin-right {
-	margin-right: 8pt
+	margin-right: 0pt
 }
 html {
 	font-family: Lato, sans-serif;
@@ -324,18 +324,23 @@ button:hover {
 		color: #463aff
 	}
 }
-.button__primary {
-	background-color: #FF0500;
-	border-color: #FF0500;
-	color: #fff
-}
-@media (min-width: 992px) {
-	.button__primary:hover {
-		background-color: #463aff;
-		border-color: #463aff;
-		color: #fff
-	}
-}
+.button__primary{
+  padding:7pt 7pt;
+  background-color:#4B4B4B;
+  border-color:#4B4B4B;
+  display:block;
+  margin:auto;
+  color:#fff
+  }
+@media (min-width:992px){
+  .button__primary:hover{
+    background-color:#696969;
+    border-color:#696969;
+    display:block;
+    margin:auto;
+    color:#fff
+    }
+  }
 .button__accent {
 	background-color: #4B4B4B;
 	border-color: #4B4B4B;

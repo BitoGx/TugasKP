@@ -15,7 +15,8 @@
     $uploadOk = 1;
     $allowedMB = 100000000;
     $FileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-  
+    
+    /*  
     // Check if image file is a actual image or fake image
     if(isset($_POST["submit"]))
     {
@@ -31,6 +32,7 @@
         header("Refresh: 5; http://localhost/tugasKP/pages/uploadpage.php");
       }
     }
+    */
   
     // Check if file already exists
     if (file_exists($target_file)) 
