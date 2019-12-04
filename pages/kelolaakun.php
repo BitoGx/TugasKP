@@ -47,8 +47,10 @@
 			<div class="app__inner">
 				<div class="app__menu">
 					<ul class="vMenu">
-						<li><a href="../index.php">Dashboard</a></li>
-						<li><a href="keloladokumen.php">Kelola Dokumen</a></li>
+						<li><a href="../index.php">Proses In</a></li>
+            <li><a href="proses_out.php">Proses Out</a></li>
+            <li><a href="barang_masuk.php">Barang Masuk</a></li>
+            <li><a href="barang_keluar.php">Barang Keluar</a></li>
 					</ul>
 				</div>
 				<div class="app__main">

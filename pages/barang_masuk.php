@@ -1,6 +1,6 @@
 <?php
   session_start();
-  include "php/connection.php";
+  include "../php/connection.php";
   if(isset($_SESSION['Loggedin']))
   {
     $Nama = $_SESSION['Nama'];
@@ -11,9 +11,9 @@
 <head>
 	<meta class="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<title>Proses In</title>
-	<link rel='stylesheet' href='css/style.min.css' />
-  <link rel='stylesheet' href='css/style.css' />
+	<title>Barang Masuk</title>
+	<link rel='stylesheet' href='../css/style.min.css' />
+  <link rel='stylesheet' href='../css/style.css' />
 </head>
 <body>
 	<!-- navbar -->
@@ -21,18 +21,18 @@
 		<nav class="nav__mobile"></nav>
 		<div class="container">
 			<div class="navbar__inner">
-				<a href="#" class="navbar__logo"><img src="images/Telkom_hi_res_02.png" style="width:94px"></a>
+				<a href="../index.php" class="navbar__logo"><img src="../images/Telkom_hi_res_02.png" style="width:94px"></a>
 				<nav class="navbar__menu">
 					<ul>
 						<?php
               if(isset($_SESSION['Loggedin']))
               {
-                echo "<li><a href='pages/kelolaakun.php'>Kelola Akun</a></li>";
-                echo "<li><a href='php/session_logout.php'>Logout</a></li>";
+                echo "<li><a href='kelolaakun.php'>Kelola Akun</a></li>";
+                echo "<li><a href='../php/session_logout.php'>Logout</a></li>";
               }
               else
               {
-                echo "<li><a href='pages/login.php'>Login</a></li>";
+                echo "<li><a href='../pages/login.php'>Login</a></li>";
               }
             ?>
 					</ul>
@@ -47,17 +47,17 @@
 			<div class="app__inner">
 				<div class="app__menu">
 					<ul class="vMenu">
-						<li><a href="#" class="vMenu--active">Proses In</a></li>
-            <li><a href="pages/proses_out.php">Proses Out</a></li>
-            <li><a href="pages/barang_masuk.php">Barang Masuk</a></li>
-            <li><a href="pages/barang_keluar.php">Barang Keluar</a></li>
+						<li><a href="../index.php">Proses In</a></li>
+            <li><a href="proses_out.php">Proses Out</a></li>
+            <li><a href="#" class="vMenu--active">Barang Masuk</a></li>
+            <li><a href="barang_keluar.php">Barang Keluar</a></li>
 					</ul>
 				</div>
 				<div class="app__main">
 					<div class="text-container">
-						<h3 class="app__main__title">Proses In</h3>
+						<h3 class="app__main__title">Barang Masuk</h3>
 						<p></p>
-            <a href="pages/input_proses_in.php"><button type="button" name="uploadpdf" class="button button__accent">Tambah</button></a>
+            <a href="input_barang_masuk.php"><button type="button" name="uploadpdf" class="button button__accent">Tambah</button></a>
             <?php
               if(isset($_SESSION['Loggedin']))
               {
@@ -67,8 +67,8 @@
               {
                 echo "<b>&nbsp;&nbsp;&nbsp;*Login user only</b><br>";
               }
-              include_once "php/display.php";
-              DisplayProsesIn($conn)
+              include_once "../php/display.php";
+              DisplayBarangMasuk($conn)
             ?>
 					</div>
 				</div>
@@ -76,6 +76,6 @@
 		</div>
 	</div>
 
-<script src='js/app.min.js'></script>
+<script src='../js/app.min.js'></script>
 </body>
 </html>
