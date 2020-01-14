@@ -1,17 +1,12 @@
 <?php
   session_start();
   include "php/connection.php";
-  if(isset($_SESSION['Loggedin']))
-  {
-    $Nama = $_SESSION['Nama'];
-    $Bagian = $_SESSION['Bagian'];
-  }
 ?>
 <html lang='en'>
 <head>
 	<meta class="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<title>Proses In</title>
+	<title>Dashboard</title>
 	<link rel='stylesheet' href='css/style.min.css' />
   <link rel='stylesheet' href='css/style.css' />
 </head>
@@ -24,7 +19,7 @@
 				<a href="#" class="navbar__logo"><img src="images/Telkom_hi_res_02.png" style="width:94px"></a>
 				<nav class="navbar__menu">
 					<ul>
-						<?php
+            <?php
               if(isset($_SESSION['Loggedin']))
               {
                 echo "<li><a href='pages/kelolaakun.php'>Kelola Akun</a></li>";
@@ -47,28 +42,17 @@
 			<div class="app__inner">
 				<div class="app__menu">
 					<ul class="vMenu">
-						<li><a href="#" class="vMenu--active">Proses In</a></li>
-            <li><a href="pages/proses_out.php">Proses Out</a></li>
-            <li><a href="pages/barang_masuk.php">Barang Masuk</a></li>
-            <li><a href="pages/barang_keluar.php">Barang Keluar</a></li>
+						<li><a href="#" class="vMenu--active">Dashboard</a></li>
+						<li><a href="pages/keloladokumen.php">Kelola Dokumen</a></li>
 					</ul>
 				</div>
 				<div class="app__main">
 					<div class="text-container">
-						<h3 class="app__main__title">Proses In</h3>
-						<p></p>
-            <a href="pages/input_proses_in.php"><button type="button" name="uploadpdf" class="button button__accent">Tambah</button></a>
+						<h3 class="app__main__title">Dashboard</h3>
+						<p>Daftar Dokumen</p>
             <?php
-              if(isset($_SESSION['Loggedin']))
-              {
-                echo "<b>&nbsp;&nbsp;&nbsp;Hallo $Nama, dari bagian $Bagian</b><br>";
-              }
-              else
-              {
-                echo "<b>&nbsp;&nbsp;&nbsp;*Login user only</b><br>";
-              }
               include_once "php/display.php";
-              DisplayProsesIn($conn)
+              DisplayIndex($conn)
             ?>
 					</div>
 				</div>
