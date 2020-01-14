@@ -1,17 +1,12 @@
 <?php
   session_start();
   include "../php/connection.php";
-  if(isset($_SESSION['Loggedin']))
-  {
-    $Nama = $_SESSION['Nama'];
-    $Bagian = $_SESSION['Bagian'];
-  }
 ?>
 <html lang='en'>
 <head>
 	<meta class="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<title>Kelola Dokumen</title>
+	<title>Dashboard</title>
 	<link rel='stylesheet' href='../css/style.min.css' />
   <link rel='stylesheet' href='../css/style.css' />
 </head>
@@ -21,19 +16,19 @@
 		<nav class="nav__mobile"></nav>
 		<div class="container">
 			<div class="navbar__inner">
-				<a href="../index.php" class="navbar__logo"><img src="../images/Telkom_hi_res_02.png" style="width:94px"></a>
+				<a href="#" class="navbar__logo"><img src="../images/Telkom_hi_res_02.png" style="width:94px"></a>
 				<nav class="navbar__menu">
 					<ul>
-						<?php
+            <?php
               if(isset($_SESSION['Loggedin']))
               {
-                echo "<li><a href='sim.php'>SIM</a></li>";
+                echo "<li><a href='../index.php'>Dashboard</a></li>";
                 echo "<li><a href='kelolaakun.php'>Kelola Akun</a></li>";
-                echo "<li><a href='php/session_logout.php'>Logout</a></li>";
+                echo "<li><a href='../php/session_logout.php'>Logout</a></li>";
               }
               else
               {
-                echo "<li><a href='../pages/login.php'>Login</a></li>";
+                echo "<li><a href='pages/login.php'>Login</a></li>";
               }
             ?>
 					</ul>
@@ -48,26 +43,17 @@
 			<div class="app__inner">
 				<div class="app__menu">
 					<ul class="vMenu">
-						<li><a href="../index.php">Dashboard</a></li>
-						<li><a href="#" class="vMenu--active">Kelola Dokumen</a></li>
+						<li><a href="#" class="vMenu--active">Sistem Inventori Management</a></li>
+						<li><a href="keloladokumen.php">Kelola Dokumen</a></li>
 					</ul>
 				</div>
 				<div class="app__main">
 					<div class="text-container">
-						<h3 class="app__main__title">Halaman Kelola Dokumen</h3>
-						<p>Disini anda bisa melakukan Upload Dokumen, Melihat List Dokumen yang sudah di upload, dan juga bisa Mengedit Dokumen yang sudah diupload!</p>
-            <a href="uploadpage.php"><button type="button" name="uploadpdf" class="button button__accent">Upload Dokumen</button></a>
+						<h3 class="app__main__title">Sistem Inventori Management</h3>
+						<p>Daftar Dokumen</p>
             <?php
-              if(isset($_SESSION['Loggedin']))
-              {
-                echo "<b>&nbsp;&nbsp;&nbsp;Hallo $Nama, dari bagian $Bagian</b><br>";
-              }
-              else
-              {
-                echo "<b>&nbsp;&nbsp;&nbsp;*Login user only</b><br>";
-              }
               include_once "../php/display.php";
-              DisplayDokumen($conn)
+              DisplayIndex($conn)
             ?>
 					</div>
 				</div>
@@ -75,6 +61,6 @@
 		</div>
 	</div>
 
-<script src='../js/app.min.js'></script>
+<script src='js/app.min.js'></script>
 </body>
 </html>
