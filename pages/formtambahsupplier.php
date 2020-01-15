@@ -1,12 +1,17 @@
 <?php
   session_start();
   include "../php/connection.php";
+  if(isset($_SESSION['Loggedin']) != true)
+  {
+    header("location: kelolaakun.php");
+    session_destroy();
+  }
 ?>
 <html lang='en'>
 <head>
 	<meta class="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<title>SIM Barang</title>
+	<title>Tambah Supplier</title>
 	<link rel='stylesheet' href='../css/style.min.css' />
   <link rel='stylesheet' href='../css/style.css' />
 </head>
@@ -16,10 +21,10 @@
 		<nav class="nav__mobile"></nav>
 		<div class="container">
 			<div class="navbar__inner">
-				<a href="#" class="navbar__logo"><img src="../images/Telkom_hi_res_02.png" style="width:94px"></a>
+				<a href="../index.php" class="navbar__logo"><img src="../images/Telkom_hi_res_02.png" style="width:94px"></a>
 				<nav class="navbar__menu">
 					<ul>
-            <?php
+						<?php
               if(isset($_SESSION['Loggedin']))
               {
                 echo "<li><a href='../index.php'>Dashboard</a></li>";
@@ -28,7 +33,7 @@
               }
               else
               {
-                echo "<li><a href='pages/login.php'>Login</a></li>";
+                echo "<li><a href='../pages/login.php'>Login</a></li>";
               }
             ?>
 					</ul>
@@ -43,28 +48,34 @@
 			<div class="app__inner">
 				<div class="app__menu">
 					<ul class="vMenu">
-						<li><a href="#" class="vMenu--active">Barang</a></li>
+						<li><a href="sim.php">Barang</a></li>
 						<li><a href="simtransaksi.php">Transaksi</a></li>
 						<li><a href="simpenerimaan.php">Penerimaan</a></li>
 						<li><a href="simpenyerahan.php">Serah Terima</a></li>
 						<li><a href="supplier.php">Supplier</a></li>
+						<li><a href="#" class="vMenu--active">Tambah Supplier</a></li>
 						<li><a href="penerima.php">Penerima</a></li>
 					</ul>
 				</div>
 				<div class="app__main">
 					<div class="text-container">
-						<h3 class="app__main__title">Daftar Barang</h3>
-            <a href="formtambahbarang.php"><button type="button" name="tambahbarang" class="button button__accent">Tambah</button></a>
-            <?php
-              include_once "../php/display.php";
-              DisplayIndex($conn)
-            ?>
+						<h3 class="app__main__title">Form Tambah Supplier</h3>
+						<p>Silahkan isi informasi Supplier yang akan ditambah</p>
+            <form role="form" name="formtambah" action="../php/tambahpenerima.php" method="post" onsubmit="">
+              <label>Nama Supplier</label>
+              <input placeholder="Masukkan Nama Supplier" type="text" id="namasupplier" name="namasupplier" pattern='[A-Za-z,. ]+' required>
+              <label>PIC</label>
+              <input placeholder="Masukkan PIC" type="text" id="picsupplier" name="picsupplier" pattern='[A-Za-z,. ]+' required>
+              <p>
+                <input type="submit" value="Tambah" name="submit" class="button button__accent">
+              </p>
+            </form>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-<script src='js/app.min.js'></script>
+<script src='../js/app.js'></script>
 </body>
 </html>
