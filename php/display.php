@@ -14,8 +14,17 @@
     //Menjalankan perintah query dan menyimpannya dalam variabel hasil
     $hasil=mysqli_query ($conn,$sql);
   
-    //Mengambil 1 baris hasil dari perintah query
-    $row=mysqli_fetch_row($hasil);
+    
+    if($hasil)
+    {
+      //Mengambil 1 baris hasil dari perintah query
+      $row=mysqli_fetch_row($hasil);
+    }
+    else
+    {
+      $row = false;
+    }
+    
   
     if($row)
     {
@@ -68,8 +77,15 @@
     //Menjalankan perintah query dan menyimpannya dalam variabel hasil
     $hasil=mysqli_query ($conn,$sql);
   
-    //Mengambil 1 baris hasil dari perintah query
-    $row=mysqli_fetch_row($hasil);
+    if($hasil)
+    {
+      //Mengambil 1 baris hasil dari perintah query
+      $row=mysqli_fetch_row($hasil);
+    }
+    else
+    {
+      $row = false;
+    }
   
     if($row)
     {
