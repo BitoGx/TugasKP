@@ -227,50 +227,128 @@
       echo "<center><h2>Tidak ada Akun</h2></center>";
     }
   }
-  function paginate($item_per_page, $current_page, $total_records, $total_pages, $page_url)
+  
+  function DisplayBarang($conn)
   {
-    $pagination = '';
-    if($total_pages > 0 && $total_pages != 1 && $current_page <= $total_pages){ //verify total pages and current page number
-        $pagination .= '<ul class="pagination">';
-        
-        $right_links    = $current_page + 3; 
-        $previous       = $current_page - 3; //previous link 
-        $next           = $current_page + 1; //next link
-        $first_link     = true; //boolean var to decide our first link
-        
-        if($current_page > 1){
-			$previous_link = ($previous==0)?1:$previous;
-            $pagination .= '<li class="first"><a href="'.$page_url.'?page=1" title="First">«</a></li>'; //first link
-            $pagination .= '<li><a href="'.$page_url.'?page='.$previous_link.'" title="Previous"><</a></li>'; //previous link
-                for($i = ($current_page-2); $i < $current_page; $i++){ //Create left-hand side links
-                    if($i > 0){
-                        $pagination .= '<li><a href="'.$page_url.'?page='.$i.'">'.$i.'</a></li>';
-                    }
-                }   
-            $first_link = false; //set first link to false
-        }
-        
-        if($first_link){ //if current active page is first link
-            $pagination .= '<li class="first active">'.$current_page.'</li>';
-        }elseif($current_page == $total_pages){ //if it's the last active link
-            $pagination .= '<li class="last active">'.$current_page.'</li>';
-        }else{ //regular current link
-            $pagination .= '<li class="active">'.$current_page.'</li>';
-        }
-                
-        for($i = $current_page+1; $i < $right_links ; $i++){ //create right-hand side links
-            if($i<=$total_pages){
-                $pagination .= '<li><a href="'.$page_url.'?page='.$i.'">'.$i.'</a></li>';
-            }
-        }
-        if($current_page < $total_pages){ 
-				$next_link = ($i > $total_pages)? $total_pages : $i;
-                $pagination .= '<li><a href="'.$page_url.'?page='.$next_link.'" >></a></li>'; //next link
-                $pagination .= '<li class="last"><a href="'.$page_url.'?page='.$total_pages.'" title="Last">»</a></li>'; //last link
-        }
-        
-        $pagination .= '</ul>'; 
+    //Memilih database
+    mysqli_select_db($conn,"tubesKP");
+    
+    //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
+    $sql="select * from barang";
+  
+    //Menjalankan perintah query dan menyimpannya dalam variabel hasil
+    $hasil=mysqli_query ($conn,$sql);
+  
+    //Mengambil 1 baris hasil dari perintah query
+    $row=mysqli_fetch_row($hasil);
+  
+    if($row)
+    {
+      echo "<div style='overflow-x:auto;'>
+            <table border='1'>
+              <tr>
+                <th> Serial Number </th>
+                <th> Description </th>
+              </tr>";
+      do
+      {
+        list($serialnumber,$description)=$row;
+         echo "<tr>
+                <td> $serialnumber </td>
+                <td> $description </td>
+              </tr>";
+      }
+      while($row=mysqli_fetch_row($hasil));
+      echo "</table>
+            </div>";
     }
-    return $pagination; //return pagination links
+    else
+    {
+      echo "<center><h2>Tidak ada Akun</h2></center>";
+    }
+  }
+  
+  function DisplaySupplier($conn)
+  {
+    //Memilih database
+    mysqli_select_db($conn,"tubesKP");
+    
+    //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
+    $sql="select * from supplier";
+  
+    //Menjalankan perintah query dan menyimpannya dalam variabel hasil
+    $hasil=mysqli_query ($conn,$sql);
+  
+    //Mengambil 1 baris hasil dari perintah query
+    $row=mysqli_fetch_row($hasil);
+  
+    if($row)
+    {
+      echo "<div style='overflow-x:auto;'>
+            <table border='1'>
+              <tr>
+                <th> Supplier / Nama Pengirim </th>
+                <th> PIC </th>
+              </tr>";
+      do
+      {
+        list($idsupplier,$nama,$pic)=$row;
+         echo "<tr>
+                <input type='hidden' id='id' name='id' value='$idsupplier'>
+                <td> $nama </td>
+                <td> $pic </td>
+              </tr>";
+      }
+      while($row=mysqli_fetch_row($hasil));
+      echo "</table>
+            </div>";
+    }
+    else
+    {
+      echo "<center><h2>Tidak ada Akun</h2></center>";
+    }
+  }
+  
+  function DisplayReceiver($conn)
+  {
+    //Memilih database
+    mysqli_select_db($conn,"tubesKP");
+    
+    //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
+    $sql="select * from receiver";
+  
+    //Menjalankan perintah query dan menyimpannya dalam variabel hasil
+    $hasil=mysqli_query ($conn,$sql);
+  
+    //Mengambil 1 baris hasil dari perintah query
+    $row=mysqli_fetch_row($hasil);
+  
+    if($row)
+    {
+      echo "<div style='overflow-x:auto;'>
+            <table border='1'>
+              <tr>
+                <th> Nama </th>
+                <th> NIK </th>
+                <th> Jabatan </th>
+              </tr>";
+      do
+      {
+        list($idreceiver,$nama,$nik,$jabatan)=$row;
+         echo "<tr>
+                <input type='hidden' id='id' name='id' value='$idreceiver'>
+                <td> $nama </td>
+                <td> $nik </td>
+                <td> $jabatan </td>
+              </tr>";
+      }
+      while($row=mysqli_fetch_row($hasil));
+      echo "</table>
+            </div>";
+    }
+    else
+    {
+      echo "<center><h2>Tidak ada Akun</h2></center>";
+    }
   }
 ?>

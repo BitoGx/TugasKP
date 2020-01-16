@@ -44,7 +44,6 @@
 				<div class="app__menu">
 					<ul class="vMenu">
 						<li><a href="sim.php">Barang</a></li>
-						<li><a href="simtransaksi.php">Transaksi</a></li>
 						<li><a href="simpenerimaan.php">Penerimaan</a></li>
 						<li><a href="#" class="vMenu--active">Serah Terima</a></li>
 						<li><a href="supplier.php">Supplier</a></li>

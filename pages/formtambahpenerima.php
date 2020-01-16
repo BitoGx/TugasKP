@@ -49,7 +49,6 @@
 				<div class="app__menu">
 					<ul class="vMenu">
 						<li><a href="sim.php">Barang</a></li>
-						<li><a href="simtransaksi.php">Transaksi</a></li>
 						<li><a href="simpenerimaan.php">Penerimaan</a></li>
 						<li><a href="simpenyerahan.php">Serah Terima</a></li>
 						<li><a href="supplier.php">Supplier</a></li>
@@ -61,13 +60,13 @@
 					<div class="text-container">
 						<h3 class="app__main__title">Form Tambah Penerima</h3>
 						<p>Silahkan isi informasi Penerima yang akan ditambah</p>
-            <form role="form" name="formtambah" action="../php/tambahpenerima.php" method="post" onsubmit="">
+            <form role="form" name="formtambah" action="../php/tambahreceiver.php" method="post" onsubmit="">
               <label>Nama Penerima</label>
-              <input placeholder="Masukkan Nama Penerima" type="text" id="namapenerima" name="namapenerima" pattern='[A-Za-z,. ]+' required>
+              <input placeholder="Masukkan Nama Penerima" type="text" id="nama" name="nama" pattern='[A-Za-z,. ]+' required>
               <label>NIK</label>
-              <input placeholder="Masukkan NIK" type="text" id="nikpenerima" name="nikpenerima" pattern='[0-9]' required>
+              <input placeholder="Masukkan NIK" type="text" id="nik" name="nik" pattern='[0-9]+' required>
               <label>Jabatan</label>
-              <input placeholder="Masukkan Jabatan" type="text" id="jabatanpenerima" name="jabatanpenerima" pattern='[A-Za-z ]+'>
+              <input placeholder="Masukkan Jabatan" type="text" id="jabatan" name="jabatan" pattern='[A-Za-z0-9,- ]+'>
               <p>
                 <input type="submit" value="Tambah" name="submit" class="button button__accent">
               </p>

@@ -44,7 +44,6 @@
 				<div class="app__menu">
 					<ul class="vMenu">
 						<li><a href="sim.php">Barang</a></li>
-						<li><a href="simtransaksi.php">Transaksi</a></li>
 						<li><a href="simpenerimaan.php">Penerimaan</a></li>
 						<li><a href="simpenyerahan.php">Serah Terima</a></li>
 						<li><a href="#" class="vMenu--active">Supplier</a></li>
@@ -57,7 +56,7 @@
             <a href="formtambahsupplier.php"><button type="button" name="tambahbarang" class="button button__accent">Tambah</button></a>
             <?php
               include_once "../php/display.php";
-              DisplayIndex($conn)
+              DisplaySupplier($conn)
             ?>
 					</div>
 				</div>

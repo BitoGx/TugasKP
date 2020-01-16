@@ -49,7 +49,6 @@
 				<div class="app__menu">
 					<ul class="vMenu">
 						<li><a href="sim.php">Barang</a></li>
-						<li><a href="simtransaksi.php">Transaksi</a></li>
 						<li><a href="simpenerimaan.php">Penerimaan</a></li>
 						<li><a href="simpenyerahan.php">Serah Terima</a></li>
 						<li><a href="supplier.php">Supplier</a></li>
@@ -61,9 +60,9 @@
 					<div class="text-container">
 						<h3 class="app__main__title">Form Tambah Supplier</h3>
 						<p>Silahkan isi informasi Supplier yang akan ditambah</p>
-            <form role="form" name="formtambah" action="../php/tambahpenerima.php" method="post" onsubmit="">
+            <form role="form" name="formtambah" action="../php/tambahsupplier.php" method="post" onsubmit="">
               <label>Nama Supplier</label>
-              <input placeholder="Masukkan Nama Supplier" type="text" id="namasupplier" name="namasupplier" pattern='[A-Za-z,. ]+' required>
+              <input placeholder="Masukkan Nama Supplier" type="text" id="namasupplier" name="namasupplier" pattern='[A-Za-z,.,- ]+' required>
               <label>PIC</label>
               <input placeholder="Masukkan PIC" type="text" id="picsupplier" name="picsupplier" pattern='[A-Za-z,. ]+' required>
               <p>
