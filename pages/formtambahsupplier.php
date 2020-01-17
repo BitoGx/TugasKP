@@ -48,9 +48,9 @@
 			<div class="app__inner">
 				<div class="app__menu">
 					<ul class="vMenu">
-						<li><a href="sim.php">Barang</a></li>
-						<li><a href="simpenerimaan.php">Penerimaan</a></li>
-						<li><a href="simpenyerahan.php">Serah Terima</a></li>
+						<li><a href="sim.php">Daftar Barang</a></li>
+						<li><a href="simpenerimaan.php">Penerimaan Barang Masuk</a></li>
+						<li><a href="simpenyerahan.php">Serah Terima Material</a></li>
 						<li><a href="supplier.php">Supplier</a></li>
 						<li><a href="#" class="vMenu--active">Tambah Supplier</a></li>
 						<li><a href="penerima.php">Penerima</a></li>

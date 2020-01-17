@@ -49,10 +49,10 @@
 			<div class="app__inner">
 				<div class="app__menu">
 					<ul class="vMenu">
-						<li><a href="sim.php">Barang</a></li>
-            <li><a href="simpenerimaan.php">Penerimaan</a></li>
+						<li><a href="sim.php">Daftar Barang</a></li>
+						<li><a href="simpenerimaan.php">Penerimaan Barang Masuk</a></li>
 						<li><a href="#" class="vMenu--active">Tambah Penerimaan</a></li>
-						<li><a href="simpenyerahan.php">Serah Terima</a></li>
+						<li><a href="simpenyerahan.php">Serah Terima Material</a></li>
 						<li><a href="supplier.php">Supplier</a></li>
 						<li><a href="penerima.php">Penerima</a></li>
 					</ul>
@@ -73,13 +73,15 @@
                 PopulateReceiver($conn);
               ?>
               <label>Tanggal Penerimaan</label>
-              <input type="text" id="tanngalterima" name="tanggalterima" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" placeholder="YYYY-MM-DD" required>
-              <label>Deskripsi Barang Masuk</label>
-              <input type="text" id="deskripsi" name="deskripsi" placeholder="Deskripsi" required>
-              <label>Serial Barang Masuk</label>
-              <table class="table table-bordered" id="dynamic_field">  
-                <tr>  
-                  <td><input type="text" name="serialnumber[]" placeholder="Serial Number" class="form-control name_list" /></td>  
+              <input type="text" id="tanggalterima" name="tanggalterima" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" placeholder="YYYY-MM-DD" required>
+              <table class="table table-bordered" id="dynamic_field">
+                <tr>
+                  <td><label>Deskripsi Barang Masuk</label></td>
+                  <td><label>Serial Barang Masuk</label></td>
+                </tr>
+                <tr>
+                  <td><input type="text" name="descnumber[]" placeholder="Deskripsi" class="form-control name_list"  required/></td>  
+                  <td><input type="text" name="serialnumber[]" placeholder="Serial Number" class="form-control name_list" required/></td>  
                   <td><button type="button" name="add" id="add" class="button button__accent">Add More</button></td>  
                 </tr>  
               </table>  
@@ -100,7 +102,8 @@
     $('#add').click(function()
     {  
       i++;  
-      $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="serialnumber[]" placeholder="Serial Number" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="button button__accent">X</button></td></tr>');  
+      $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="descnumber[]" placeholder="Deskripsi" class="form-control name_list"  required/></td><td><input type="text" name="serialnumber[]" placeholder="Serial Number" class="form-control name_list" required/></td><td><button type="button" name="remove" id="'+i+'" class="button button__accent">X</button></td></tr>');
+      
     });  
     $(document).on('click', '.button__accent', function()
     {  
@@ -122,6 +125,6 @@
       });  
     });  
   });  
-</script>
+  </script>
 </body>
 </html>

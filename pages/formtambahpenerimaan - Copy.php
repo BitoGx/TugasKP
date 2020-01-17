@@ -11,7 +11,7 @@
 <head>
 	<meta class="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<title>Tambah Serah Terima</title>
+	<title>Tambah Penerimaan</title>
 	<link rel='stylesheet' href='../css/style.min.css' />
   <link rel='stylesheet' href='../css/style.css' />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
@@ -51,29 +51,29 @@
 					<ul class="vMenu">
 						<li><a href="sim.php">Daftar Barang</a></li>
 						<li><a href="simpenerimaan.php">Penerimaan Barang Masuk</a></li>
+						<li><a href="#" class="vMenu--active">Tambah Penerimaan</a></li>
 						<li><a href="simpenyerahan.php">Serah Terima Material</a></li>
-						<li><a href="#" class="vMenu--active">Tambah Serah Terima</a></li>
 						<li><a href="supplier.php">Supplier</a></li>
 						<li><a href="penerima.php">Penerima</a></li>
 					</ul>
 				</div>
 				<div class="app__main">
 					<div class="text-container">
-						<h3 class="app__main__title">Form Tambah Serah Terima</h3>
-						<p>Silahkan isi informasi Serah Terima yang akan ditambah</p>
+						<h3 class="app__main__title">Form Tambah Penerimaan</h3>
+						<p>Silahkan isi informasi Penerimaan yang akan ditambah</p>
             <form role="form" name="tambahtransaksi" id="tambahtransaksi" action="../php/tambahpenerimaan.php" method="post" onsubmit="">
               <input type="hidden" id="jenistransaksi" name="jenistransaksi" value="BAPBM">
-              <label>Pihak Pertama</label>
+              <label>Pengirim</label>
               <?php
                 include_once "../php/populate.php";
-                PopulateReceiver($conn);
+                PopulateSupplier($conn);
               ?>
-              <label>Pihak Kedua</label>
+              <label>Penerima</label>
               <?php
                 PopulateReceiver($conn);
               ?>
-              <label>Tanggal Penyerahan</label>
-              <input type="text" id="tanggalpenyerahan" name="tanggalpenyerahan" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" placeholder="YYYY-MM-DD" required>
+              <label>Tanggal Penerimaan</label>
+              <input type="text" id="tanggalterima" name="tanggalterima" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" placeholder="YYYY-MM-DD" required>
               <label>Deskripsi Barang Masuk</label>
               <input type="text" id="deskripsi" name="deskripsi" placeholder="Deskripsi" required>
               <label>Serial Barang Masuk</label>
@@ -92,7 +92,6 @@
 			</div>
 		</div>
 	</div>
-
   <script src='../js/app.js'></script>
   <script>  
   $(document).ready(function()

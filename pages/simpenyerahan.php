@@ -43,16 +43,16 @@
 			<div class="app__inner">
 				<div class="app__menu">
 					<ul class="vMenu">
-						<li><a href="sim.php">Barang</a></li>
-						<li><a href="simpenerimaan.php">Penerimaan</a></li>
-						<li><a href="#" class="vMenu--active">Serah Terima</a></li>
+						<li><a href="sim.php">Daftar Barang</a></li>
+						<li><a href="simpenerimaan.php">Penerimaan Barang Masuk</a></li>
+						<li><a href="#" class="vMenu--active">Serah Terima Material</a></li>
 						<li><a href="supplier.php">Supplier</a></li>
 						<li><a href="penerima.php">Penerima</a></li>
 					</ul>
 				</div>
 				<div class="app__main">
 					<div class="text-container">
-						<h3 class="app__main__title">Daftar Serah Terima</h3>
+						<h3 class="app__main__title">Daftar Serah Terima Material</h3>
             <a href="formtambahpenyerahan.php"><button type="button" name="tambahbarang" class="button button__accent">Tambah</button></a>
             <?php
               include_once "../php/display.php";
