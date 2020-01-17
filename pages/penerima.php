@@ -56,7 +56,7 @@
             <a href="formtambahpenerima.php"><button type="button" name="tambahbarang" class="button button__accent">Tambah</button></a>
             <?php
               include_once "../php/display.php";
-              DisplayReceiver($conn)
+              DisplayReceiver($conn);
             ?>
 					</div>
 				</div>

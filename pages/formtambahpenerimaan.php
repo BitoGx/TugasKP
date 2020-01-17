@@ -14,6 +14,7 @@
 	<title>Tambah Penerimaan</title>
 	<link rel='stylesheet' href='../css/style.min.css' />
   <link rel='stylesheet' href='../css/style.css' />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 </head>
 <body>
 	<!-- navbar -->
@@ -60,14 +61,23 @@
 					<div class="text-container">
 						<h3 class="app__main__title">Form Tambah Penerimaan</h3>
 						<p>Silahkan isi informasi Penerimaan yang akan ditambah</p>
-            <form role="form" name="formtambah" action="../php/tambahpenerimaan.php" method="post" onsubmit="">
-              <label>Supplier ID</label>
-              <select required>
-                <option value="defautl">Default</option>
-                <option value="idsupplier">Nama Supplier</option>
-              </select>
+            <form role="form" name="add_name" id="add_name" method="post" onsubmit="">
+              <label>Supplier</label>
+              <?php
+                include_once "../php/populate.php";
+                PopulateSupplier($conn);
+              ?>
               <label>Tanggal Penerimaan</label>
               <input type="date" id="tanngalterima" name="tanggalterima" required>
+              <label>Deskripsi Barang Masuk</label>
+              <input type="text" id="deskripsi" name="deskripsi" placeholder="Deskripsi" required>
+              <label>Serial Barang Masuk</label>
+              <table class="table table-bordered" id="dynamic_field">  
+                <tr>  
+                  <td><input type="text" name="name[]" placeholder="Serial Number" class="form-control name_list" /></td>  
+                  <td><button type="button" name="add" id="add" class="button button__accent">Add More</button></td>  
+                </tr>  
+              </table>  
               <p>
                 <input type="submit" value="Tambah" name="submit" class="button button__accent">
               </p>
@@ -77,7 +87,36 @@
 			</div>
 		</div>
 	</div>
-
-<script src='../js/app.js'></script>
+  <script src='../js/app.js'></script>
+  <script>  
+  $(document).ready(function()
+  {  
+    var i=1;  
+    $('#add').click(function()
+    {  
+      i++;  
+      $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="name[]" placeholder="Serial Number" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="button button__accent">X</button></td></tr>');  
+    });  
+    $(document).on('click', '.btn_remove', function()
+    {  
+      var button_id = $(this).attr("id");   
+      $('#row'+button_id+'').remove();  
+    });  
+    $('#submit').click(function()
+    {            
+      $.ajax(
+      {  
+        url:"name.php",  
+        method:"POST",  
+        data:$('#add_name').serialize(),  
+        success:function(data)  
+        {  
+          alert(data);  
+          $('#add_name')[0].reset();  
+        }  
+      });  
+    });  
+  });  
+</script>
 </body>
 </html>

@@ -15,24 +15,6 @@
     $uploadOk = 1;
     $allowedMB = 100000000;
     $FileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-    
-    /*  
-    // Check if image file is a actual image or fake image
-    if(isset($_POST["submit"]))
-    {
-      $check = filesize($_FILES["fileToUpload"]["tmp_name"]);
-      if($check !== false)
-      {
-        $uploadOk = 1;
-      }
-      else
-      {
-        echo "File type is not supported.";
-        $uploadOk = 0;
-        header("Refresh: 5; http://localhost/tugasKP/pages/uploadpage.php");
-      }
-    }
-    */
   
     // Check if file already exists
     if (file_exists($target_file)) 
