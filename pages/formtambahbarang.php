@@ -62,11 +62,22 @@
 						<p>Silahkan isi informasi Barang yang akan ditambah</p>
             <form role="form" name="formtambah" action="../php/tambahbarang.php" method="post" onsubmit="">
               <label>Serial Number</label>
-              <input placeholder="Serial Number" type="text" id="serialnumber" name="serialnumber" pattern='[A-Za-z0-9]+' required>
+              <input placeholder="Serial Number" type="text" id="serialnumber" name="serialnumber" pattern='[A-Za-z0-9,-]+' autofocus required>
               <label>Deskripsi</label>
-              <input placeholder="Masukkan Deskripsi" type="text" id="deskripsibarang" name="deskripsibarang" pattern='[A-Za-z,- ]+' required>
+              <?php
+                if(!empty($_GET['desc']))
+                {
+                  $deskripsi=$_GET['desc'];
+                  echo "<input placeholder='Masukkan Deskripsi' type='text' id='deskripsibarang' name='deskripsibarang' pattern='[A-Za-z,- ]+' value='$deskripsi' required>";
+                }
+                else
+                {
+                  echo "<input placeholder='Masukkan Deskripsi' type='text' id='deskripsibarang' name='deskripsibarang' pattern='[A-Za-z,- ]+' required>";
+                }
+              ?>
               <p>
                 <input type="submit" value="Tambah" name="submit" class="button button__accent">
+                <input type="submit" value="Tambah Batch" name="submitbatch" class="button button__accent">
               </p>
             </form>
 					</div>

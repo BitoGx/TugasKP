@@ -13,7 +13,15 @@
     *Mengubah isi variabel nama barang ke CamelCase
     */
     $serialnumber = $_POST['serialnumber'];
-    $deskripsi     = $_POST['deskripsibarang'];
+    $deskripsi    = $_POST['deskripsibarang'];
+    if(!empty($_POST['submitbatch']))
+    {
+      $batch = true;
+    }
+    else
+    {
+      $batch = false;
+    }
     
     //Memilih database
     mysqli_select_db($conn,"tubesKP");
@@ -43,7 +51,14 @@
       //Menjalankan perintah perulangan sebanyak yang dibutuhkan
       if($hasil)
       {
-        header("location: ../pages/sim.php");
+        if($batch)
+        {
+          header("location: ../pages/formtambahbarang.php?desc=$deskripsi");
+        }
+        else
+        {
+          header("location: ../pages/sim.php");
+        }
       }
       else
       {

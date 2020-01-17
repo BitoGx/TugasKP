@@ -64,7 +64,7 @@
               <label>Nama Penerima</label>
               <input placeholder="Masukkan Nama Penerima" type="text" id="nama" name="nama" pattern='[A-Za-z,. ]+' required>
               <label>NIK</label>
-              <input placeholder="Masukkan NIK" type="text" id="nik" name="nik" pattern='[0-9]+' required>
+              <input placeholder="Masukkan NIK" type="text" id="nik" name="nik" pattern='[0-9]+'>
               <label>Jabatan</label>
               <input placeholder="Masukkan Jabatan" type="text" id="jabatan" name="jabatan" pattern='[A-Za-z0-9,- ]+'>
               <p>

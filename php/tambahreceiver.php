@@ -14,15 +14,25 @@
     */
     $nama     = $_POST['nama'];
     $nama     = strtoupper($nama);
-    $nik      = $_POST['nik'];
+    
+    if(!empty($_POST['nik']))
+    {
+      $nik    = $_POST['nik'];
+    }
+    else
+    {
+      $nik    = null;
+    }
     $jabatan  = $_POST['jabatan'];
     $jabatan  = strtoupper($jabatan);
+    
+    
     
     //Memilih database
     mysqli_select_db($conn,"tubesKP");
 
     //Mempersiapkan Command Query  untuk mengecek apakah Username yang ditambahkan sudah ada atau belum
-    $sql="select * from receiver where NIK='$nik'";
+    $sql="select * from receiver where NIK='$nik' and Jabatan = '$jabatan'";
 
     //Menjalankan perintah query dan menyimpannya dalam variabel hasil
     $hasil=mysqli_query ($conn,$sql);
