@@ -19,14 +19,12 @@
   
     if($row)
     {
-      echo "<select name ='supplier'>";
       do
       {
         list($idsupplier,$nama,$pic)=$row;
         echo "<option value='$idsupplier'> $nama - $pic </option>";
       }
       while($row=mysqli_fetch_row($hasil));
-      echo "</select>";
     }
     else
     {
@@ -50,14 +48,12 @@
   
     if($row)
     {
-      echo "<select name ='receiver'>";
       do
       {
         list($idreceiver,$nama,$nik,$jabatan)=$row;
         echo "<option value='$idreceiver'> $nama - $nik - $jabatan </option>";
       }
       while($row=mysqli_fetch_row($hasil));
-      echo "</select>";
     }
     else
     {

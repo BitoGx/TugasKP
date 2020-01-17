@@ -64,7 +64,7 @@
           else
           {
             //Mempersiapkan Command Query  untuk menambahkan User baru
-            $sql="insert into barang value ('$serial','$description')"; 
+            $sql="insert into barang value ('$serial','$description','1')"; 
 
             //Menjalankan perintah query dan menyimpannya dalam variabel hasil
             $hasil=mysqli_query ($conn,$sql);

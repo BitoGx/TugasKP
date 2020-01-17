@@ -66,11 +66,15 @@
               <label>Pengirim</label>
               <?php
                 include_once "../php/populate.php";
+                echo "<select name ='supplier'>";
                 PopulateSupplier($conn);
+                echo "</select>";
               ?>
               <label>Penerima</label>
               <?php
+                echo "<select name ='receiver'>";
                 PopulateReceiver($conn);
+                echo "</select>";
               ?>
               <label>Tanggal Penerimaan</label>
               <input type="text" id="tanggalterima" name="tanggalterima" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" placeholder="YYYY-MM-DD" required>

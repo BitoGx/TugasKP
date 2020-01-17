@@ -234,7 +234,7 @@
     mysqli_select_db($conn,"tubesKP");
     
     //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
-    $sql="select * from barang";
+    $sql="select * from barang where Status = '1'";
   
     //Menjalankan perintah query dan menyimpannya dalam variabel hasil
     $hasil=mysqli_query ($conn,$sql);
@@ -352,7 +352,7 @@
     }
   }
   
-  function DisplayTransaksi($conn)
+  function DisplayPenerimaanBarangMasuk($conn)
   {
     //Memilih database
     mysqli_select_db($conn,"tubesKP");
@@ -405,6 +405,107 @@
       while($row=mysqli_fetch_row($hasil));
       echo "</table>
             </div>";
+    }
+    else
+    {
+      echo "<center><h2>Tidak ada Dokumen</h2></center>";
+    }
+  }
+  
+  function DisplaySerahTerimaMaterial($conn)
+  {
+    //Memilih database
+    mysqli_select_db($conn,"tubesKP");
+    
+    //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
+    $sql="select SupplierId,ReceiverId,Tanggal from Transaksi where Jenis_Transaksi = 'BASTM'";
+    //Menjalankan perintah query dan menyimpannya dalam variabel hasil
+    $hasil=mysqli_query ($conn,$sql);
+  
+    if($hasil)
+    {
+      //Mengambil 1 baris hasil dari perintah query
+      $row=mysqli_fetch_row($hasil);
+    }
+    else
+    {
+      $row = false;
+    }
+    if($row)
+    {
+      echo "<div style='overflow-x:auto;'>
+            <table border='1'>
+              <tr>
+                <th> Pihak Pertama </td>
+                <th> NIK </td>
+                <th> Jabatan </td>
+                <th> Pihak Kedua </td>
+                <th> NIK </td>
+                <th> Jabatan </td>
+                <th> Tanggal </td>
+              </tr>";
+      do
+      {
+        list($idpertama,$idkedua,$tanggal)=$row;
+        //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
+        $sql="select Nama_Receiver,NIK,Jabatan from Receiver where IdReceiver = '$idpertama'";
+        
+        //Menjalankan perintah query dan menyimpannya dalam variabel hasil
+        $hasil=mysqli_query ($conn,$sql);
+  
+        if($hasil)
+        {
+          //Mengambil 1 baris hasil dari perintah query
+          $row=mysqli_fetch_row($hasil);
+        }
+        else
+        {
+          $row = false;
+        }
+        
+        if($row)
+        {
+          list($nama,$nik,$jabatan)=$row;
+          echo "<tr>
+                  <td>$nama</td>
+                  <td>$nik</td>
+                  <td>$jabatan</td>";
+          //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
+          $sql="select Nama_Receiver,NIK,Jabatan from Receiver where IdReceiver = '$idkedua'";
+        
+          //Menjalankan perintah query dan menyimpannya dalam variabel hasil
+          $hasil=mysqli_query ($conn,$sql);
+  
+          if($hasil)
+          {
+            //Mengambil 1 baris hasil dari perintah query
+            $row=mysqli_fetch_row($hasil);
+          }
+          else
+          {
+            $row = false;
+          }
+          
+          if($row)
+          {
+            list($nama,$nik,$jabatan)=$row;
+            echo "  <td>$nama</td>
+                    <td>$nik</td>
+                    <td>$jabatan</td>
+                    <td>$tanggal</td>
+                  </tr>";
+          }
+          else
+          {
+            echo "<center><h2>Tidak ada Dokumen</h2></center>";
+          }
+        }
+        else
+        {
+          echo "<center><h2>Tidak ada Dokumen</h2></center>";
+        }
+      }
+      while($row=mysqli_fetch_row($hasil));
     }
     else
     {
