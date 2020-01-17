@@ -362,7 +362,7 @@
   
   
     //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
-    $sql="select S.Nama_Supplier, S.PIC, R.Nama_Receiver, R.NIK, R.Jabatan, T.Tanggal from Transaksi as T, Receiver as R, Supplier as S where T.SupplierId = S.IdSupplier and T.ReceiverId = R.IdReceiver and T.Jenis_Transaksi = 'BAPBM'";
+    $sql="select T.IdTransaksi, S.Nama_Supplier, S.PIC, R.Nama_Receiver, R.NIK, R.Jabatan, T.Tanggal from Transaksi as T, Receiver as R, Supplier as S where T.SupplierId = S.IdSupplier and T.ReceiverId = R.IdReceiver and T.Jenis_Transaksi = 'BAPBM'";
   
     //Menjalankan perintah query dan menyimpannya dalam variabel hasil
     $hasil=mysqli_query ($conn,$sql);
@@ -383,24 +383,29 @@
       echo "<div style='overflow-x:auto;'>
             <table border='1'>
               <tr>
-                <th> Nama Pengirim </td>
-                <th> PIC </td>
-                <th> Nama Penerima </td>
-                <th> NIK </td>
-                <th> Jabatan </td>
-                <th> Tanggal </td>
+                <th> Nama Pengirim </th>
+                <th> PIC </th>
+                <th> Nama Penerima </th>
+                <th> NIK </th>
+                <th> Jabatan </th>
+                <th> Tanggal </th>
+                <th> Detail </th>
               </tr>";
       do
       {
-        list($nama_supplier,$pic,$nama_receiver,$nik,$jabatan,$tanggal)=$row;
-        echo "<tr>
-                <td> $nama_supplier </td>
-                <td> $pic </td>
-                <td> $nama_receiver </td>
-                <td> $nik </td>
-                <td> $jabatan </td>
-                <td> $tanggal </td>
-              </tr>";
+        list($idtransaksi,$nama_supplier,$pic,$nama_receiver,$nik,$jabatan,$tanggal)=$row;
+        echo "<form role='form' name='BAPBM' id='BAPBM' action='../pages/detailpenerimaan.php' method='post' onsubmit=''>
+                <tr>
+                  <td> $nama_supplier </td>
+                  <td> $pic </td>
+                  <td> $nama_receiver </td>
+                  <td> $nik </td>
+                  <td> $jabatan </td>
+                  <td> $tanggal </td>
+                  <td> <input type='submit' value='Detail' name='detail' class='button button__primary'>
+                     <input type='hidden' id='id' name='id' value='$idtransaksi'> </td>
+                </tr>
+              </form>";
       }
       while($row=mysqli_fetch_row($hasil));
       echo "</table>
@@ -418,7 +423,8 @@
     mysqli_select_db($conn,"tubesKP");
     
     //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
-    $sql="select SupplierId,ReceiverId,Tanggal from Transaksi where Jenis_Transaksi = 'BASTM'";
+    $sql="select IdTransaksi,SupplierId,ReceiverId,Tanggal from Transaksi where Jenis_Transaksi = 'BASTM'";
+    
     //Menjalankan perintah query dan menyimpannya dalam variabel hasil
     $hasil=mysqli_query ($conn,$sql);
   
@@ -436,17 +442,18 @@
       echo "<div style='overflow-x:auto;'>
             <table border='1'>
               <tr>
-                <th> Pihak Pertama </td>
-                <th> NIK </td>
-                <th> Jabatan </td>
-                <th> Pihak Kedua </td>
-                <th> NIK </td>
-                <th> Jabatan </td>
-                <th> Tanggal </td>
+                <th> Pihak Pertama </th>
+                <th> NIK </th>
+                <th> Jabatan </th>
+                <th> Pihak Kedua </th>
+                <th> NIK </th>
+                <th> Jabatan </th>
+                <th> Tanggal </th>
+                <th> Detail </th>
               </tr>";
       do
       {
-        list($idpertama,$idkedua,$tanggal)=$row;
+        list($idtransaksi,$idpertama,$idkedua,$tanggal)=$row;
         //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
         $sql="select Nama_Receiver,NIK,Jabatan from Receiver where IdReceiver = '$idpertama'";
         
@@ -466,7 +473,8 @@
         if($row)
         {
           list($nama,$nik,$jabatan)=$row;
-          echo "<tr>
+          echo "<form role='form' name='BASTM' id='BASTM' action='../pages/detailpenyerahan.php' method='post' onsubmit=''>
+                <tr>
                   <td>$nama</td>
                   <td>$nik</td>
                   <td>$jabatan</td>";
@@ -493,7 +501,10 @@
                     <td>$nik</td>
                     <td>$jabatan</td>
                     <td>$tanggal</td>
-                  </tr>";
+                    <td> <input type='submit' value='Detail' name='detail' class='button button__primary'>
+                         <input type='hidden' id='id' name='id' value='$idtransaksi'></td>
+                  </tr>
+                  </form>";
           }
           else
           {
@@ -506,6 +517,8 @@
         }
       }
       while($row=mysqli_fetch_row($hasil));
+      echo "</table>
+            </div>";
     }
     else
     {
