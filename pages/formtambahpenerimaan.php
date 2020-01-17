@@ -61,20 +61,25 @@
 					<div class="text-container">
 						<h3 class="app__main__title">Form Tambah Penerimaan</h3>
 						<p>Silahkan isi informasi Penerimaan yang akan ditambah</p>
-            <form role="form" name="add_name" id="add_name" method="post" onsubmit="">
-              <label>Supplier</label>
+            <form role="form" name="tambahtransaksi" id="tambahtransaksi" action="../php/tambahpenerimaan.php" method="post" onsubmit="">
+              <input type="hidden" id="jenistransaksi" name="jenistransaksi" value="BAPBM">
+              <label>Pengirim</label>
               <?php
                 include_once "../php/populate.php";
                 PopulateSupplier($conn);
               ?>
+              <label>Penerima</label>
+              <?php
+                PopulateReceiver($conn);
+              ?>
               <label>Tanggal Penerimaan</label>
-              <input type="date" id="tanngalterima" name="tanggalterima" required>
+              <input type="text" id="tanngalterima" name="tanggalterima" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" placeholder="YYYY-MM-DD" required>
               <label>Deskripsi Barang Masuk</label>
               <input type="text" id="deskripsi" name="deskripsi" placeholder="Deskripsi" required>
               <label>Serial Barang Masuk</label>
               <table class="table table-bordered" id="dynamic_field">  
                 <tr>  
-                  <td><input type="text" name="name[]" placeholder="Serial Number" class="form-control name_list" /></td>  
+                  <td><input type="text" name="serialnumber[]" placeholder="Serial Number" class="form-control name_list" /></td>  
                   <td><button type="button" name="add" id="add" class="button button__accent">Add More</button></td>  
                 </tr>  
               </table>  
@@ -95,9 +100,9 @@
     $('#add').click(function()
     {  
       i++;  
-      $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="name[]" placeholder="Serial Number" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="button button__accent">X</button></td></tr>');  
+      $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="serialnumber[]" placeholder="Serial Number" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="button button__accent">X</button></td></tr>');  
     });  
-    $(document).on('click', '.btn_remove', function()
+    $(document).on('click', '.button__accent', function()
     {  
       var button_id = $(this).attr("id");   
       $('#row'+button_id+'').remove();  
@@ -106,7 +111,7 @@
     {            
       $.ajax(
       {  
-        url:"name.php",  
+        url:"../php/tambahpenerimaan.php",  
         method:"POST",  
         data:$('#add_name').serialize(),  
         success:function(data)  

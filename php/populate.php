@@ -34,7 +34,7 @@
     }
   }
   
-  function DisplayReceiver($conn)
+  function PopulateReceiver($conn)
   {
     //Memilih database
     mysqli_select_db($conn,"tubesKP");
@@ -50,26 +50,14 @@
   
     if($row)
     {
-      echo "<div style='overflow-x:auto;'>
-            <table border='1'>
-              <tr>
-                <th> Nama </th>
-                <th> NIK </th>
-                <th> Jabatan </th>
-              </tr>";
+      echo "<select name ='receiver'>";
       do
       {
         list($idreceiver,$nama,$nik,$jabatan)=$row;
-         echo "<tr>
-                <input type='hidden' id='id' name='id' value='$idreceiver'>
-                <td> $nama </td>
-                <td> $nik </td>
-                <td> $jabatan </td>
-              </tr>";
+        echo "<option value='$idreceiver'> $nama - $nik - $jabatan </option>";
       }
       while($row=mysqli_fetch_row($hasil));
-      echo "</table>
-            </div>";
+      echo "</select>";
     }
     else
     {

@@ -56,7 +56,7 @@
             <a href="formtambahpenerimaan.php"><button type="button" name="tambahbarang" class="button button__accent">Tambah</button></a>
             <?php
               include_once "../php/display.php";
-              DisplayIndex($conn)
+              DisplayTransaksi($conn)
             ?>
 					</div>
 				</div>

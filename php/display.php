@@ -351,4 +351,64 @@
       echo "<center><h2>Tidak ada Akun</h2></center>";
     }
   }
+  
+  function DisplayTransaksi($conn)
+  {
+    //Memilih database
+    mysqli_select_db($conn,"tubesKP");
+  
+    $sql="SELECT COUNT(ProductID) AS NumberOfProducts FROM Products; ";
+  
+  
+  
+    //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
+    $sql="select S.Nama_Supplier, S.PIC, R.Nama_Receiver, R.NIK, R.Jabatan, T.Tanggal from Transaksi as T, Receiver as R, Supplier as S, Detail_Transaksi as DT where T.SupplierId = S.IdSupplier and T.ReceiverId = R.IdReceiver and T.IdTransaksi = DT.TransaksiId and T.Jenis_Transaksi = 'BAPBM'";
+  
+    //Menjalankan perintah query dan menyimpannya dalam variabel hasil
+    $hasil=mysqli_query ($conn,$sql);
+  
+    if($hasil)
+    {
+      //Mengambil 1 baris hasil dari perintah query
+      $row=mysqli_fetch_row($hasil);
+    }
+    else
+    {
+      $row = false;
+    }
+    
+  
+    if($row)
+    {
+      echo "<div style='overflow-x:auto;'>
+            <table border='1'>
+              <tr>
+                <th> Nama Pengirim </td>
+                <th> PIC </td>
+                <th> Nama Penerima </td>
+                <th> NIK </td>
+                <th> Jabatan </td>
+                <th> Tanggal </td>
+              </tr>";
+      do
+      {
+        list($nama_supplier,$pic,$nama_receiver,$nik,$jabatan,$tanggal)=$row;
+        echo "<tr>
+                <td> $nama_supplier </td>
+                <td> $pic </td>
+                <td> $nama_receiver </td>
+                <td> $nik </td>
+                <td> $jabatan </td>
+                <td> $tanggal </td>
+              </tr>";
+      }
+      while($row=mysqli_fetch_row($hasil));
+      echo "</table>
+            </div>";
+    }
+    else
+    {
+      echo "<center><h2>Tidak ada Dokumen</h2></center>";
+    }
+  }
 ?>
