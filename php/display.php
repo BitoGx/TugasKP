@@ -453,21 +453,21 @@
         $sql="select Nama_Receiver,NIK,Jabatan from Receiver where IdReceiver = '$idpertama'";
         
         //Menjalankan perintah query dan menyimpannya dalam variabel hasil
-        $hasil=mysqli_query ($conn,$sql);
+        $hasil1=mysqli_query ($conn,$sql);
   
-        if($hasil)
+        if($hasil1)
         {
           //Mengambil 1 baris hasil dari perintah query
-          $row=mysqli_fetch_row($hasil);
+          $row1=mysqli_fetch_row($hasil1);
         }
         else
         {
-          $row = false;
+          $row1 = false;
         }
         
-        if($row)
+        if($row1)
         {
-          list($nama,$nik,$jabatan)=$row;
+          list($nama,$nik,$jabatan)=$row1;
           echo "<form role='form' name='BASTM' id='BASTM' action='../pages/detailpenyerahan.php' method='post' onsubmit=''>
                 <tr>
                   <td>$nama</td>
@@ -477,21 +477,21 @@
           $sql="select Nama_Receiver,NIK,Jabatan from Receiver where IdReceiver = '$idkedua'";
         
           //Menjalankan perintah query dan menyimpannya dalam variabel hasil
-          $hasil=mysqli_query ($conn,$sql);
+          $hasil2=mysqli_query ($conn,$sql);
   
-          if($hasil)
+          if($hasil2)
           {
             //Mengambil 1 baris hasil dari perintah query
-            $row=mysqli_fetch_row($hasil);
+            $row2=mysqli_fetch_row($hasil2);
           }
           else
           {
-            $row = false;
+            $row2 = false;
           }
           
-          if($row)
+          if($row2)
           {
-            list($nama,$nik,$jabatan)=$row;
+            list($nama,$nik,$jabatan)=$row2;
             echo "  <td>$nama</td>
                     <td>$nik</td>
                     <td>$jabatan</td>

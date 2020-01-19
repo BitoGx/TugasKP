@@ -73,7 +73,10 @@
               header("Refresh: 5; ../pages/formtambahpenyerahan.php");
             }
           }
-        header("location: ../pages/simpenyerahan.php");
+          echo "$sql<br>";
+          echo "$i";
+          header("Refresh: 5; ../pages/formtambahpenyerahan.php");
+        //header("location: ../pages/simpenyerahan.php");
       }
     }
     else
