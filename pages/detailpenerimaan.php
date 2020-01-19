@@ -61,11 +61,17 @@
 					<div class="text-container">
 						<h3 class="app__main__title">Detail Penerimaan Barang Masuk</h3>
             <?php
-              
               //Memilih database
               mysqli_select_db($conn,"tubesKP");
               
               $Id = $_POST['id'];
+              
+              echo "
+              <form role='form' name='downloadpdf' id='downloadpdf' action='../php/makepdfbapbm.php' method='post' onsubmit=''>
+                <input type='submit' value='Download PDF' name='Download' class='button button__accent'>
+                <input type='hidden' id='id' name='id' value='$Id'>
+              </form>
+              ";
               
               //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
               $sql="select  S.Nama_Supplier, S.PIC, R.Nama_Receiver, R.NIK, R.Jabatan, T.Tanggal from Transaksi as T, Receiver as R, Supplier as S where T.SupplierId = S.IdSupplier and T.ReceiverId = R.IdReceiver and T.Jenis_Transaksi = 'BAPBM' and T.IdTransaksi = '$Id'";

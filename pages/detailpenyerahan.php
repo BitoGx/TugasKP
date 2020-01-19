@@ -67,6 +67,13 @@
               
               $Id = $_POST['id'];
               
+              echo "
+              <form role='form' name='downloadpdf' id='downloadpdf' action='../php/makepdfbastm.php' method='post' onsubmit=''>
+                <input type='submit' value='Download PDF' name='Download' class='button button__accent'>
+                <input type='hidden' id='id' name='id' value='$Id'>
+              </form>
+              ";
+              
               //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
               $sql="select IdTransaksi,SupplierId,ReceiverId,Tanggal from Transaksi where Jenis_Transaksi = 'BASTM' and IdTransaksi = '$Id'";
     
