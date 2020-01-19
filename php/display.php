@@ -9,7 +9,7 @@
     mysqli_select_db($conn,"tubesKP");
   
     //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
-    $sql="select R.Judul,R.Author,R.Tahun_Dibuat,R.Tanggal_Terakhir_Diubah,A.Bagian,A.Nama,R.File_path from repo as R, admin as A where R.Id_Admin = A.Id_Admin and R.Status = 1";
+    $sql="select R.Judul,R.Tahun_Dibuat,R.Tanggal_Terakhir_Diubah,A.Bagian,A.Nama,R.File_path from repo as R, admin as A where R.Id_Admin = A.Id_Admin and R.Status = 1";
   
     //Menjalankan perintah query dan menyimpannya dalam variabel hasil
     $hasil=mysqli_query ($conn,$sql);
@@ -32,7 +32,6 @@
             <table border='1'>
               <tr>
                 <th> Judul </td>
-                <th> Author </td>
                 <th> Tahun Dibuat </td>
                 <th> Tanggal Terakhir Diubah </td>
                 <th> Bagian </td>
@@ -41,11 +40,10 @@
               </tr>";
       do
       {
-        list($Judul,$Author,$Tahun,$TanggalUbah,$Bagian,$Nama,$Path)=$row;
+        list($Judul,$Tahun,$TanggalUbah,$Bagian,$Nama,$Path)=$row;
         $Judul = ucwords($Judul);
         echo "<tr>
                 <td> $Judul </td>
-                <td> $Author </td>
                 <td> $Tahun </td>
                 <td> $TanggalUbah </td>
                 <td> $Bagian </td>
@@ -72,7 +70,7 @@
     mysqli_select_db($conn,"tubesKP");
   
     //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
-    $sql="select Judul,Author,Tahun_Dibuat,Tanggal_Unggah,Tanggal_Terakhir_Diubah,File_Path,Status,Id_Dokumen from repo";
+    $sql="select Judul,Tahun_Dibuat,Tanggal_Unggah,Tanggal_Terakhir_Diubah,File_Path,Status,Id_Dokumen from repo";
   
     //Menjalankan perintah query dan menyimpannya dalam variabel hasil
     $hasil=mysqli_query ($conn,$sql);
@@ -93,7 +91,6 @@
             <table border='1'>
               <tr>
                 <th> Judul </td>
-                <th> Author </td>
                 <th> Tahun Dibuat </td>
                 <th> Tanggal Unggah </td>
                 <th> Tanggal Terakhir Diubah </td>
@@ -110,7 +107,7 @@
       }
       do
       {
-        list($Judul,$Author,$Tahun,$Tanggal,$TanggalUbah,$Path,$Status,$IdDokumen)=$row;
+        list($Judul,$Tahun,$Tanggal,$TanggalUbah,$Path,$Status,$IdDokumen)=$row;
         $Judul = ucwords($Judul);
         if($Status == 1 )
         {
@@ -127,8 +124,6 @@
                 <input type='hidden' id='id' name='id' value='$IdDokumen'>
                 <td> $Judul </td>
                 <input type='hidden' id='docname' name='docname' value='$Judul'>
-                <td> $Author </td>
-                <input type='hidden' id='authorname' name='authorname' value='$Author'>
                 <td> $Tahun </td>
                 <input type='hidden' id='year' name='year' value='$Tahun'>
                 <td> $Tanggal </td>

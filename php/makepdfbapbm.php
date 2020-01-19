@@ -1,5 +1,6 @@
 <?php
-
+//Session Start
+session_start();
 
 include "../php/connection.php";
 require_once '..\vendor\autoload.php';
@@ -449,5 +450,34 @@ $mpdf->WriteHTML($tabelbarang);
 
 $mpdf->Output('../uploads/'.$docname.'.pdf', \Mpdf\Output\Destination::FILE);
 
+$idadmin=$_SESSION['Id_Admin'];
+$year=date("Y");
+$date=date("Y-m-d");
+$file_path = '../uploads/'.$docname.'.pdf';
 
+// Check if file already exists
+if (file_exists($file_path)) 
+{
+  echo "Sorry, file already exists.";
+  header("Refresh: 5; ../index.php");
+}
+else
+{
+  //Mempersiapkan Command Query  untuk mengecek apakah barang yang ditambahkan sudah ada atau belum
+  $sql="insert into repo(Id_Admin,TransaksiId,Judul,Tanggal_Unggah,Tanggal_Terakhir_Diubah,Tahun_Dibuat,File_Path) values ($idadmin,$Id,'$docname','$date','$date',$year,'$file_path')";
+
+  //Menjalankan perintah query dan menyimpannya dalam variabel hasil
+  $hasil=mysqli_query ($conn,$sql);
+
+  if($hasil)
+  {
+    header("location: ../pages/keloladokumen.php");
+  }
+  else
+  {
+    echo "Database gagal di update";
+    echo "<br>$sql";
+    unlink($file_path);
+  }
+}
 ?>

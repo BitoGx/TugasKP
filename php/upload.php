@@ -68,7 +68,6 @@
         $sql="insert into repo(Id_Admin,Judul,Author,Tanggal_Unggah,Tanggal_Terakhir_Diubah,Tahun_Dibuat,File_Path) values ($idadmin,'$docname','$authorname','$date','$date',$year,'$target_file')";
 
         //Menjalankan perintah query dan menyimpannya dalam variabel hasil
-        //$hasil = false;
         $hasil=mysqli_query ($conn,$sql);
       
         if($hasil)
