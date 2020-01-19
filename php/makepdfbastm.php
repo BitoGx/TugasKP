@@ -336,7 +336,7 @@ $doc =
 <tr >
   <td colspan='3' align='center'>
   <font size='5'><b>BERITA ACARA<br>SERAH TERIMA MATERIAL<br></b></font>
-  <font size='4'>Nomor : BASTM/$tanggalfull/SK-023/19</font>
+  <font size='4'>Nomor : BASTM/$tanggalfull/SK-$Id</font>
 </td>
 </tr>
   <tr>
