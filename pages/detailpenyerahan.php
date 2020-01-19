@@ -59,7 +59,7 @@
 				</div>
 				<div class="app__main">
 					<div class="text-container">
-						<h3 class="app__main__title">Detail Penerimaan Barang Masuk</h3>
+						<h3 class="app__main__title">Detail Serah Terima Material</h3>
             <?php
               
               //Memilih database
@@ -161,11 +161,13 @@
                 <td style="text-align:center">Description </td>
               </tr>
               <?php
+              
                 //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
                 $sql="select B.IdBarang, B.Description from Transaksi as T, Detail_Transaksi as DT, Barang as B where T.IdTransaksi = DT.TransaksiId and T.IdTransaksi = '$Id' and DT.BarangId = B.IdBarang";
                 
                 //Menjalankan perintah query dan menyimpannya dalam variabel hasil
                 $hasil=mysqli_query ($conn,$sql);
+                
                 if($hasil)
                 {
                   //Mengambil 1 baris hasil dari perintah query
