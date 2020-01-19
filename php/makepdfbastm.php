@@ -512,8 +512,6 @@ $mpdf->WriteHTML($doc);
 $mpdf->AddPage();
 $mpdf->WriteHTML($tabelbarang);
 
-$mpdf->Output('../uploads/'.$docname.'.pdf', \Mpdf\Output\Destination::FILE);
-
 $idadmin=$_SESSION['Id_Admin'];
 $year=date("Y");
 $date=date("Y-m-d");
@@ -535,6 +533,7 @@ else
 
   if($hasil)
   {
+    $mpdf->Output('../uploads/'.$docname.'.pdf', \Mpdf\Output\Destination::FILE);
     header("location: ../pages/keloladokumen.php");
   }
   else
