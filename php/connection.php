@@ -1,11 +1,13 @@
  <?php
   $dbhost = "localhost";
-  $dbname = "tubesKP";
+  $dbname = "sim";
   $dbuser = "root";
   $dbpass = "";
 
   // Buat Koneksi
   $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+  
+  mysqli_select_db($conn,"tubesKP");
 
   // Check Koneksi Nerhasil atau Tidak
   if (!$conn) 

@@ -8,20 +8,17 @@
     *Menyimpan Variabel yang di kirim menggunakan method POST
     *Mengubah isi variabel ke lowercase
     */
-    $username=$_POST['username'];
+    $username = $_POST['username'];
     $username = strtolower($username);
     $username = str_replace(' ','', $username);
-    $password=$_POST['password'];
+    $password = $_POST['password'];
     $password = sha1($password);
     
     //Memanggil fungsi untuk mengecek apakah user sudah login atau belum
     require_once "connection.php";
   
-    //Memilih database
-    mysqli_select_db($conn,"tubesKP");
-  
     //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
-    $sql="select Nama,Bagian,Id_Admin,Level,Status from admin where Username='$username' and Password='$password'";
+    $sql="select Nama,Bagian,IdAdmin,Level,Status from admin where Username='$username' and Password='$password'";
   
     //Menjalankan perintah query dan menyimpannya dalam variabel hasil
     $hasil=mysqli_query ($conn,$sql);
@@ -32,13 +29,13 @@
     //Menjalankan perintah perulangan sebanyak yang dibutuhkan
     if($row)
     {
-      list($Nama,$Bagian,$Id_Admin,$Level,$Status)=$row;
-      $_SESSION['Nama']=$Nama;
-      $_SESSION['Bagian']=$Bagian;
-      $_SESSION['Id_Admin']=$Id_Admin;
-      $_SESSION['Level']=$Level;
+      list($nama,$bagian,$idadmin,$level,$status)=$row;
+      $_SESSION['Nama']=$nama;
+      $_SESSION['Bagian']=$bagian;
+      $_SESSION['IdAdmin']=$idadmin;
+      $_SESSION['Level']=$level;
       $_SESSION['Loggedin'] = "true";
-      if($Status == 0 )
+      if($status == 0 )
       {
         session_unset();
         session_destroy();
@@ -53,6 +50,7 @@
     //Jika Username atau Password salah maka menampilkan pesan salah
     else
     {
+      echo "$sql<br>";
       echo "<center><h1>USERNAME DAN PASSWORD SALAH</h1></center>";
       header("Refresh: 3; http://localhost/tugasKP/pages/login.php");
     }

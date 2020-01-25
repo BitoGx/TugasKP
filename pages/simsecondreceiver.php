@@ -6,7 +6,7 @@
 <head>
 	<meta class="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<title>SIM Barang</title>
+	<title>Pihak Kedua</title>
 	<link rel='stylesheet' href='../css/style.min.css' />
   <link rel='stylesheet' href='../css/style.css' />
 </head>
@@ -43,19 +43,21 @@
 			<div class="app__inner">
 				<div class="app__menu">
 					<ul class="vMenu">
-						<li><a href="#" class="vMenu--active">Daftar Barang</a></li>
+						<li><a href="simbarang.php">Daftar Barang</a></li>
 						<li><a href="simpenerimaan.php">Penerimaan Barang Masuk</a></li>
 						<li><a href="simpenyerahan.php">Serah Terima Material</a></li>
-						<li><a href="supplier.php">Supplier</a></li>
-						<li><a href="penerima.php">Penerima</a></li>
+						<li><a href="simpengirim.php">Pihak Pengirim</a></li>
+						<li><a href="simfirstreceiver.php">Pihak Penerima / Pihak Pertama</a></li>
+            <li><a href="#" class="vMenu--active">Pihak Kedua</a></li>
 					</ul>
 				</div>
 				<div class="app__main">
 					<div class="text-container">
-						<h3 class="app__main__title">Daftar Barang</h3>
+						<h3 class="app__main__title">Daftar Pihak Kedua</h3>
+            <a href="formtambahsecondreceiver.php"><button type="button" name="tambahbarang" class="button button__accent">Tambah</button></a>
             <?php
               include_once "../php/display.php";
-              DisplayBarang($conn)
+              DisplaySecondReceiver($conn);
             ?>
 					</div>
 				</div>

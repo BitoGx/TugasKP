@@ -27,7 +27,7 @@
 						<?php
               if(isset($_SESSION['Loggedin']))
               {
-                echo "<li><a href='sim.php'>SIM</a></li>";
+                echo "<li><a href='simbarang.php'>SIM</a></li>";
                 echo "<li><a href='kelolaakun.php'>Kelola Akun</a></li>";
                 echo "<li><a href='../php/session_logout.php'>Logout</a></li>";
               }

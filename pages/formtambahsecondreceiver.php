@@ -48,25 +48,28 @@
 			<div class="app__inner">
 				<div class="app__menu">
 					<ul class="vMenu">
-						<li><a href="sim.php">Daftar Barang</a></li>
+						<li><a href="simbarang.php">Daftar Barang</a></li>
 						<li><a href="simpenerimaan.php">Penerimaan Barang Masuk</a></li>
 						<li><a href="simpenyerahan.php">Serah Terima Material</a></li>
-						<li><a href="supplier.php">Supplier</a></li>
-						<li><a href="penerima.php">Penerima</a></li>
-						<li><a href="#" class="vMenu--active">Tambah Penerima</a></li>
+						<li><a href="simpengirim.php">Pihak Pengirim</a></li>
+						<li><a href="simfirstreceiver.php">Pihak Penerima / Pihak Pertama</a></li>
+            <li><a href="simsecondreceiver.php">Pihak Kedua</a></li>
+            <li><a href="#" class="vMenu--active">Tambah Pihak Kedua</a></li>
 					</ul>
 				</div>
 				<div class="app__main">
 					<div class="text-container">
-						<h3 class="app__main__title">Form Tambah Penerima</h3>
-						<p>Silahkan isi informasi Penerima yang akan ditambah</p>
-            <form role="form" name="formtambah" action="../php/tambahreceiver.php" method="post" onsubmit="">
+						<h3 class="app__main__title">Form Tambah Pihak Kedua</h3>
+						<p>Silahkan isi informasi pihak kedua yang akan ditambah</p>
+            <form role="form" name="formtambah" action="../php/tambahsecondreceiver.php" method="post" onsubmit="">
               <label>Nama Penerima</label>
-              <input placeholder="Masukkan Nama Penerima" type="text" id="nama" name="nama" pattern='[A-Za-z,. ]+' required>
-              <label>NIK</label>
-              <input placeholder="Masukkan NIK" type="text" id="nik" name="nik" pattern='[0-9]+'>
+              <input placeholder="Masukkan Nama" type="text" id="nama" name="nama" pattern='[A-Za-z,. ]+' required>
+              <label>NIK/No Telp</label>
+              <input placeholder="Masukkan NIK / NoTelp" type="text" id="nonik" name="nonik" pattern='[0-9]+' required>
               <label>Jabatan</label>
-              <input placeholder="Masukkan Jabatan" type="text" id="jabatan" name="jabatan" pattern='[A-Za-z0-9,- ]+'>
+              <input placeholder="Masukkan Jabatan" type="text" id="jabatan" name="jabatan" pattern='[A-Za-z0-9,- ]+' required>
+              <label>Tempat Kerja</label>
+              <input placeholder="Masukkan Tempat Kerja" type="text" id="tempatkerja" name="tempatkerja" pattern='[A-Za-z0-9,- ]+' required>
               <p>
                 <input type="submit" value="Tambah" name="submit" class="button button__accent">
               </p>

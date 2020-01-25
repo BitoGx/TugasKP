@@ -49,12 +49,13 @@
 			<div class="app__inner">
 				<div class="app__menu">
 					<ul class="vMenu">
-						<li><a href="sim.php">Daftar Barang</a></li>
+						<li><a href="simbarang.php">Daftar Barang</a></li>
 						<li><a href="simpenerimaan.php">Penerimaan Barang Masuk</a></li>
 						<li><a href="#" class="vMenu--active">Tambah Penerimaan</a></li>
 						<li><a href="simpenyerahan.php">Serah Terima Material</a></li>
-						<li><a href="supplier.php">Supplier</a></li>
-						<li><a href="penerima.php">Penerima</a></li>
+						<li><a href="simpengirim.php">Pihak Pengirim</a></li>
+						<li><a href="simfirstreceiver.php">Pihak Penerima / Pihak Pertama</a></li>
+						<li><a href="simsecondreceiver.php">Pihak Kedua</a></li>
 					</ul>
 				</div>
 				<div class="app__main">
@@ -62,7 +63,6 @@
 						<h3 class="app__main__title">Form Tambah Penerimaan</h3>
 						<p>Silahkan isi informasi Penerimaan yang akan ditambah</p>
             <form role="form" name="tambahtransaksi" id="tambahtransaksi" action="../php/tambahpenerimaan.php" method="post" onsubmit="">
-              <input type="hidden" id="jenistransaksi" name="jenistransaksi" value="BAPBM">
               <label>Pengirim</label>
               <?php
                 include_once "../php/populate.php";

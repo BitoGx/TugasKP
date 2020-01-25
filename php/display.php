@@ -2,30 +2,20 @@
 
   //Memanggil Connection.php
   require_once "connection.php";
-    
+  
+  //Fungsi untuk memanggil Semua Dokumen yang tercatat pada database
   function DisplayIndex($conn)
   {
-    //Memilih database
-    mysqli_select_db($conn,"tubesKP");
-  
-    //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
-    $sql="select R.Judul,R.Tahun_Dibuat,R.Tanggal_Terakhir_Diubah,A.Bagian,A.Nama,R.File_path from repo as R, admin as A where R.Id_Admin = A.Id_Admin and R.Status = 1";
-  
-    //Menjalankan perintah query dan menyimpannya dalam variabel hasil
+    $sql="select R.Judul,R.Tahun_Dibuat,R.Tanggal_Terakhir_Diubah,A.Bagian,A.Nama,R.File_path from repo as R, admin as A where R.Id_Admin = A.Id_Admin";
     $hasil=mysqli_query ($conn,$sql);
-  
-    
     if($hasil)
     {
-      //Mengambil 1 baris hasil dari perintah query
       $row=mysqli_fetch_row($hasil);
     }
     else
     {
       $row = false;
     }
-    
-  
     if($row)
     {
       echo "<div style='overflow-x:auto;'>
@@ -66,36 +56,27 @@
   
   function DisplayDokumen($conn)
   {
-    //Memilih database
-    mysqli_select_db($conn,"tubesKP");
-  
-    //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
-    $sql="select Judul,Tahun_Dibuat,Tanggal_Unggah,Tanggal_Terakhir_Diubah,File_Path,Status,Id_Dokumen from repo";
-  
-    //Menjalankan perintah query dan menyimpannya dalam variabel hasil
+    
+    $sql="select Judul,Tahun_Dibuat,Tanggal_Unggah,Tanggal_Terakhir_Diubah,File_Path,Id_Dokumen from repo";
     $hasil=mysqli_query ($conn,$sql);
-  
     if($hasil)
     {
-      //Mengambil 1 baris hasil dari perintah query
       $row=mysqli_fetch_row($hasil);
     }
     else
     {
       $row = false;
     }
-  
     if($row)
     {
       echo "<div style='overflow-x:auto;'>
             <table border='1'>
               <tr>
-                <th> Judul </td>
+                <th> Nama Dokumen </td>
                 <th> Tahun Dibuat </td>
                 <th> Tanggal Unggah </td>
                 <th> Tanggal Terakhir Diubah </td>
-                <th> File Name </td>
-                <th> Status </td>";
+                <th> File Name </td>";
       if(isset($_SESSION['Loggedin']))
       {
         echo "  <th> Action </td>
@@ -107,31 +88,20 @@
       }
       do
       {
-        list($Judul,$Tahun,$Tanggal,$TanggalUbah,$Path,$Status,$IdDokumen)=$row;
-        $Judul = ucwords($Judul);
-        if($Status == 1 )
-        {
-          $Status = "Tersedia";
-        }
-        else
-        {
-          $Status = "Tidak Tersedia";
-        }
-        $Path = substr($Path,11);
+        list($namadoc,$tahun,$tanggal,$tanggalubah,$path,$iddokumen)=$row;
+        $namadoc = ucwords($namadoc);
+        $path = substr($path,11);
         echo "<form action='../pages/formeditdokumen.php' method='post'>";
-        //status (0 = tidak tersedia, 1 = tersedia)
         echo "<tr>
-                <input type='hidden' id='id' name='id' value='$IdDokumen'>
-                <td> $Judul </td>
-                <input type='hidden' id='docname' name='docname' value='$Judul'>
-                <td> $Tahun </td>
-                <input type='hidden' id='year' name='year' value='$Tahun'>
-                <td> $Tanggal </td>
-                <td> $TanggalUbah </td>
-                <td> $Path </td>
-                <input type='hidden' id='filename' name='filename' value='$Path'>
-                <td> $Status </td>
-                <input type='hidden' id='status' name='status' value='$Status'>";
+                <input type='hidden' id='id' name='id' value='$iddokumen'>
+                <td> $namadoc </td>
+                <input type='hidden' id='docname' name='docname' value='$namadoc'>
+                <td> $tahun </td>
+                <input type='hidden' id='year' name='year' value='$tahun'>
+                <td> $tanggal </td>
+                <td> $tanggalubah </td>
+                <td> $path </td>
+                <input type='hidden' id='filename' name='filename' value='$path'>";
         if(isset($_SESSION['Loggedin']))
         {
           echo "<th> <input type='submit' value='Edit' name='submit' class='button button__primary'> </td>
@@ -155,19 +125,15 @@
   
   function DisplayAkun($conn)
   {
-    //Memilih database
-    mysqli_select_db($conn,"tubesKP");
     $level   = $_SESSION['Level'];
-    $idadmin = $_SESSION['Id_Admin'];
-    
-    //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
+    $idadmin = $_SESSION['IdAdmin'];
     if($level == 1)
     {
-      $sql="select Nama,Bagian,Username,Status,Id_Admin from admin";
+      $sql="select Nama,Bagian,Username,Status,IdAdmin from admin";
     }
     else
     {
-      $sql="select Nama,Bagian,Username,Status,Id_Admin from admin where Id_Admin = $idadmin";
+      $sql="select Nama,Bagian,Username,Status,IdAdmin from admin where IdAdmin = $idadmin";
     }
   
     //Menjalankan perintah query dan menyimpannya dalam variabel hasil
@@ -189,25 +155,25 @@
               </tr>";
       do
       {
-        list($Nama,$Bagian,$Username,$Status,$IdAdmin)=$row;
-        if($Status == 1 )
+        list($nama,$bagian,$username,$status,$idadmin)=$row;
+        if($status == 1 )
         {
-          $Status = "Aktif";
+          $status = "Aktif";
         }
         else
         {
-          $Status = "Tidak Aktif";
+          $status = "Tidak Aktif";
         }
         echo "<form action='../pages/formeditakun.php' method='post' onsubmit='return FormValidation()'>";
         echo "<tr>
-                <input type='hidden' id='id' name='id' value='$IdAdmin'>
-                <td> $Nama </td>
-                <input type='hidden' id='nama' name='nama' value='$Nama'>
-                <td> $Bagian </td>
-                <input type='hidden' id='bagian' name='bagian' value='$Bagian'>
-                <td> $Username </td>
-                <td> $Status </td>
-                <input type='hidden' id='status' name='status' value='$Status'>
+                <input type='hidden' id='id' name='id' value='$idadmin'>
+                <td> $nama </td>
+                <input type='hidden' id='nama' name='nama' value='$nama'>
+                <td> $bagian </td>
+                <input type='hidden' id='bagian' name='bagian' value='$bagian'>
+                <td> $username </td>
+                <td> $status </td>
+                <input type='hidden' id='status' name='status' value='$status'>
                 <td>  <input type='submit' value='Edit Akun' name='editakun' class='button button__primary'> </td>
                 <td>  <input type='submit' value='Edit Password' name='editpassword' class='button button__primary'> </td>
               </tr>";
@@ -225,9 +191,6 @@
   
   function DisplayBarang($conn)
   {
-    //Memilih database
-    mysqli_select_db($conn,"tubesKP");
-    
     //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
     $sql="select * from barang where Status = '1'";
   
@@ -263,11 +226,8 @@
     }
   }
   
-  function DisplaySupplier($conn)
+  function DisplayPengirim($conn)
   {
-    //Memilih database
-    mysqli_select_db($conn,"tubesKP");
-    
     //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
     $sql="select * from supplier";
   
@@ -304,13 +264,10 @@
     }
   }
   
-  function DisplayReceiver($conn)
+  function DisplayFirstReceiver($conn)
   {
-    //Memilih database
-    mysqli_select_db($conn,"tubesKP");
-    
     //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
-    $sql="select * from receiver";
+    $sql="select * from receiver_first_party";
   
     //Menjalankan perintah query dan menyimpannya dalam variabel hasil
     $hasil=mysqli_query ($conn,$sql);
@@ -329,9 +286,9 @@
               </tr>";
       do
       {
-        list($idreceiver,$nama,$nik,$jabatan)=$row;
+         list($idfirstparty,$nama,$nik,$jabatan)=$row;
          echo "<tr>
-                <input type='hidden' id='id' name='id' value='$idreceiver'>
+                <input type='hidden' id='id' name='id' value='$idfirstparty'>
                 <td> $nama </td>
                 <td> $nik </td>
                 <td> $jabatan </td>
@@ -347,15 +304,51 @@
     }
   }
   
+  function DisplaySecondReceiver($conn)
+  {
+    //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
+    $sql="select * from second_party";
+  
+    //Menjalankan perintah query dan menyimpannya dalam variabel hasil
+    $hasil=mysqli_query ($conn,$sql);
+  
+    //Mengambil 1 baris hasil dari perintah query
+    $row=mysqli_fetch_row($hasil);
+  
+    if($row)
+    {
+      echo "<div style='overflow-x:auto;'>
+            <table border='1'>
+              <tr>
+                <th> Nama </th>
+                <th> NIK/No Telp </th>
+                <th> Jabatan </th>
+                <th> Tempat Kerja </th>
+              </tr>";
+      do
+      {
+        list($idsecondparty,$nama,$nik,$jabatan,$tempatkerja)=$row;
+         echo "<tr>
+                <input type='hidden' id='id' name='id' value='$idsecondparty'>
+                <td> $nama </td>
+                <td> $nik </td>
+                <td> $jabatan </td>
+                <td> $tempatkerja </td>
+              </tr>";
+      }
+      while($row=mysqli_fetch_row($hasil));
+      echo "</table>
+            </div>";
+    }
+    else
+    {
+      echo "<center><h2>Tidak ada Akun</h2></center>";
+    }
+  }
+  
   function DisplayPenerimaanBarangMasuk($conn)
   {
-    //Memilih database
-    mysqli_select_db($conn,"tubesKP");
-  
-    $sql="SELECT COUNT(ProductID) AS NumberOfProducts FROM Products; ";
-  
-  
-  
+
     //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
     $sql="select T.IdTransaksi, S.Nama_Supplier, S.PIC, R.Nama_Receiver, R.NIK, R.Jabatan, T.Tanggal from Transaksi as T, Receiver as R, Supplier as S where T.SupplierId = S.IdSupplier and T.ReceiverId = R.IdReceiver and T.Jenis_Transaksi = 'BAPBM'";
   
@@ -372,7 +365,6 @@
       $row = false;
     }
     
-  
     if($row)
     {
       echo "<div style='overflow-x:auto;'>
@@ -414,8 +406,8 @@
   
   function DisplaySerahTerimaMaterial($conn)
   {
-    //Memilih database
-    mysqli_select_db($conn,"tubesKP");
+    
+    
     
     //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
     $sql="select IdTransaksi,SupplierId,ReceiverId,Tanggal from Transaksi where Jenis_Transaksi = 'BASTM'";

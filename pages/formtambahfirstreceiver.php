@@ -3,7 +3,7 @@
   include "../php/connection.php";
   if(isset($_SESSION['Loggedin']) != true)
   {
-    header("location: ../index.php");
+    header("location: kelolaakun.php");
     session_destroy();
   }
 ?>
@@ -11,7 +11,7 @@
 <head>
 	<meta class="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<title>Kelola Akun</title>
+	<title>Tambah Penerima</title>
 	<link rel='stylesheet' href='../css/style.min.css' />
   <link rel='stylesheet' href='../css/style.css' />
 </head>
@@ -27,7 +27,7 @@
 						<?php
               if(isset($_SESSION['Loggedin']))
               {
-                echo "<li><a href='simbarang.php'>SIM</a></li>";
+                echo "<li><a href='../index.php'>Dashboard</a></li>";
                 echo "<li><a href='kelolaakun.php'>Kelola Akun</a></li>";
                 echo "<li><a href='../php/session_logout.php'>Logout</a></li>";
               }
@@ -48,31 +48,36 @@
 			<div class="app__inner">
 				<div class="app__menu">
 					<ul class="vMenu">
-						<li><a href="../index.php">Dashboard</a></li>
-						<li><a href="keloladokumen.php">Kelola Dokumen</a></li>
+						<li><a href="simbarang.php">Daftar Barang</a></li>
+						<li><a href="simpenerimaan.php">Penerimaan Barang Masuk</a></li>
+						<li><a href="simpenyerahan.php">Serah Terima Material</a></li>
+						<li><a href="simpengirim.php">Pihak Pengirim</a></li>
+						<li><a href="simfirstreceiver.php">Pihak Penerima / Pihak Pertama</a></li>
+						<li><a href="#" class="vMenu--active">Tambah Penerima</a></li>
+            <li><a href="simsecondreceiver.php">Pihak Kedua</a></li>
 					</ul>
 				</div>
 				<div class="app__main">
 					<div class="text-container">
-						<h3 class="app__main__title">Halaman Kelola Akun</h3>
-						<p>Disini anda bisa melakukan Tambah Akun, Melihat List Akun yang ada, dan juga bisa Mengedit Akun yang sudah ada!</p>
-            <?php
-              if($_SESSION['Level'] == 1)
-              {
-                echo "<a href='formtambahakun.php'><button type='button' name='tambahakun' class='button button__accent'>Tambah Akun</button></a>";
-              }
-            ?>
-            <br>
-            <?php
-              include_once "../php/display.php";
-              DisplayAkun($conn)
-            ?>
+						<h3 class="app__main__title">Form Tambah Penerima</h3>
+						<p>Silahkan isi informasi Penerima yang akan ditambah</p>
+            <form role="form" name="formtambah" action="../php/tambahfirstreceiver.php" method="post" onsubmit="">
+              <label>Nama Penerima</label>
+              <input placeholder="Masukkan Nama Penerima" type="text" id="nama" name="nama" pattern='[A-Za-z,. ]+' required>
+              <label>NIK</label>
+              <input placeholder="Masukkan NIK" type="text" id="nik" name="nik" pattern='[0-9]+' required>
+              <label>Jabatan</label>
+              <input placeholder="Masukkan Jabatan" type="text" id="jabatan" name="jabatan" pattern='[A-Za-z0-9,- ]+' required>
+              <p>
+                <input type="submit" value="Tambah" name="submit" class="button button__accent">
+              </p>
+            </form>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-<script src='../js/app.min.js'></script>
+<script src='../js/app.js'></script>
 </body>
 </html>

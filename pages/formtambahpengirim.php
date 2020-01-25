@@ -11,7 +11,7 @@
 <head>
 	<meta class="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<title>Tambah Barang</title>
+	<title>Tambah Supplier</title>
 	<link rel='stylesheet' href='../css/style.min.css' />
   <link rel='stylesheet' href='../css/style.css' />
 </head>
@@ -48,36 +48,26 @@
 			<div class="app__inner">
 				<div class="app__menu">
 					<ul class="vMenu">
-						<li><a href="sim.php">Daftar Barang</a></li>
-						<li><a href="#" class="vMenu--active">Tambah Barang</a></li>
+						<li><a href="simbarang.php">Daftar Barang</a></li>
 						<li><a href="simpenerimaan.php">Penerimaan Barang Masuk</a></li>
 						<li><a href="simpenyerahan.php">Serah Terima Material</a></li>
-						<li><a href="supplier.php">Supplier</a></li>
-						<li><a href="penerima.php">Penerima</a></li>
+						<li><a href="simpengirim.php">Pihak Pengirim</a></li>
+						<li><a href="#" class="vMenu--active">Tambah Pengirim</a></li>
+						<li><a href="simfirstreceiver.php">Pihak Penerima / Pihak Pertama</a></li>
+						<li><a href="simsecondreceiver.php">Pihak Kedua</a></li>
 					</ul>
 				</div>
 				<div class="app__main">
 					<div class="text-container">
-						<h3 class="app__main__title">Form Tambah Barang</h3>
-						<p>Silahkan isi informasi Barang yang akan ditambah</p>
-            <form role="form" name="formtambah" action="../php/tambahbarang.php" method="post" onsubmit="">
-              <label>Serial Number</label>
-              <input placeholder="Serial Number" type="text" id="serialnumber" name="serialnumber" pattern='[A-Za-z0-9,-]+' autofocus required>
-              <label>Deskripsi</label>
-              <?php
-                if(!empty($_GET['desc']))
-                {
-                  $deskripsi=$_GET['desc'];
-                  echo "<input placeholder='Masukkan Deskripsi' type='text' id='deskripsibarang' name='deskripsibarang' pattern='[A-Za-z,- ]+' value='$deskripsi' required>";
-                }
-                else
-                {
-                  echo "<input placeholder='Masukkan Deskripsi' type='text' id='deskripsibarang' name='deskripsibarang' pattern='[A-Za-z,- ]+' required>";
-                }
-              ?>
+						<h3 class="app__main__title">Form Tambah Pengirim</h3>
+						<p>Silahkan isi informasi pihak pengirim yang akan ditambah</p>
+            <form role="form" name="formtambah" action="../php/tambahpengirim.php" method="post" onsubmit="">
+              <label>Nama Pengirim</label>
+              <input placeholder="Masukkan Nama Pengirim" type="text" id="namapengirim" name="namapengirim" pattern='[A-Za-z,.,- ]+' required>
+              <label>Nama PIC</label>
+              <input placeholder="Masukkan Nama PIC" type="text" id="picpengirim" name="picpengirim" pattern='[A-Za-z,. ]+' required>
               <p>
                 <input type="submit" value="Tambah" name="submit" class="button button__accent">
-                <input type="submit" value="Tambah Batch" name="submitbatch" class="button button__accent">
               </p>
             </form>
 					</div>
