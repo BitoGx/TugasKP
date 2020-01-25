@@ -3,10 +3,10 @@
   //Memanggil Connection.php
   require_once "connection.php";
   
-  //Fungsi untuk memanggil Semua Dokumen yang tercatat pada database
-  function DisplayIndex($conn)
+  //Fungsi untuk memanggil Semua Dokumen PBM yang tercatat pada database
+  function DisplayIndexPbm($conn)
   {
-    $sql="select R.Judul,R.Tahun_Dibuat,R.Tanggal_Terakhir_Diubah,A.Bagian,A.Nama,R.File_path from repo as R, admin as A where R.Id_Admin = A.Id_Admin";
+    $sql="select R.NamaDokumen,R.TahunDibuat,R.TanggalTerakhirDiubah,A.Bagian,A.Nama,R.Filepath from repo_pbm as R, admin as A where R.AdminId = A.IdAdmin";
     $hasil=mysqli_query ($conn,$sql);
     if($hasil)
     {
@@ -21,7 +21,7 @@
       echo "<div style='overflow-x:auto;'>
             <table border='1'>
               <tr>
-                <th> Judul </td>
+                <th> Nama Dokumen </td>
                 <th> Tahun Dibuat </td>
                 <th> Tanggal Terakhir Diubah </td>
                 <th> Bagian </td>
@@ -30,17 +30,66 @@
               </tr>";
       do
       {
-        list($Judul,$Tahun,$TanggalUbah,$Bagian,$Nama,$Path)=$row;
-        $Judul = ucwords($Judul);
+        list($namadokumen,$tahun,$tanggalubah,$bagian,$nama,$path)=$row;
         echo "<tr>
-                <td> $Judul </td>
-                <td> $Tahun </td>
-                <td> $TanggalUbah </td>
-                <td> $Bagian </td>
-                <td> $Nama </td>
-                <td> <a target='_blank' rel='noopener noreferrer' href='pages/pdfviewer/web/viewer.html?file=../../$Path'>
+                <td> $namadokumen </td>
+                <td> $tahun </td>
+                <td> $tanggalubah </td>
+                <td> $bagian </td>
+                <td> $nama </td>
+                <td> <a target='_blank' rel='noopener noreferrer' href='pages/pdfviewer/web/viewer.html?file=../../$path'>
                       <button type='button' class='button button__primary'>Baca Online</button></a> </td>
-                <td> <a href='pages/$Path' download>
+                <td> <a href='pages/$path' download>
+                      <button type='button' class='button button__primary'>Download</button></a> </td>
+              </tr>";
+      }
+      while($row=mysqli_fetch_row($hasil));
+      echo "</table>
+            </div>";
+    }
+    else
+    {
+      echo "<center><h2>Tidak ada Dokumen</h2></center>";
+    }
+  }
+  
+  //Fungsi untuk memanggil Semua Dokumen STM yang tercatat pada database
+  function DisplayIndexStm($conn)
+  {
+    $sql="select R.NamaDokumen,R.TahunDibuat,R.TanggalTerakhirDiubah,A.Bagian,A.Nama,R.Filepath from repo_stm as R, admin as A where R.AdminId = A.IdAdmin";
+    $hasil=mysqli_query ($conn,$sql);
+    if($hasil)
+    {
+      $row=mysqli_fetch_row($hasil);
+    }
+    else
+    {
+      $row = false;
+    }
+    if($row)
+    {
+      echo "<div style='overflow-x:auto;'>
+            <table border='1'>
+              <tr>
+                <th> Nama Dokumen </td>
+                <th> Tahun Dibuat </td>
+                <th> Tanggal Terakhir Diubah </td>
+                <th> Bagian </td>
+                <th> Penanggung Jawab </td>
+                <th colspan='2'> Action </td>
+              </tr>";
+      do
+      {
+        list($namadokumen,$tahun,$tanggalubah,$bagian,$nama,$path)=$row;
+        echo "<tr>
+                <td> $namadokumen </td>
+                <td> $tahun </td>
+                <td> $tanggalubah </td>
+                <td> $bagian </td>
+                <td> $nama </td>
+                <td> <a target='_blank' rel='noopener noreferrer' href='pages/pdfviewer/web/viewer.html?file=../../$path'>
+                      <button type='button' class='button button__primary'>Baca Online</button></a> </td>
+                <td> <a href='pages/$path' download>
                       <button type='button' class='button button__primary'>Download</button></a> </td>
               </tr>";
       }

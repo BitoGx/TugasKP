@@ -50,10 +50,15 @@
 				<div class="app__main">
 					<div class="text-container">
 						<h3 class="app__main__title">Dashboard</h3>
-						<p>Daftar Dokumen</p>
+						<h4>Daftar Dokumen Penerimaan Barang Masuk</h4>
+            <br>
             <?php
               include_once "php/display.php";
-              DisplayIndex($conn)
+              DisplayIndexPbm($conn)
+            ?>
+            <h4>Daftar Dokumen Serah Terima Material</h4>
+            <?php
+              DisplayIndexStm($conn)
             ?>
 					</div>
 				</div>

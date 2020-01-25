@@ -388,7 +388,7 @@ $doc =
 
 $tabelbarang =  
 "
-  <table border='1' width='80%' align='center'>
+  <table border='1' width='100%' align='center'>
     <thead>
       <tr>
         <td align='center'>Serial Number</td>
