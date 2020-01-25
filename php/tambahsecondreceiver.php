@@ -14,7 +14,7 @@
     $jabatan      = $_POST['jabatan'];
     $jabatan      = strtoupper($jabatan);
     $tempatkerja  = $_POST['tempatkerja'];
-    $tempatkerja  = strtoupper($jabatan);
+    $tempatkerja  = strtoupper($tempatkerja);
 
     //Mengecek apakah NIK dengan Jabatan dan kerja di Tempat Kerja yang sama sudah terdaftar di database
     $sql="select * from second_party where NoNIK='$nonik' and Jabatan = '$jabatan' and TempatKerja = $tempatkerja";

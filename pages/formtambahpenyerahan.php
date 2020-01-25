@@ -68,13 +68,13 @@
               <?php
                 include_once "../php/populate.php";
                 echo "<select name ='supplier'>";
-                PopulateReceiver($conn);
+                PopulateFirstReceiver($conn);
                 echo "</select>";
               ?>
               <label>Pihak Kedua</label>
               <?php
                 echo "<select name ='receiver'>";
-                PopulateReceiver($conn);
+                PopulateSecondReceiver($conn);
                 echo "</select>";
               ?>
               <label>Tanggal Penyerahan</label>
