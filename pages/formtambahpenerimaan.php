@@ -66,14 +66,16 @@
               <label>Pengirim</label>
               <?php
                 include_once "../php/populate.php";
-                echo "<select name ='supplier'>";
+                echo "<select name ='pengirim' required>";
+                echo "  <option selected disabled>- Pilih Pihak Pengirim -</option>";
                 PopulateSupplier($conn);
                 echo "</select>";
               ?>
               <label>Penerima</label>
               <?php
-                echo "<select name ='receiver'>";
-                PopulateReceiver($conn);
+                echo "<select name ='penerima' required>";
+                echo "  <option selected disabled>- Pilih Pihak Penerima -</option>";
+                PopulateFirstReceiver($conn);
                 echo "</select>";
               ?>
               <label>Tanggal Penerimaan</label>
@@ -100,6 +102,9 @@
 	</div>
   <script src='../js/app.js'></script>
   <script>  
+  /*
+   * Fungsi agar dapat menambahkan barang masuk lebih dari 1
+   */
   $(document).ready(function()
   {  
     var i=1;  

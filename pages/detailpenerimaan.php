@@ -61,11 +61,10 @@
 					<div class="text-container">
 						<h3 class="app__main__title">Detail Penerimaan Barang Masuk</h3>
             <?php
-              //Memilih database
-              mysqli_select_db($conn,"tubesKP");
-              
+              // Menyimpan Id dari transaksi yang dipilih kedalam variabel
               $Id = $_POST['id'];
               
+              // Membuat form untuk membuat dokumen
               echo "
               <form role='form' name='downloadpdf' id='downloadpdf' action='../php/makepdfbapbm.php' method='post' onsubmit=''>
                 <input type='submit' value='Download PDF' name='Download' class='button button__accent'>
@@ -73,14 +72,17 @@
               </form>
               ";
               
-              //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
-              $sql="select  S.Nama_Supplier, S.PIC, R.Nama_Receiver, R.NIK, R.Jabatan, T.Tanggal from Transaksi as T, Receiver as R, Supplier as S where T.SupplierId = S.IdSupplier and T.ReceiverId = R.IdReceiver and T.Jenis_Transaksi = 'BAPBM' and T.IdTransaksi = '$Id'";
+              //Mengambil data Nama, PIC dari tabel Pengirim, Nama, NIK, Jabatan dari tabel Penerima dan tanggal dari tabel transaksi pbm berdasarkan dengan IdTransaksiPbm
+              $sql="select  S.Nama, S.PIC, R.Nama, R.NIK, R.Jabatan, T.Tanggal  from transaksi_pbm as T, receiver_first_party as R, supplier as S where T.SupplierId = S.IdSupplier and T.FirstPartyId = R.IdFirstParty and T.IdTransaksiPbm = '$Id'";
               
-              //Menjalankan perintah query dan menyimpannya dalam variabel hasil
+              /*
+               * Mengecek apakah perintah query yang dijalankan gagal atau berhasil
+               * jika berhasil akan mengambil data di row sesuai perintah query sebelumnya
+               * jika gagal akan memberikan nilai false
+               */
               $hasil=mysqli_query ($conn,$sql);
               if($hasil)
               {
-                //Mengambil 1 baris hasil dari perintah query
                 $row=mysqli_fetch_row($hasil);
               }
               else
@@ -88,6 +90,7 @@
                 $row = false;
               }
               
+              // Menyimpan data kedalam variabel yang berada di dalam array $row
               if($row)
               {
                 list($nama_supplier,$pic,$nama_receiver,$nik,$jabatan,$tanggal)=$row;
@@ -109,21 +112,29 @@
                 <td style="text-align:center">Description </td>
               </tr>
               <?php
-                //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
-                $sql="select B.IdBarang, B.Description from Transaksi as T, Detail_Transaksi as DT, Barang as B where T.IdTransaksi = DT.TransaksiId and T.IdTransaksi = '$Id' and DT.BarangId = B.IdBarang";
-                
-                //Menjalankan perintah query dan menyimpannya dalam variabel hasil
+                //Mengambil data IdBarang dan Deskripsi dari tabel barang berdasarkan dengan IdTransaksiPbm
+                $sql="select B.IdBarang, B.Description from transaksi_pbm as T, detail_pbm as DT, barang as B where T.IdTransaksiPbm = DT.TransaksiPbmId and T.IdTransaksiPbm = '$Id' and DT.BarangId = B.IdBarang";
                 $hasil=mysqli_query ($conn,$sql);
+                
+                /*
+                 * Mengecek apakah perintah query yang dijalankan gagal atau berhasil
+                 * jika berhasil akan mengambil data di row sesuai perintah query sebelumnya
+                 * jika gagal akan memberikan nilai false
+                 */
                 if($hasil)
                 {
-                  //Mengambil 1 baris hasil dari perintah query
                   $row=mysqli_fetch_row($hasil);
                 }
                 else
                 {
                   $row = false;
                 }
-              
+                
+                /* 
+                 * Jika array $row kosong akan menampilkan pesan
+                 * jika array $row memilki isi akan dilakukan perulangan sebanyak isi array
+                 * dan menampilkan isi dari array tersebut
+                 */
                 if($row)
                 {
                   do
@@ -138,8 +149,7 @@
                 }
                 else
                 {
-                  echo "<tr><td colspan=2><center><h2>Tidak ada Dokumen</h2></center></tr></td>";
-                  echo "$sql<br>";
+                  echo "<tr><td colspan=2><center><h2>Tidak ada Barang</h2></center></tr></td>";
                 }
                 ?>
             </table>
@@ -149,36 +159,5 @@
 		</div>
 	</div>
   <script src='../js/app.js'></script>
-  <script>  
-  $(document).ready(function()
-  {  
-    var i=1;  
-    $('#add').click(function()
-    {  
-      i++;  
-      $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="descnumber[]" placeholder="Deskripsi" class="form-control name_list"  required/></td><td><input type="text" name="serialnumber[]" placeholder="Serial Number" class="form-control name_list" required/></td><td><button type="button" name="remove" id="'+i+'" class="button button__accent">X</button></td></tr>');
-      
-    });  
-    $(document).on('click', '.button__accent', function()
-    {  
-      var button_id = $(this).attr("id");   
-      $('#row'+button_id+'').remove();  
-    });  
-    $('#submit').click(function()
-    {            
-      $.ajax(
-      {  
-        url:"../php/tambahpenerimaan.php",  
-        method:"POST",  
-        data:$('#add_name').serialize(),  
-        success:function(data)  
-        {  
-          alert(data);  
-          $('#add_name')[0].reset();  
-        }  
-      });  
-    });  
-  });  
-  </script>
 </body>
 </html>

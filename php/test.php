@@ -206,12 +206,12 @@
 <tr>
 <td align="center">C128A</td>
 <td>CODE 128 A. Valid characters: [A-Z uppercase and control chars ASCII 0-31]. Checksum digit: automatic.</td>
-<td class="barcodecell"><barcode code="FHTT00250363" type="C128A" class="barcode" /></td>
+<td class="barcodecell"><barcode code="ZTEG0XB0064102" type="C128A" class="barcode" /></td>
 </tr>
 <tr>
 <td align="center">C128B</td>
 <td>CODE 128 B. Valid characters: [Upper / Lower Case + All ASCII Printable Characters]. Checksum digit: automatic.</td>
-<td class="barcodecell"><barcode code="FHTT00250363" type="C128B" class="barcode" /></td>
+<td class="barcodecell"><barcode code="ZTEG0XB0064102" type="C128B" class="barcode" /></td>
 </tr>
 <tr>
 <td align="center">C128C</td>

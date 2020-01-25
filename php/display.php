@@ -192,7 +192,7 @@
   function DisplayBarang($conn)
   {
     //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
-    $sql="select * from barang where Status = '1'";
+    $sql="select * from barang where Status = 'Masuk'";
   
     //Menjalankan perintah query dan menyimpannya dalam variabel hasil
     $hasil=mysqli_query ($conn,$sql);
@@ -222,7 +222,7 @@
     }
     else
     {
-      echo "<center><h2>Tidak ada Akun</h2></center>";
+      echo "<center><h2>Tidak ada Barang</h2></center>";
     }
   }
   
@@ -350,7 +350,7 @@
   {
 
     //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
-    $sql="select T.IdTransaksi, S.Nama_Supplier, S.PIC, R.Nama_Receiver, R.NIK, R.Jabatan, T.Tanggal from Transaksi as T, Receiver as R, Supplier as S where T.SupplierId = S.IdSupplier and T.ReceiverId = R.IdReceiver and T.Jenis_Transaksi = 'BAPBM'";
+    $sql="select T.IdTransaksiPbm, S.Nama, S.PIC, R.Nama, R.NIK, R.Jabatan, T.Tanggal from transaksi_pbm as T, receiver_first_party as R, supplier as S where T.SupplierId = S.IdSupplier and T.FirstPartyId = R.IdFirstParty";
   
     //Menjalankan perintah query dan menyimpannya dalam variabel hasil
     $hasil=mysqli_query ($conn,$sql);
