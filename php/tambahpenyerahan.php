@@ -6,7 +6,7 @@
   //Memanggil file connection php untuk menghubungkann ke Database
   require_once "connection.php";
   
-  if(isset($_POST['serialnumber']) || isset($_POST['supplier']) || isset($_POST['tanggalpenyerahan']) || isset($_POST['receiver']) || isset($_POST['jenistransaksi']))
+  if(isset($_POST['serialnumber']) && isset($_POST['firstparty']) || isset($_POST['tanggalpenyerahan']) || isset($_POST['secondparty']))
   {
     /*
     *Menyimpan Variabel yang di kirim menggunakan method POST
@@ -14,11 +14,10 @@
     */
    
     
-    $supplier       = $_POST['supplier'];
-    $supplier       = strtoupper($supplier);
-    $receiver       = $_POST['receiver'];
-    $receiver       = strtoupper($receiver);
-    $jenistransaksi = $_POST['jenistransaksi'];
+    $firstparty     = $_POST['firstparty'];
+    $firstparty     = strtoupper($firstparty);
+    $secondparty    = $_POST['secondparty'];
+    $secondparty    = strtoupper($secondparty);
     $date           = $_POST['tanggalpenyerahan'];
     $serialnumber   = count($_POST["serialnumber"]);
     
@@ -27,7 +26,7 @@
     mysqli_select_db($conn,"tubesKP");
     
     //Mempersiapkan Command Query  untuk menambahkan User baru
-    $sql="insert into transaksi (SupplierId,ReceiverId,Tanggal,Jenis_Transaksi) value ('$supplier','$receiver','$date','$jenistransaksi')";
+    $sql="insert into transaksi_stm (FirstPartyId,SecondPartyId,Tanggal) value ('$firstparty','$secondparty','$date')";
     
     //Menjalankan perintah query dan menyimpannya dalam variabel hasil
     $hasil=mysqli_query ($conn,$sql); 
@@ -45,7 +44,7 @@
           $serial = strtoupper($serial);
         
           //Mempersiapkan Command Query  untuk menambahkan User baru
-          $sql="update barang set Status='0' where IdBarang='$serial'"; 
+          $sql="update barang set Status='Keluar' where IdBarang='$serial'"; 
 
           //Menjalankan perintah query dan menyimpannya dalam variabel hasil
           $hasil=mysqli_query ($conn,$sql);
@@ -54,7 +53,7 @@
           if($hasil)
           {
             //Mempersiapkan Command Query  untuk menambahkan User baru
-            $sql="insert into detail_transaksi (TransaksiId,BarangId) value ('$last_id_supplier','$serial')";
+            $sql="insert into detail_stm (TransaksiStmId,BarangId) value ('$last_id_supplier','$serial')";
             
             //Menjalankan perintah query dan menyimpannya dalam variabel hasil
             $hasil=mysqli_query ($conn,$sql);
@@ -73,8 +72,6 @@
               header("Refresh: 5; ../pages/formtambahpenyerahan.php");
             }
           }
-          echo "$sql<br>";
-          echo "$i";
           header("Refresh: 5; ../pages/formtambahpenyerahan.php");
         //header("location: ../pages/simpenyerahan.php");
       }

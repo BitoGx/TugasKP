@@ -53,8 +53,9 @@
 						<li><a href="simpenerimaan.php">Penerimaan Barang Masuk</a></li>
 						<li><a href="#" class="vMenu--active">Detail Penerimaan Barang Masuk</a></li>
 						<li><a href="simpenyerahan.php">Serah Terima Material</a></li>
-						<li><a href="supplier.php">Supplier</a></li>
-						<li><a href="penerima.php">Penerima</a></li>
+						<li><a href="simpengirim.php">Pihak Pengirim</a></li>
+						<li><a href="simfirstreceiver.php">Pihak Penerima / Pihak Pertama</a></li>
+						<li><a href="simsecondreceiver.php">Pihak Kedua</a></li>
 					</ul>
 				</div>
 				<div class="app__main">

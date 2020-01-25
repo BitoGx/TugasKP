@@ -63,17 +63,16 @@
 						<h3 class="app__main__title">Form Tambah Serah Terima</h3>
 						<p>Silahkan isi informasi Serah Terima yang akan ditambah</p>
             <form role="form" name="tambahtransaksi" id="tambahtransaksi" action="../php/tambahpenyerahan.php" method="post" onsubmit="">
-              <input type="hidden" id="jenistransaksi" name="jenistransaksi" value="BASTM">
               <label>Pihak Pertama</label>
               <?php
                 include_once "../php/populate.php";
-                echo "<select name ='supplier'>";
+                echo "<select name ='firstparty'>";
                 PopulateFirstReceiver($conn);
                 echo "</select>";
               ?>
               <label>Pihak Kedua</label>
               <?php
-                echo "<select name ='receiver'>";
+                echo "<select name ='secondparty'>";
                 PopulateSecondReceiver($conn);
                 echo "</select>";
               ?>

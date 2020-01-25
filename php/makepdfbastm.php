@@ -5,119 +5,41 @@ session_start();
 include "../php/connection.php";
 require_once '..\vendor\autoload.php';
 
-// Mengambil variabel yang dibutuhkan
+// Menyimpan Id dari transaksi yang dikirim menggunakan POST
 $Id = $_POST['id'];
 $fulldesc ="";
 
-//Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
-$sql="select IdTransaksi,SupplierId,ReceiverId,Tanggal from Transaksi where Jenis_Transaksi = 'BASTM' and IdTransaksi = '$Id'";
-    
-//Menjalankan perintah query dan menyimpannya dalam variabel hasil
+// Mengambil data pihak Pertama dan Pihak Kedua dari database berdasarkan IdTransaksiStm
+$sql="select T.IdTransaksiStm,F.Nama,F.NIK,F.Jabatan,S.Nama,S.NoNIK,S.Jabatan,S.TempatKerja,T.Tanggal from receiver_first_party as F, second_party as S, transaksi_stm as T where T.FirstPartyId = F.IdFirstParty and T.SecondPartyId = S.IdSecondParty";
 $hasil=mysqli_query ($conn,$sql);
+$row=mysqli_fetch_row($hasil);
+list($idtransaksi,$nama1,$nik1,$jabatan1,$nama2,$nonik2,$jabatan2,$tempatkerja,$tanggal)=$row;
+
+// Menghitung jumlah tiap barang berdasarkan deskripsinya
+$sql="select B.Description, count(*) as Counter from transaksi_stm as T, detail_stm as DT, Barang as B where T.IdTransaksiStm = DT.TransaksiStmId and T.IdTransaksiStm = '$Id' and DT.BarangId = B.IdBarang group by B.Description";
+$hasil=mysqli_query ($conn,$sql);
+$row=mysqli_fetch_row($hasil);
+
+// Menyimpan semua jenis barang dengan jumlahnya di dalam 1 variabel bernama $fulldesc
+$x = 0;
+do
+{
+  list($desc,$counter)=$row;
   
-if($hasil)
-{
-  //Mengambil 1 baris hasil dari perintah query
-  $row=mysqli_fetch_row($hasil);
-}
-else
-{
-  $row = false;
-}
-             
-if($row)
-{
-  list($idtransaksi,$idpertama,$idkedua,$tanggal)=$row;
-               
-  //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
-  $sql="select Nama_Receiver,NIK,Jabatan from Receiver where IdReceiver = '$idpertama'";
-        
-  //Menjalankan perintah query dan menyimpannya dalam variabel hasil
-  $hasil=mysqli_query ($conn,$sql);
-                
-  if($hasil)
+  if($x == 0)
   {
-    //Mengambil 1 baris hasil dari perintah query
-    $row=mysqli_fetch_row($hasil);
+    $fulldesc = $desc." ".$counter." UNIT";
   }
   else
   {
-    $row = false;
+    $fulldesc .= ", ".$desc." ".$counter." UNIT";
   }
-               
-  if($row)
-  {
-    list($nama1,$nik1,$jabatan1)=$row;
-                  
-    //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
-    $sql="select Nama_Receiver,NIK,Jabatan from Receiver where IdReceiver = '$idkedua'";
-       
-    //Menjalankan perintah query dan menyimpannya dalam variabel hasil
-    $hasil=mysqli_query ($conn,$sql);
-  
-    if($hasil)
-    {
-      //Mengambil 1 baris hasil dari perintah query
-      $row=mysqli_fetch_row($hasil);
-    }
-    else
-    {
-      $row = false;
-    }
-    
-    if($row)
-    {
-      list($nama2,$nik2,$jabatan2)=$row;
-    }
-    else
-    {
-      echo "<center><h2>Tidak ada Dokumen</h2></center>";
-    }
-  }
-  else
-  {
-    echo "<center><h2>Tidak ada Dokumen</h2></center>";
-  }
+  $x = $x + 1; 
 }
+while($row=mysqli_fetch_row($hasil));
 
-//Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
-$sql="select B.Description, count(*) as Counter from Transaksi as T, Detail_Transaksi as DT, Barang as B where T.IdTransaksi = DT.TransaksiId and T.IdTransaksi = '$Id' and DT.BarangId = B.IdBarang group by B.Description";
-
-//Menjalankan perintah query dan menyimpannya dalam variabel hasil
-$hasil=mysqli_query ($conn,$sql);
-
-if($hasil)
-{
-  //Mengambil 1 baris hasil dari perintah query
-  $row=mysqli_fetch_row($hasil);
-} 
-else
-{
-  $row = false;
-}
-
-if($row)
-{
-  $x = 0;
-  do
-  {
-    list($desc,$counter)=$row;
-    
-    if($x == 0)
-    {
-      $fulldesc = $desc." ".$counter." UNIT";
-    }
-    else
-    {
-      $fulldesc .= ", ".$desc." ".$counter." UNIT";
-    }
-    $x = $x + 1; 
-  }
-  while($row=mysqli_fetch_row($hasil));
-}
-
+// Menguvah Hari dari format angka menjadi format ejaan
 $hari = date("N");
-
 switch ($hari) 
 {
   case 1:
@@ -143,8 +65,8 @@ switch ($hari)
     break;
 }
 
+// Mengubah tanggal dari format angka menjadi format ejaan
 $tanggal = date("d");
-
 switch ($tanggal) 
 {
   case 1:
@@ -242,8 +164,8 @@ switch ($tanggal)
     break;		
 }
 
+// Mengubah bulan dari format angka menjadi format ejaan
 $bulan = date("m");
-
 switch ($bulan) 
 {
   case 1:
@@ -320,15 +242,20 @@ function Penyebut($nilai)
   return $temp;
 }
 
+// Mengubah tahun dari format angka menjadi format ejaan
 $tahun = date("Y");
 $tahun = Penyebut($tahun);
 
+// Menyusun format tanggal Example. 16 Februari 2019
 $tanggalttd  = date("d");
 $tanggalttd .= " ".$bulan;
 $tanggalttd .= " ".date("Y");
+
+// Menyusun format tanggal Example. 16.02.2019
 $tanggalfull = date("Y.m.d");
 
-$doc = 
+// Membuat isi PDF
+$doc =
 "
 <table width='1150px' border='0' align='center'>
 <tr>
@@ -381,7 +308,7 @@ $doc =
   </tr>
   <tr>
     <td>NIK</td>
-    <td colspan='2'>: $nik2</td>
+    <td colspan='2'>: $nonik2</td>
   </tr>
   <tr>
     <td>Jabatan</td>
@@ -410,7 +337,7 @@ $doc =
     <td width='33%' align='center'>Yang Menyerahkan</td>
   </tr>
   <tr>
-    <td width='33%' align='center'><b>$jabatan2</b></td>
+    <td width='33%' align='center'><b>$tempatkerja</b></td>
     <td width='33%' align='center'>&nbsp;</td>
     <td width='33%' align='center'>&nbsp;</td>
   </tr>
@@ -423,7 +350,7 @@ $doc =
     <td width='33%' align='center'>$nama1</td>
   </tr>
   <tr>
-    <td width='33%' align='center'>NIK : $nik2</td>
+    <td width='33%' align='center'>NIK : $nonik2</td>
     <td width='33%'>&nbsp;</td>
     <td width='33%' align='center'>NIK : $nik1</td>
   </tr>
@@ -465,6 +392,7 @@ $tabelbarang =
     <thead>
       <tr>
         <td align='center'>Serial Number</td>
+        <td align='center'>Barcode</td>
         <td align='center'>Description</td>
       </tr>
     </thead>
@@ -472,33 +400,21 @@ $tabelbarang =
 ";
 
 //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
-$sql="select B.IdBarang, B.Description from Transaksi as T, Detail_Transaksi as DT, Barang as B where T.IdTransaksi = DT.TransaksiId and T.IdTransaksi = '$Id' and DT.BarangId = B.IdBarang";
+$sql="select B.IdBarang, B.Description from transaksi_stm as T, detail_stm as DT, barang as B where T.IdTransaksiStm = DT.TransaksiStmId and T.IdTransaksiStm = '$Id' and DT.BarangId = B.IdBarang";
 
 //Menjalankan perintah query dan menyimpannya dalam variabel hasil
 $hasil=mysqli_query ($conn,$sql);
-
-if($hasil)
+$row=mysqli_fetch_row($hasil);
+do
 {
-  //Mengambil 1 baris hasil dari perintah query
-  $row=mysqli_fetch_row($hasil);
+  list($serialnumber,$deskripsi)=$row;
+  $tabelbarang .= '<tr>
+                     <td align=center>'.$serialnumber.'</td>
+                     <td align=center><barcode style="padding:10" code='.$serialnumber.' type="C128B" class="barcode" /></td>
+                     <td align=center>'.$deskripsi.'</td> 
+                   </tr>';
 }
-else
-{
-  $row = false;
-}
-
-if($row)
-{
-  do
-  {
-    list($serialnumber,$deskripsi)=$row;
-    $tabelbarang .= '<tr>
-                       <td>'.$serialnumber.'</td>   
-                       <td>'.$deskripsi.'</td> 
-                     </tr>';
-  }
-  while($row=mysqli_fetch_row($hasil));
-}
+while($row=mysqli_fetch_row($hasil));
 
 $tabelbarang .= '</tbody></table>';
 
@@ -512,7 +428,7 @@ $mpdf->WriteHTML($doc);
 $mpdf->AddPage();
 $mpdf->WriteHTML($tabelbarang);
 
-$idadmin=$_SESSION['Id_Admin'];
+$idadmin=$_SESSION['IdAdmin'];
 $year=date("Y");
 $date=date("Y-m-d");
 $file_path = '../uploads/'.$docname.'.pdf';
@@ -526,7 +442,7 @@ if (file_exists($file_path))
 else
 {
   //Mempersiapkan Command Query  untuk mengecek apakah barang yang ditambahkan sudah ada atau belum
-  $sql="insert into repo(Id_Admin,TransaksiId,Judul,Tanggal_Unggah,Tanggal_Terakhir_Diubah,Tahun_Dibuat,File_Path) values ($idadmin,$Id,'$docname','$date','$date',$year,'$file_path')";
+  $sql="insert into repo_stm(AdminId,TransaksiStmId,NamaDokumen,TanggalUnggah,TanggalTerakhirDiubah,TahunDibuat,FilePath) values ($idadmin,$Id,'$docname','$date','$date',$year,'$file_path')";
 
   //Menjalankan perintah query dan menyimpannya dalam variabel hasil
   $hasil=mysqli_query ($conn,$sql);
@@ -539,8 +455,7 @@ else
   else
   {
     echo "Database gagal di update";
-    echo "<br>$sql";
-    unlink($file_path);
+    header("Refresh: 5; ../pages/simpenyerahan.php");
   }
 }
 

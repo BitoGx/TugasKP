@@ -53,8 +53,9 @@
 						<li><a href="simpenerimaan.php">Penerimaan Barang Masuk</a></li>
 						<li><a href="simpenyerahan.php">Serah Terima Material</a></li>
             <li><a href="#" class="vMenu--active">Detail Serah Terima Material</a></li>
-						<li><a href="supplier.php">Supplier</a></li>
-						<li><a href="penerima.php">Penerima</a></li>
+						<li><a href="simpengirim.php">Pihak Pengirim</a></li>
+						<li><a href="simfirstreceiver.php">Pihak Penerima / Pihak Pertama</a></li>
+						<li><a href="simsecondreceiver.php">Pihak Kedua</a></li>
 					</ul>
 				</div>
 				<div class="app__main">
@@ -75,73 +76,16 @@
               ";
               
               //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
-              $sql="select IdTransaksi,SupplierId,ReceiverId,Tanggal from Transaksi where Jenis_Transaksi = 'BASTM' and IdTransaksi = '$Id'";
+              $sql="select T.IdTransaksiStm,F.Nama,F.NIK,F.Jabatan,S.Nama,S.NoNIK,S.Jabatan,T.Tanggal from receiver_first_party as F, second_party as S, transaksi_stm as T where T.FirstPartyId = F.IdFirstParty and T.SecondPartyId = S.IdSecondParty";
     
               //Menjalankan perintah query dan menyimpannya dalam variabel hasil
               $hasil=mysqli_query ($conn,$sql);
-  
-              if($hasil)
-              {
-                //Mengambil 1 baris hasil dari perintah query
-                $row=mysqli_fetch_row($hasil);
-              }
-              else
-              {
-                $row = false;
-              }
+
+              $row=mysqli_fetch_row($hasil);
               
               if($row)
               {
-                list($idtransaksi,$idpertama,$idkedua,$tanggal)=$row;
-                
-                //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
-                $sql="select Nama_Receiver,NIK,Jabatan from Receiver where IdReceiver = '$idpertama'";
-        
-                //Menjalankan perintah query dan menyimpannya dalam variabel hasil
-                $hasil=mysqli_query ($conn,$sql);
-                
-                if($hasil)
-                {
-                  //Mengambil 1 baris hasil dari perintah query
-                  $row=mysqli_fetch_row($hasil);
-                }
-                else
-                {
-                  $row = false;
-                }
-                
-                if($row)
-                {
-                  list($nama1,$nik1,$jabatan1)=$row;
-                  
-                  //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
-                  $sql="select Nama_Receiver,NIK,Jabatan from Receiver where IdReceiver = '$idkedua'";
-        
-                  //Menjalankan perintah query dan menyimpannya dalam variabel hasil
-                  $hasil=mysqli_query ($conn,$sql);
-  
-                  if($hasil)
-                  {
-                    //Mengambil 1 baris hasil dari perintah query
-                    $row=mysqli_fetch_row($hasil);
-                  }
-                  else
-                  {
-                    $row = false;
-                  }
-                  if($row)
-                  {
-                    list($nama2,$nik2,$jabatan2)=$row;
-                  }
-                  else
-                  {
-                    echo "<center><h2>Tidak ada Dokumen</h2></center>";
-                  }
-                }
-                else
-                {
-                  echo "<center><h2>Tidak ada Dokumen</h2></center>";
-                }
+                list($idtransaksi,$nama1,$nik1,$jabatan1,$nama2,$nonik2,$jabatan2,$tanggal)=$row;
               }
             ?>
             <h3>Pihak Pertama</h3>
@@ -150,7 +94,7 @@
             <pre>Jabatan       : <?php echo "$jabatan1"; ?></pre>
             <h3>Pihak Kedua</h3>
             <pre>Nama          : <?php echo "$nama2"; ?></pre>
-            <pre>NIK           : <?php echo "$nik2"; ?></pre>
+            <pre>NIK           : <?php echo "$nonik2"; ?></pre>
             <pre>Jabatan       : <?php echo "$jabatan2"; ?></pre>
             <table border='1'>
               <tr>
@@ -163,7 +107,7 @@
               <?php
               
                 //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
-                $sql="select B.IdBarang, B.Description from Transaksi as T, Detail_Transaksi as DT, Barang as B where T.IdTransaksi = DT.TransaksiId and T.IdTransaksi = '$Id' and DT.BarangId = B.IdBarang";
+                $sql="select B.IdBarang, B.Description from transaksi_stm as T, detail_stm as DT, barang as B where T.IdTransaksiStm = DT.TransaksiStmId and T.IdTransaksiStm = '$Id' and DT.BarangId = B.IdBarang";
                 
                 //Menjalankan perintah query dan menyimpannya dalam variabel hasil
                 $hasil=mysqli_query ($conn,$sql);
@@ -193,7 +137,6 @@
                 else
                 {
                   echo "<tr><td colspan=2><center><h2>Tidak ada Dokumen</h2></center></tr></td>";
-                  echo "$sql<br>";
                 }
                 ?>
             </table>
@@ -203,36 +146,5 @@
 		</div>
 	</div>
   <script src='../js/app.js'></script>
-  <script>  
-  $(document).ready(function()
-  {  
-    var i=1;  
-    $('#add').click(function()
-    {  
-      i++;  
-      $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="descnumber[]" placeholder="Deskripsi" class="form-control name_list"  required/></td><td><input type="text" name="serialnumber[]" placeholder="Serial Number" class="form-control name_list" required/></td><td><button type="button" name="remove" id="'+i+'" class="button button__accent">X</button></td></tr>');
-      
-    });  
-    $(document).on('click', '.button__accent', function()
-    {  
-      var button_id = $(this).attr("id");   
-      $('#row'+button_id+'').remove();  
-    });  
-    $('#submit').click(function()
-    {            
-      $.ajax(
-      {  
-        url:"../php/tambahpenerimaan.php",  
-        method:"POST",  
-        data:$('#add_name').serialize(),  
-        success:function(data)  
-        {  
-          alert(data);  
-          $('#add_name')[0].reset();  
-        }  
-      });  
-    });  
-  });  
-  </script>
 </body>
 </html>

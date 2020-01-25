@@ -438,7 +438,7 @@ else
   else
   {
     echo "Database gagal di update";
-    echo "<br>$sql";
+    header("location: ../pages/simpenerimaan.php");
   }
 }
 ?>

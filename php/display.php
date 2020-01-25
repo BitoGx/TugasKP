@@ -406,11 +406,8 @@
   
   function DisplaySerahTerimaMaterial($conn)
   {
-    
-    
-    
     //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
-    $sql="select IdTransaksi,SupplierId,ReceiverId,Tanggal from Transaksi where Jenis_Transaksi = 'BASTM'";
+    $sql="select T.IdTransaksiStm,F.Nama,F.NIK,F.Jabatan,S.Nama,S.NoNIK,S.Jabatan,T.Tanggal from receiver_first_party as F, second_party as S, transaksi_stm as T where T.FirstPartyId = F.IdFirstParty and T.SecondPartyId = S.IdSecondParty";
     
     //Menjalankan perintah query dan menyimpannya dalam variabel hasil
     $hasil=mysqli_query ($conn,$sql);
@@ -440,68 +437,20 @@
               </tr>";
       do
       {
-        list($idtransaksi,$idpertama,$idkedua,$tanggal)=$row;
-        //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
-        $sql="select Nama_Receiver,NIK,Jabatan from Receiver where IdReceiver = '$idpertama'";
-        
-        //Menjalankan perintah query dan menyimpannya dalam variabel hasil
-        $hasil1=mysqli_query ($conn,$sql);
-  
-        if($hasil1)
-        {
-          //Mengambil 1 baris hasil dari perintah query
-          $row1=mysqli_fetch_row($hasil1);
-        }
-        else
-        {
-          $row1 = false;
-        }
-        
-        if($row1)
-        {
-          list($nama,$nik,$jabatan)=$row1;
-          echo "<form role='form' name='BASTM' id='BASTM' action='../pages/detailpenyerahan.php' method='post' onsubmit=''>
-                <tr>
-                  <td>$nama</td>
-                  <td>$nik</td>
-                  <td>$jabatan</td>";
-          //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
-          $sql="select Nama_Receiver,NIK,Jabatan from Receiver where IdReceiver = '$idkedua'";
-        
-          //Menjalankan perintah query dan menyimpannya dalam variabel hasil
-          $hasil2=mysqli_query ($conn,$sql);
-  
-          if($hasil2)
-          {
-            //Mengambil 1 baris hasil dari perintah query
-            $row2=mysqli_fetch_row($hasil2);
-          }
-          else
-          {
-            $row2 = false;
-          }
-          
-          if($row2)
-          {
-            list($nama,$nik,$jabatan)=$row2;
-            echo "  <td>$nama</td>
-                    <td>$nik</td>
-                    <td>$jabatan</td>
-                    <td>$tanggal</td>
-                    <td> <input type='submit' value='Detail' name='detail' class='button button__primary'>
-                         <input type='hidden' id='id' name='id' value='$idtransaksi'></td>
-                  </tr>
-                  </form>";
-          }
-          else
-          {
-            echo "<center><h2>Tidak ada Dokumen</h2></center>";
-          }
-        }
-        else
-        {
-          echo "<center><h2>Tidak ada Dokumen</h2></center>";
-        }
+        list($idtransaksi,$nama1,$nik1,$jabatan1,$nama2,$nonik2,$jabatan2,$tanggal)=$row;
+        echo " <form role='form' name='BASTM' id='BASTM' action='../pages/detailpenyerahan.php' method='post' onsubmit=''>
+              <tr>  
+                <td>$nama1</td>
+                <td>$nik1</td>
+                <td>$jabatan1</td>
+                <td>$nama2</td>
+                <td>$nonik2</td>
+                <td>$jabatan2</td>
+                <td>$tanggal</td>
+                <td> <input type='submit' value='Detail' name='detail' class='button button__primary'>
+                     <input type='hidden' id='id' name='id' value='$idtransaksi'></td>
+              </tr>
+              </form>";
       }
       while($row=mysqli_fetch_row($hasil));
       echo "</table>
