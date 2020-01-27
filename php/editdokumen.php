@@ -8,6 +8,12 @@
   
   if(isset($_POST['docname']) && isset($_POST['year']))
   {
+    $iddokumen  = $_POST['id_dokumen'];
+    $docname    = $_POST['docname'];
+    $docname    = strtoupper($docname);
+    $idadmin    = $_SESSION['IdAdmin'];
+    $year       = $_POST['year'];
+    $type       = $_POST['type'];
     
     if(!($_FILES["fileToUpload"]["error"] == 4))
     {
@@ -72,22 +78,19 @@
           *Menyimpan Variabel yang di kirim menggunakan method POST
           *Mengubah isi variabel ke lowercase
           */
-          $iddokumen  = $_POST['id_dokumen'];
-          $docname    = $_POST['docname'];
-          $docname    = strtoupper($docname);
-          $idadmin    = $_SESSION['Id_Admin'];
-          $year       = $_POST['year'];
           $date       = date("Y-m-d");
-          $status     = $_POST['status'];
-  
-          //Memilih database
-          mysqli_select_db($conn,"tubesKP");
-
-          //Mempersiapkan Command Query  untuk mengecek apakah barang yang ditambahkan sudah ada atau belum
-          $sql="update repo set Id_Admin = $idadmin, Judul = '$docname', Tanggal_Terakhir_Diubah = '$date', Tahun_Dibuat = $year, Status = '$status', File_Path = '$target_file' where Id_Dokumen = $iddokumen";
-
+          
+          if($type == "STM")
+          {
+            //Mempersiapkan Command Query  untuk mengecek apakah barang yang ditambahkan sudah ada atau belum
+            $sql="update repo_stm set AdminId = $idadmin, NamaDokumen = '$docname', TanggalTerakhirDiubah = '$date', TahunDibuat = $year, FilePath = '$target_file' where IdDokumen = $iddokumen";
+          }
+          else
+          {
+            //Mempersiapkan Command Query  untuk mengecek apakah barang yang ditambahkan sudah ada atau belum
+            $sql="update repo_pbm set AdminId = $idadmin, NamaDokumen = '$docname', TanggalTerakhirDiubah = '$date', TahunDibuat = $year, FilePath = '$target_file' where IdDokumen = $iddokumen";
+          }
           //Menjalankan perintah query dan menyimpannya dalam variabel hasil
-          //$hasil = false;
           $hasil=mysqli_query ($conn,$sql);
       
           if($hasil)
@@ -115,22 +118,19 @@
       *Menyimpan Variabel yang di kirim menggunakan method POST
       *Mengubah isi variabel ke lowercase
       */
-      $iddokumen  = $_POST['id_dokumen'];
-      $docname    = $_POST['docname'];
-      $docname    = strtoupper($docname);
-      $idadmin    = $_SESSION['Id_Admin'];
-      $year       = $_POST['year'];
       $date       = date("Y-m-d");
-      $status     = $_POST['status'];
-
-      //Memilih database
-      mysqli_select_db($conn,"tubesKP");
-
-      //Mempersiapkan Command Query  untuk mengecek apakah barang yang ditambahkan sudah ada atau belum
-      $sql="update repo set Id_Admin = $idadmin, Judul = '$docname', Tanggal_Terakhir_Diubah = '$date', Tahun_Dibuat = $year, Status = '$status' where Id_Dokumen = $iddokumen";
-
+      
+      if($type == "STM")
+      {
+        //Mempersiapkan Command Query  untuk mengecek apakah barang yang ditambahkan sudah ada atau belum
+        $sql="update repo_stm set AdminId = $idadmin, NamaDokumen = '$docname', TanggalTerakhirDiubah = '$date', TahunDibuat = $year where IdDokumen = $iddokumen";
+      }
+      else
+      {
+        //Mempersiapkan Command Query  untuk mengecek apakah barang yang ditambahkan sudah ada atau belum
+        $sql="update repo_pbm set AdminId = $idadmin, NamaDokumen = '$docname', TanggalTerakhirDiubah = '$date', TahunDibuat = $year where IdDokumen = $iddokumen";
+      }
       //Menjalankan perintah query dan menyimpannya dalam variabel hasil
-      //$hasil = false;
       $hasil=mysqli_query ($conn,$sql);
       
       if($hasil)
@@ -140,6 +140,7 @@
       else
       {
         echo "Database gagal di update";
+        echo "<br> $sql";
         header("Refresh: 5; http://localhost/tugasKP/pages/keloladokumen.php");
       }
     }  

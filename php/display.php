@@ -103,10 +103,10 @@
     }
   }
   
-  function DisplayDokumen($conn)
+  function DisplayDokumenPbm($conn)
   {
     
-    $sql="select Judul,Tahun_Dibuat,Tanggal_Unggah,Tanggal_Terakhir_Diubah,File_Path,Id_Dokumen from repo";
+    $sql="select NamaDokumen,TahunDibuat,TanggalUnggah,TanggalTerakhirDiubah,FilePath,IdDokumen from repo_pbm";
     $hasil=mysqli_query ($conn,$sql);
     if($hasil)
     {
@@ -143,6 +143,7 @@
         echo "<form action='../pages/formeditdokumen.php' method='post'>";
         echo "<tr>
                 <input type='hidden' id='id' name='id' value='$iddokumen'>
+                <input type='hidden' id='type' name='type' value='PBM'>
                 <td> $namadoc </td>
                 <input type='hidden' id='docname' name='docname' value='$namadoc'>
                 <td> $tahun </td>
@@ -171,6 +172,77 @@
       echo "<center><h2>Tidak ada Dokumen</h2></center>";
     }
   }
+
+  function DisplayDokumenStm($conn)
+  {
+    
+    $sql="select NamaDokumen,TahunDibuat,TanggalUnggah,TanggalTerakhirDiubah,FilePath,IdDokumen from repo_stm";
+    $hasil=mysqli_query ($conn,$sql);
+    if($hasil)
+    {
+      $row=mysqli_fetch_row($hasil);
+    }
+    else
+    {
+      $row = false;
+    }
+    if($row)
+    {
+      echo "<div style='overflow-x:auto;'>
+            <table border='1'>
+              <tr>
+                <th> Nama Dokumen </td>
+                <th> Tahun Dibuat </td>
+                <th> Tanggal Unggah </td>
+                <th> Tanggal Terakhir Diubah </td>
+                <th> File Name </td>";
+      if(isset($_SESSION['Loggedin']))
+      {
+        echo "  <th> Action </td>
+              </tr>";
+      }
+      else
+      {
+        echo "</tr>";
+      }
+      do
+      {
+        list($namadoc,$tahun,$tanggal,$tanggalubah,$path,$iddokumen)=$row;
+        $namadoc = ucwords($namadoc);
+        $path = substr($path,11);
+        echo "<form action='../pages/formeditdokumen.php' method='post'>";
+        echo "<tr>
+                <input type='hidden' id='id' name='id' value='$iddokumen'>
+                <input type='hidden' id='type' name='type' value='STM'>
+                <td> $namadoc </td>
+                <input type='hidden' id='docname' name='docname' value='$namadoc'>
+                <td> $tahun </td>
+                <input type='hidden' id='year' name='year' value='$tahun'>
+                <td> $tanggal </td>
+                <td> $tanggalubah </td>
+                <td> $path </td>
+                <input type='hidden' id='filename' name='filename' value='$path'>";
+        if(isset($_SESSION['Loggedin']))
+        {
+          echo "<th> <input type='submit' value='Edit' name='submit' class='button button__primary'> </td>
+              </tr>";
+        }
+        else
+        {
+          echo "</tr>";
+        }
+        echo "</form>";
+      }
+      while($row=mysqli_fetch_row($hasil));
+      echo "</table>
+            </div>";
+    }
+    else
+    {
+      echo "<center><h2>Tidak ada Dokumen</h2></center>";
+    }
+  }
+
   
   function DisplayAkun($conn)
   {

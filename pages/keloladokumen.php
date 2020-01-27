@@ -55,15 +55,16 @@
 				<div class="app__main">
 					<div class="text-container">
 						<h3 class="app__main__title">Halaman Kelola Dokumen</h3>
-						<p>Disini anda bisa melakukan Upload Dokumen, Melihat List Dokumen yang sudah di upload, dan juga bisa Mengedit Dokumen yang sudah diupload!</p>
+						<p>Disini anda bisa melihat list Dokumen yang sudah di upload, dan juga bisa Mengedit Dokumen yang sudah diupload</p>
+            <h4>Daftar Dokumen Penerimaan Barang Masuk</h4>
+            <br>
             <?php
-              if(isset($_SESSION['Loggedin']))
-              {
-                echo "<a href='uploadpage.php'><button type='button' name='uploadpdf' class='button button__accent'>Upload Dokumen</button></a>";
-                echo "<b>&nbsp;&nbsp;&nbsp;Hallo $Nama, dari bagian $Bagian</b><br>";
-              }
               include_once "../php/display.php";
-              DisplayDokumen($conn)
+              DisplayDokumenPbm($conn)
+            ?>
+            <h4>Daftar Dokumen Serah Terima Material</h4>
+            <?php
+              DisplayDokumenStm($conn)
             ?>
 					</div>
 				</div>

@@ -72,8 +72,7 @@
               header("Refresh: 5; ../pages/formtambahpenyerahan.php");
             }
           }
-          header("Refresh: 5; ../pages/formtambahpenyerahan.php");
-        //header("location: ../pages/simpenyerahan.php");
+          header("location: ../pages/simpenyerahan.php");
       }
     }
     else

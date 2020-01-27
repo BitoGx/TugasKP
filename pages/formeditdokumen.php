@@ -62,11 +62,12 @@
               $Judul  = $_POST['docname'];
               $Tahun  = $_POST['year'];
               $Path   = $_POST['filename'];
-              $Status = $_POST['status'];
               $Id     = $_POST['id'];
+              $Type   = $_POST['type'];
               
               echo "<input type='hidden' id='id_dokumen' name='id_dokumen' value='$Id'>
                     <input type='hidden' id='path' name='path' value='$Path'>
+                    <input type='hidden' id='type' name='type' value='$Path'>
                     <label>Nama Dokumen</label>
                     <input placeholder='Masukkan Nama Dokumen' type='text' id='docname' name='docname' value='$Judul' required>
                     <label>Tahun Dibuat</label>
@@ -78,34 +79,7 @@
                       <i class='fa fa-cloud-upload'></i> Upload File
                       <img id='check' src='../images/error.png' style='width:16px'>
                     </label>
-                    <label>Status</label>";
-              if($Status == "Tersedia")
-              {
-                echo "<div class='double'>
-                      <p class='half'>
-                        <input name='status' type='radio' id='radio1' value=1 checked/>
-                        <label for='radio1'>Tersedia</label>
-                      </p>
-                      <p class='half'>
-                        <input name='status' type='radio' id='radio2' value=0 />
-                        <label for='radio2'>Tidak Tersedia</label>
-                      </p>
-                    </div>";
-              }
-              else
-              {
-                echo "<div class='double'>
-                      <p class='half'>
-                        <input name='status' type='radio' id='radio1' value=1 />
-                        <label for='radio1'>Tersedia</label>
-                      </p>
-                      <p class='half'>
-                        <input name='status' type='radio' id='radio2' value=0 checked/>
-                        <label for='radio2'>Tidak Tersedia</label>
-                      </p>
-                    </div>";
-              }
-              echo "<p>
+                    <p>
                       <input type='submit' value='Edit' name='submit' class='button button__accent'>
                     </p>";      
             ?>
