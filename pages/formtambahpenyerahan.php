@@ -67,12 +67,14 @@
               <?php
                 include_once "../php/populate.php";
                 echo "<select name ='firstparty'>";
+                echo "  <option selected disabled>- Pilih Pihak Pertama -</option>";
                 PopulateFirstReceiver($conn);
                 echo "</select>";
               ?>
               <label>Pihak Kedua</label>
               <?php
                 echo "<select name ='secondparty'>";
+                echo "  <option selected disabled>- Pilih Pihak Kedua -</option>";
                 PopulateSecondReceiver($conn);
                 echo "</select>";
               ?>
