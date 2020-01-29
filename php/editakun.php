@@ -24,7 +24,7 @@
       $bagian   = ucwords($bagian);
       
       //Mempersiapkan Command Query  untuk mengecek apakah barang yang ditambahkan sudah ada atau belum
-      $sql="update admin set Nama = '$nama', Bagian = '$bagian', Status = '$status' where Id_Admin = $idadmin";
+      $sql="update admin set Nama = '$nama', Bagian = '$bagian', Status = '$status' where IdAdmin = $idadmin";
       
       //Menjalankan perintah query dan menyimpannya dalam variabel hasil
       $hasil=mysqli_query ($conn,$sql);
@@ -59,7 +59,7 @@
       if($row)
       {
         //Mempersiapkan Command Query  untuk mengecek apakah barang yang ditambahkan sudah ada atau belum
-        $sql="update admin set Password = '$newpass', Status = '$status' where Id_Admin = $idadmin and Password = '$password'";
+        $sql="update admin set Password = '$newpass', Status = '$status' where IdAdmin = $idadmin and Password = '$password'";
       
         //Menjalankan perintah query dan menyimpannya dalam variabel hasil
         $hasil=mysqli_query ($conn,$sql);

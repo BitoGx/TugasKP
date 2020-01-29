@@ -6,7 +6,7 @@
 <head>
 	<meta class="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<title>Pihak Penerima dan Pihak Pertama</title>
+	<title>Pihak Penerima / Pihak Pertama</title>
 	<link rel='stylesheet' href='../css/style.min.css' />
   <link rel='stylesheet' href='../css/style.css' />
 </head>
@@ -53,7 +53,7 @@
 				</div>
 				<div class="app__main">
 					<div class="text-container">
-						<h3 class="app__main__title">Daftar Penerima dan Pihak Pertama</h3>
+						<h3 class="app__main__title">Daftar Penerima / Pihak Pertama</h3>
             <a href="formtambahfirstreceiver.php"><button type="button" name="tambahbarang" class="button button__accent">Tambah</button></a>
             <?php
               include_once "../php/display.php";

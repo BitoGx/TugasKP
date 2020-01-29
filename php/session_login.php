@@ -50,7 +50,6 @@
     //Jika Username atau Password salah maka menampilkan pesan salah
     else
     {
-      echo "$sql<br>";
       echo "<center><h1>USERNAME DAN PASSWORD SALAH</h1></center>";
       header("Refresh: 3; http://localhost/tugasKP/pages/login.php");
     }

@@ -69,8 +69,7 @@
                 echo "<label>Nama</label>
                       <input placeholder='Masukkan Nama' type='text' id='nama' name='nama' value='$Nama' required>
                       <label>Bagian</label>
-                      <input placeholder='Masukkan Bagian' type='text' id='bagian' name='bagian' pattern='[A-Za-z ]+' value='$Bagian' required>
-                      <label>Status</label>";
+                      <input placeholder='Masukkan Bagian' type='text' id='bagian' name='bagian' pattern='[A-Za-z ]+' value='$Bagian' required>";
               }
               if(isset($_POST['editpassword']))
               {
@@ -82,6 +81,7 @@
                       <input placeholder='&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;' type='password' id='pass2' onkeyup='PassCheck()' required>
                       <span id='message'></span>";
               }
+              echo "<label>Status</label>";
               if($Status == "Aktif")
               {
                 echo "<div class='double'>

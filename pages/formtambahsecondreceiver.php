@@ -62,7 +62,7 @@
 						<h3 class="app__main__title">Form Tambah Pihak Kedua</h3>
 						<p>Silahkan isi informasi pihak kedua yang akan ditambah</p>
             <form role="form" name="formtambah" action="../php/tambahsecondreceiver.php" method="post" onsubmit="">
-              <label>Nama Penerima</label>
+              <label>Nama Pihak Kedua</label>
               <input placeholder="Masukkan Nama" type="text" id="nama" name="nama" pattern='[A-Za-z,. ]+' required>
               <label>NIK/No Telp</label>
               <input placeholder="Masukkan NIK / NoTelp" type="text" id="nonik" name="nonik" pattern='[0-9]+' required>

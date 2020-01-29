@@ -98,7 +98,7 @@
             <pre>Jabatan       : <?php echo "$jabatan2"; ?></pre>
             <table border='1'>
               <tr>
-                <td colspan=2 style="text-align:center" >Daftar Barang Masuk </td>
+                <td colspan=2 style="text-align:center" >Daftar Barang Keluar </td>
               </tr>
               <tr>
                 <td style="text-align:center">Serial Number </td>
@@ -136,7 +136,7 @@
                 }
                 else
                 {
-                  echo "<tr><td colspan=2><center><h2>Tidak ada Dokumen</h2></center></tr></td>";
+                  echo "<tr><td colspan=2><center><h2>Tidak ada Barang</h2></center></tr></td>";
                 }
                 ?>
             </table>
