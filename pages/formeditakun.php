@@ -60,8 +60,8 @@
             <?php
               echo "<form role='form' action='../php/editakun.php' method='post'>";
               $Status = $_POST['status'];
-              $IdAdmin = $_POST['id'];
-              echo "<input type='hidden' id='id' name='id' value='$IdAdmin'>";
+              $IdUser = $_POST['id'];
+              echo "<input type='hidden' id='id' name='id' value='$IdUser'>";
               if(isset($_POST['editakun']))
               {
                 $Nama = $_POST['nama'];

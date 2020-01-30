@@ -53,8 +53,14 @@
       //Menjalankan perintah query dan menyimpannya dalam variabel hasil
       $hasil=mysqli_query ($conn,$sql);
       
-      //Mengecek apakah terjadi perubahan di dalam database atau tidak
-      $row=mysqli_affected_rows($hasil);
+      if($hasil)
+      {
+        $row=mysqli_fetch_row($hasil);
+      }
+      else
+      {
+        $row = false;
+      }
       
       if($row)
       {
@@ -77,6 +83,7 @@
       else
       {
         echo "Maaf password lama yang anda masukkan salah";
+        echo "<br>$sql";
         header("Refresh: 5; http://localhost/TugasKP/pages/kelolaakun.php");
       }
     }
