@@ -28,7 +28,6 @@
 						<?php
               if(isset($_SESSION['Loggedin']))
               {
-                echo "<li><a href='kelolaakun.php'>Kelola Akun</a></li>";
                 echo "<li><a href='../php/session_logout.php'>Logout</a></li>";
               }
               else
@@ -48,9 +47,12 @@
 			<div class="app__inner">
 				<div class="app__menu">
 					<ul class="vMenu">
-						<li><a href="../index.php">Dashboard</a></li>
+						<li><b>Dokumen</b></li>
+						<li><a href="../index.php">Daftar Dokumen</a></li>
 						<li><a href="keloladokumen.php">Kelola Dokumen</a></li>
-						<li><a href="#" class="vMenu--active">Edit Dokumen</a></li>
+            <li><a href="#" class="vMenu--active">Edit Dokumen</a></li>
+            <li><b><a href='simbarang.php'>SIM</a></b></li>
+            <li><b><a href='kelolaakun.php'>Pengaturan</a></b></li>
 					</ul>
 				</div>
 				<div class="app__main">

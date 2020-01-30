@@ -48,7 +48,7 @@
             if(isset($_SESSION['Loggedin']))
             {
               echo "<li><b><a href='pages/simbarang.php'>SIM</a></b></li>
-                    <li><b><a href='pages/kelolaakun.php'>Kelola Akun</a></b></li>";
+                    <li><b><a href='pages/kelolaakun.php'>Pengaturan</a></b></li>";
             }
             ?>
 					</ul>

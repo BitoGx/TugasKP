@@ -47,13 +47,13 @@
 				<div class="app__menu">
 					<ul class="vMenu">
             <li><b>Dokumen</b></li>
-						<li><a href="../index.php">Dashboard</a></li>
+						<li><a href="../index.php">Daftar Dokumen</a></li>
 						<li><a href="#" class="vMenu--active">Kelola Dokumen</a></li>
             <?php
             if(isset($_SESSION['Loggedin']))
             {
-              echo "<li><b><a href='pages/simbarang.php'>SIM</a></b></li>
-                    <li><b><a href='pages/kelolaakun.php'>Kelola Akun</a></b></li>";
+              echo "<li><b><a href='simbarang.php'>SIM</a></b></li>
+                    <li><b><a href='kelolaakun.php'>Pengaturan</a></b></li>";
             }
             ?>
 					</ul>
