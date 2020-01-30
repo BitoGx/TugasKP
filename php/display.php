@@ -6,7 +6,7 @@
   //Fungsi untuk memanggil Semua Dokumen PBM yang tercatat pada database
   function DisplayIndexPbm($conn)
   {
-    $sql="select R.NamaDokumen,R.TahunDibuat,R.TanggalTerakhirDiubah,A.Bagian,A.Nama,R.Filepath from repo_pbm as R, admin as A where R.AdminId = A.IdAdmin";
+    $sql="select R.NamaDokumen,R.TahunDibuat,R.TanggalTerakhirDiubah,A.Bagian,A.Nama,R.Filepath from repo_pbm as R, user as A where R.UserId = A.IdUser";
     $hasil=mysqli_query ($conn,$sql);
     if($hasil)
     {
@@ -56,7 +56,7 @@
   //Fungsi untuk memanggil Semua Dokumen STM yang tercatat pada database
   function DisplayIndexStm($conn)
   {
-    $sql="select R.NamaDokumen,R.TahunDibuat,R.TanggalTerakhirDiubah,A.Bagian,A.Nama,R.Filepath from repo_stm as R, admin as A where R.AdminId = A.IdAdmin";
+    $sql="select R.NamaDokumen,R.TahunDibuat,R.TanggalTerakhirDiubah,A.Bagian,A.Nama,R.Filepath from repo_stm as R, user as A where R.UserId = A.IdUser";
     $hasil=mysqli_query ($conn,$sql);
     if($hasil)
     {
@@ -246,15 +246,15 @@
   
   function DisplayAkun($conn)
   {
-    $level   = $_SESSION['Level'];
-    $idadmin = $_SESSION['IdAdmin'];
+    $level  = $_SESSION['Level'];
+    $iduser = $_SESSION['IdUser'];
     if($level == 1)
     {
-      $sql="select Nama,Bagian,Username,Status,IdAdmin from admin";
+      $sql="select Nama,Bagian,Username,Status,IdUser from user";
     }
     else
     {
-      $sql="select Nama,Bagian,Username,Status,IdAdmin from admin where IdAdmin = $idadmin";
+      $sql="select Nama,Bagian,Username,Status,IdUser from user where IdUser = $iduser";
     }
   
     //Menjalankan perintah query dan menyimpannya dalam variabel hasil
@@ -276,7 +276,7 @@
               </tr>";
       do
       {
-        list($nama,$bagian,$username,$status,$idadmin)=$row;
+        list($nama,$bagian,$username,$status,$iduser)=$row;
         if($status == 1 )
         {
           $status = "Aktif";
@@ -287,7 +287,7 @@
         }
         echo "<form action='../pages/formeditakun.php' method='post' onsubmit='return FormValidation()'>";
         echo "<tr>
-                <input type='hidden' id='id' name='id' value='$idadmin'>
+                <input type='hidden' id='id' name='id' value='$iduser'>
                 <td> $nama </td>
                 <input type='hidden' id='nama' name='nama' value='$nama'>
                 <td> $bagian </td>

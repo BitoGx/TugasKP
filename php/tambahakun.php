@@ -26,7 +26,7 @@
     mysqli_select_db($conn,"tubesKP");
 
     //Mempersiapkan Command Query  untuk mengecek apakah Username yang ditambahkan sudah ada atau belum
-    $sql="select * from admin where Username='$username'";
+    $sql="select * from user where Username='$username'";
 
     //Menjalankan perintah query dan menyimpannya dalam variabel hasil
     $hasil=mysqli_query ($conn,$sql);
@@ -42,7 +42,7 @@
     else
     {
       //Mempersiapkan Command Query  untuk menambahkan User baru
-      $sql="insert into admin (Username,Nama,Password,Bagian) value ('$username','$nama','$pass','$bagian')";
+      $sql="insert into user (Username,Nama,Password,Bagian) value ('$username','$nama','$pass','$bagian')";
 
       //Menjalankan perintah query dan menyimpannya dalam variabel hasil
       $hasil=mysqli_query ($conn,$sql);

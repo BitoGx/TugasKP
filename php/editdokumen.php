@@ -8,12 +8,12 @@
   
   if(isset($_POST['docname']) && isset($_POST['year']))
   {
-    $iddokumen  = $_POST['id_dokumen'];
-    $docname    = $_POST['docname'];
-    $docname    = strtoupper($docname);
-    $idadmin    = $_SESSION['IdAdmin'];
-    $year       = $_POST['year'];
-    $type       = $_POST['type'];
+    $iddokumen = $_POST['id_dokumen'];
+    $docname   = $_POST['docname'];
+    $docname   = strtoupper($docname);
+    $iduser    = $_SESSION['IdUser'];
+    $year      = $_POST['year'];
+    $type      = $_POST['type'];
     
     if(!($_FILES["fileToUpload"]["error"] == 4))
     {
@@ -83,12 +83,12 @@
           if($type == "STM")
           {
             //Mempersiapkan Command Query  untuk mengecek apakah barang yang ditambahkan sudah ada atau belum
-            $sql="update repo_stm set AdminId = $idadmin, NamaDokumen = '$docname', TanggalTerakhirDiubah = '$date', TahunDibuat = $year, FilePath = '$target_file' where IdDokumen = $iddokumen";
+            $sql="update repo_stm set UserId = $iduser, NamaDokumen = '$docname', TanggalTerakhirDiubah = '$date', TahunDibuat = $year, FilePath = '$target_file' where IdDokumen = $iddokumen";
           }
           else
           {
             //Mempersiapkan Command Query  untuk mengecek apakah barang yang ditambahkan sudah ada atau belum
-            $sql="update repo_pbm set AdminId = $idadmin, NamaDokumen = '$docname', TanggalTerakhirDiubah = '$date', TahunDibuat = $year, FilePath = '$target_file' where IdDokumen = $iddokumen";
+            $sql="update repo_pbm set UserId = $iduser, NamaDokumen = '$docname', TanggalTerakhirDiubah = '$date', TahunDibuat = $year, FilePath = '$target_file' where IdDokumen = $iddokumen";
           }
           //Menjalankan perintah query dan menyimpannya dalam variabel hasil
           $hasil=mysqli_query ($conn,$sql);
@@ -123,12 +123,12 @@
       if($type == "STM")
       {
         //Mempersiapkan Command Query  untuk mengecek apakah barang yang ditambahkan sudah ada atau belum
-        $sql="update repo_stm set AdminId = $idadmin, NamaDokumen = '$docname', TanggalTerakhirDiubah = '$date', TahunDibuat = $year where IdDokumen = $iddokumen";
+        $sql="update repo_stm set UserId = $iduser, NamaDokumen = '$docname', TanggalTerakhirDiubah = '$date', TahunDibuat = $year where IdDokumen = $iddokumen";
       }
       else
       {
         //Mempersiapkan Command Query  untuk mengecek apakah barang yang ditambahkan sudah ada atau belum
-        $sql="update repo_pbm set AdminId = $idadmin, NamaDokumen = '$docname', TanggalTerakhirDiubah = '$date', TahunDibuat = $year where IdDokumen = $iddokumen";
+        $sql="update repo_pbm set UserId = $iduser, NamaDokumen = '$docname', TanggalTerakhirDiubah = '$date', TahunDibuat = $year where IdDokumen = $iddokumen";
       }
       //Menjalankan perintah query dan menyimpannya dalam variabel hasil
       $hasil=mysqli_query ($conn,$sql);

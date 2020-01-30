@@ -10,7 +10,7 @@
   {
     //Menyimpan Variabel yang di kirim menggunakan method POST
     $status   = $_POST['status'];
-    $idadmin   = $_POST['id'];
+    $iduser   = $_POST['id'];
     
     //Memilih database
     mysqli_select_db($conn,"tubesKP");
@@ -24,7 +24,7 @@
       $bagian   = ucwords($bagian);
       
       //Mempersiapkan Command Query  untuk mengecek apakah barang yang ditambahkan sudah ada atau belum
-      $sql="update admin set Nama = '$nama', Bagian = '$bagian', Status = '$status' where IdAdmin = $idadmin";
+      $sql="update user set Nama = '$nama', Bagian = '$bagian', Status = '$status' where IdUser = $iduser";
       
       //Menjalankan perintah query dan menyimpannya dalam variabel hasil
       $hasil=mysqli_query ($conn,$sql);
@@ -48,7 +48,7 @@
       $newpass  = sha1($newpass);
       
       //Mempersiapkan Command Query  untuk mengecek apakah barang yang ditambahkan sudah ada atau belum
-      $sql="select * from admin where Id_Admin = $idadmin and Password = '$password'";
+      $sql="select * from user where IdUser = $iduser and Password = '$password'";
       
       //Menjalankan perintah query dan menyimpannya dalam variabel hasil
       $hasil=mysqli_query ($conn,$sql);
@@ -59,7 +59,7 @@
       if($row)
       {
         //Mempersiapkan Command Query  untuk mengecek apakah barang yang ditambahkan sudah ada atau belum
-        $sql="update admin set Password = '$newpass', Status = '$status' where IdAdmin = $idadmin and Password = '$password'";
+        $sql="update user set Password = '$newpass', Status = '$status' where IdUser = $iduser and Password = '$password'";
       
         //Menjalankan perintah query dan menyimpannya dalam variabel hasil
         $hasil=mysqli_query ($conn,$sql);

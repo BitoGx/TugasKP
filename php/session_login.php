@@ -18,7 +18,7 @@
     require_once "connection.php";
   
     //Mempersiapkan Command Query  untuk mengambil data IdUser,Nama,Level berdasarkan Username dan Password
-    $sql="select Nama,Bagian,IdAdmin,Level,Status from admin where Username='$username' and Password='$password'";
+    $sql="select Nama,Bagian,IdUser,Level,Status from user where Username='$username' and Password='$password'";
   
     //Menjalankan perintah query dan menyimpannya dalam variabel hasil
     $hasil=mysqli_query ($conn,$sql);
@@ -29,10 +29,10 @@
     //Menjalankan perintah perulangan sebanyak yang dibutuhkan
     if($row)
     {
-      list($nama,$bagian,$idadmin,$level,$status)=$row;
+      list($nama,$bagian,$iduser,$level,$status)=$row;
       $_SESSION['Nama']=$nama;
       $_SESSION['Bagian']=$bagian;
-      $_SESSION['IdAdmin']=$idadmin;
+      $_SESSION['IdUser']=$iduser;
       $_SESSION['Level']=$level;
       $_SESSION['Loggedin'] = "true";
       if($status == 0 )

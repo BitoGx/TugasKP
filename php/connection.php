@@ -7,7 +7,7 @@
   // Buat Koneksi
   $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
   
-  mysqli_select_db($conn,"tubesKP");
+  mysqli_select_db($conn,"sim");
 
   // Check Koneksi Nerhasil atau Tidak
   if (!$conn) 

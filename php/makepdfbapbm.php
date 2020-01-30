@@ -411,7 +411,7 @@ $mpdf->WriteHTML($doc);
 $mpdf->AddPage();
 $mpdf->WriteHTML($tabelbarang);
 
-$idadmin=$_SESSION['IdAdmin'];
+$iduser = $_SESSION['IdUser'];
 $year=date("Y");
 $date=date("Y-m-d");
 $file_path = '../uploads/'.$docname.'.pdf';
@@ -425,7 +425,7 @@ if (file_exists($file_path))
 else
 {
   //Mempersiapkan Command Query  untuk mengecek apakah barang yang ditambahkan sudah ada atau belum
-  $sql="insert into repo_pbm(AdminId,TransaksiPbmId,NamaDokumen,TanggalUnggah,TanggalTerakhirDiubah,TahunDibuat,FilePath) values ($idadmin,$Id,'$docname','$date','$date',$year,'$file_path')";
+  $sql="insert into repo_pbm(UserId,TransaksiPbmId,NamaDokumen,TanggalUnggah,TanggalTerakhirDiubah,TahunDibuat,FilePath) values ($iduser,$Id,'$docname','$date','$date',$year,'$file_path')";
 
   //Menjalankan perintah query dan menyimpannya dalam variabel hasil
   $hasil=mysqli_query ($conn,$sql);
