@@ -28,8 +28,6 @@
 						<?php
               if(isset($_SESSION['Loggedin']))
               {
-                echo "<li><a href='../index.php'>Dashboard</a></li>";
-                echo "<li><a href='kelolaakun.php'>Kelola Akun</a></li>";
                 echo "<li><a href='../php/session_logout.php'>Logout</a></li>";
               }
               else
