@@ -49,13 +49,16 @@
 			<div class="app__inner">
 				<div class="app__menu">
 					<ul class="vMenu">
-						<li><a href="sim.php">Daftar Barang</a></li>
+						<li><b><a href="../index.php">Dokumen</a></b></li>
+            <li><b>SIM</b></li>
+						<li><a href="simbarang.php">Daftar Barang</a></li>
 						<li><a href="simpenerimaan.php">Penerimaan Barang Masuk</a></li>
 						<li><a href="simpenyerahan.php">Serah Terima Material</a></li>
             <li><a href="#" class="vMenu--active">Detail Serah Terima Material</a></li>
 						<li><a href="simpengirim.php">Pihak Pengirim</a></li>
 						<li><a href="simfirstreceiver.php">Pihak Penerima / Pihak Pertama</a></li>
 						<li><a href="simsecondreceiver.php">Pihak Kedua</a></li>
+            <li><b><a href='kelolaakun.php'>Pengaturan</a></b></li>
 					</ul>
 				</div>
 				<div class="app__main">
