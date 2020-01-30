@@ -27,8 +27,6 @@
 						<?php
               if(isset($_SESSION['Loggedin']))
               {
-                echo "<li><a href='simbarang.php'>SIM</a></li>";
-                echo "<li><a href='kelolaakun.php'>Kelola Akun</a></li>";
                 echo "<li><a href='../php/session_logout.php'>Logout</a></li>";
               }
               else
@@ -48,8 +46,16 @@
 			<div class="app__inner">
 				<div class="app__menu">
 					<ul class="vMenu">
+            <li><b>Dokumen</b></li>
 						<li><a href="../index.php">Dashboard</a></li>
 						<li><a href="#" class="vMenu--active">Kelola Dokumen</a></li>
+            <?php
+            if(isset($_SESSION['Loggedin']))
+            {
+              echo "<li><b><a href='pages/simbarang.php'>SIM</a></b></li>
+                    <li><b><a href='pages/kelolaakun.php'>Kelola Akun</a></b></li>";
+            }
+            ?>
 					</ul>
 				</div>
 				<div class="app__main">

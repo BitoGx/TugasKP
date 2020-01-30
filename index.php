@@ -41,21 +41,21 @@
 			<div class="app__inner">
 				<div class="app__menu">
 					<ul class="vMenu">
-						<li><a href="#" class="vMenu--active">Dashboard</a></li>
+            <li><b>Dokumen</b></li>
+						<li><a href="#" class="vMenu--active">Daftar Dokumen</a></li>
 						<li><a href="pages/keloladokumen.php">Kelola Dokumen</a></li>
             <?php
             if(isset($_SESSION['Loggedin']))
             {
-              echo "<li><a href='pages/simbarang.php'>SIM</a></li>
-                    <li><a href='pages/kelolaakun.php'>Kelola Akun</a></li>";
+              echo "<li><b><a href='pages/simbarang.php'>SIM</a></b></li>
+                    <li><b><a href='pages/kelolaakun.php'>Kelola Akun</a></b></li>";
             }
             ?>
-            
 					</ul>
 				</div>
 				<div class="app__main">
 					<div class="text-container">
-						<h3 class="app__main__title">Dashboard</h3>
+						<h3 class="app__main__title">Daftar Dokumen</h3>
 						<h4>Daftar Dokumen Penerimaan Barang Masuk</h4>
             <br>
             <?php
